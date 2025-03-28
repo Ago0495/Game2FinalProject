@@ -15,6 +15,7 @@ public class PlayerPanelOptions : NetworkComponent
     {
         if (flag == "READY")
         {
+            Debug.Log("flag == READY");
             if (IsServer)
             {
                 isReady = bool.Parse(value);
@@ -52,7 +53,16 @@ public class PlayerPanelOptions : NetworkComponent
 
     public override IEnumerator SlowUpdate()
     {
-        yield return new WaitForSeconds(MyCore.MasterTimer);
+        while (IsServer)
+        {
+            if (IsDirty)
+            {
+                Debug.Log("PlayerPannelOptions Is Server Slow Update");
+                SendUpdate("READY", isReady.ToString());
+                IsDirty = false;
+            }
+            yield return new WaitForSeconds(MyCore.MasterTimer);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
