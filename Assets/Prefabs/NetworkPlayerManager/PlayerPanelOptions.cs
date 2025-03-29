@@ -2,20 +2,38 @@ using UnityEngine;
 using NETWORK_ENGINE;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerPanelOptions : NetworkComponent
 {
     //sync vals
+    string playerName = "";
     bool isReady;
+    int skill;
+    
 
     //non-sync vals
+    [SerializeField] private TMP_InputField nameField;
     [SerializeField] private Toggle readyToggle;
+    [SerializeField] private TMP_Dropdown skillSelect;
 
     public override void HandleMessage(string flag, string value)
     {
+        if (flag == "NAME")
+        {
+            if (IsServer)
+            {
+                playerName = value;
+                SendUpdate("NAME", playerName);
+            }
+            if (IsClient)
+            {
+                playerName = value;
+                nameField.text = playerName;
+            }
+        }
         if (flag == "READY")
         {
-            Debug.Log("flag == READY");
             if (IsServer)
             {
                 isReady = bool.Parse(value);
@@ -25,6 +43,19 @@ public class PlayerPanelOptions : NetworkComponent
             {
                 isReady = bool.Parse(value);
                 readyToggle.isOn = isReady;
+            }
+        }
+        if (flag == "SKILL")
+        {
+            if (IsServer)
+            {
+                skill = int.Parse(value);
+                SendUpdate("SKILL", skill.ToString());
+            }
+            if (IsClient)
+            {
+                skill = int.Parse(value);
+                skillSelect.SetValueWithoutNotify(skill);
             }
         }
     }
@@ -44,9 +75,17 @@ public class PlayerPanelOptions : NetworkComponent
 
         if (!IsLocalPlayer)
         {
+            if (nameField != null)
+            {
+                nameField.interactable = false;
+            }
             if (readyToggle != null)
             {
                 readyToggle.interactable = false;
+            }
+            if (skillSelect != null)
+            {
+                skillSelect.interactable = false;
             }
         }
     }
@@ -57,8 +96,9 @@ public class PlayerPanelOptions : NetworkComponent
         {
             if (IsDirty)
             {
-                Debug.Log("PlayerPannelOptions Is Server Slow Update");
+                SendUpdate("NAME", playerName);
                 SendUpdate("READY", isReady.ToString());
+                SendUpdate("SKILL", skill.ToString());
                 IsDirty = false;
             }
             yield return new WaitForSeconds(MyCore.MasterTimer);
@@ -83,6 +123,22 @@ public class PlayerPanelOptions : NetworkComponent
         {
             SendCommand("READY", t.ToString());
             
+        }
+    }
+
+    public void OnSkillSelectChanged(int i)
+    {
+        if (IsLocalPlayer)
+        {
+            SendCommand("SKILL", i.ToString());
+        }
+    }
+
+    public void OnNameFieldChanged(string s)
+    {
+        if (IsLocalPlayer)
+        {
+            SendCommand("NAME", s);
         }
     }
 
