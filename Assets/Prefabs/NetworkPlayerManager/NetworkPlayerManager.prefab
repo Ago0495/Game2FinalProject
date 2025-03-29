@@ -68,5 +68,4 @@ MonoBehaviour:
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
-  readyToggle: {fileID: 0}
-  playerPanelPrefab: 1
+  playerPanelPrefab: 5

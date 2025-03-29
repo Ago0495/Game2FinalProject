@@ -87,10 +87,10 @@ public class GameMaster : NetworkComponent
 
             Debug.Log("ALL PLAYERS READY");
 
-            //foreach (PlayerPanelOptions player in players)
-            //{
-            //    //spawn player's chosen character
-            //}
+            foreach (PlayerPanelOptions player in players)
+            {
+                //spawn player's chosen character
+            }
 
             SendUpdate("GAMESTART", "1");
 

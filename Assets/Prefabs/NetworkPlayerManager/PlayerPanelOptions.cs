@@ -9,8 +9,7 @@ public class PlayerPanelOptions : NetworkComponent
     //sync vals
     string playerName = "";
     bool isReady;
-    int skill;
-    
+    int skill;    
 
     //non-sync vals
     [SerializeField] private TMP_InputField nameField;
