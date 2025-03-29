@@ -102,4 +102,3 @@ Material:
     - _WaveB: {r: 0, g: 1, b: 0.2, a: 20}
     - _WaveC: {r: 1, g: 1, b: 0.3, a: 15}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
