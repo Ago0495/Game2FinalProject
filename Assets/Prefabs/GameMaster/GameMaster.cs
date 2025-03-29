@@ -90,6 +90,7 @@ public class GameMaster : NetworkComponent
             foreach (PlayerPanelOptions player in players)
             {
                 //spawn player's chosen character
+                GameObject tempPlayer = MyCore.NetCreateObject(player.GetSkillSelection(), Owner, Vector3.zero, Quaternion.identity);
             }
 
             SendUpdate("GAMESTART", "1");

@@ -145,4 +145,14 @@ public class PlayerPanelOptions : NetworkComponent
     {
         return isReady;
     }
+
+    public int GetSkillSelection()
+    {
+        return skill;
+    }
+
+    public string GetPlayerpName()
+    {
+        return playerName;
+    }
 }
