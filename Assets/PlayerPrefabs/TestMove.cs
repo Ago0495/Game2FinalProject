@@ -55,8 +55,11 @@ public class TestMove : MonoBehaviour
 
     private void Update()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         RotateView();
         cameraTransform.position = transform.position + Vector3.up * 1.5f;
+
     }
 
     private void Move()
