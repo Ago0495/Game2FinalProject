@@ -90,7 +90,7 @@ public class GameMaster : NetworkComponent
             foreach (PlayerPanelOptions player in players)
             {
                 //spawn player's chosen character
-                GameObject tempPlayer = MyCore.NetCreateObject(player.GetSkillSelection(), Owner, Vector3.zero, Quaternion.identity);
+                GameObject tempPlayer = MyCore.NetCreateObject(player.GetSkillSelection(), player.Owner, Vector3.zero, Quaternion.identity);
             }
 
             SendUpdate("GAMESTART", "1");
@@ -102,7 +102,7 @@ public class GameMaster : NetworkComponent
 
             while (!gameFinished)
             {
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(60);
                 SendUpdate("ENDGAME", "1");
 
                 yield return new WaitForSeconds(10);
