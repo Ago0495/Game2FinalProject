@@ -30,6 +30,18 @@ public class PlayerPanelOptions : NetworkComponent
                 playerName = value;
                 nameField.text = playerName;
             }
+            if (IsLocalPlayer)
+            {
+                if (playerName != "")
+                {
+                    readyToggle.interactable = true;
+                }
+                else
+                {
+                    readyToggle.interactable = false;
+                    SendCommand("READY", "false");
+                }
+            }
         }
         if (flag == "READY")
         {
