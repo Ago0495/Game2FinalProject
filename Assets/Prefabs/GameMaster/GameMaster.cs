@@ -102,10 +102,10 @@ public class GameMaster : NetworkComponent
 
             while (!gameFinished)
             {
-                yield return new WaitForSeconds(60);
+                yield return new WaitForSeconds(5);
                 SendUpdate("ENDGAME", "1");
 
-                yield return new WaitForSeconds(10);
+                yield return new WaitForSeconds(5);
                 StartCoroutine(MyCore.DisconnectServer());
             }
         }
