@@ -464,10 +464,10 @@ public class GenericCore_Web : MonoBehaviour
 
     public void ScreenConsole(String s)
     {
-        if (OutputConsole != null)
+        /*if (OutputConsole != null)
         {
             OutputConsole.text += s + "\n";
-        }
+        }*/
     }
     private void FixedUpdate()
     {
@@ -550,8 +550,10 @@ public class GenericCore_Web : MonoBehaviour
     //UI functions
     public void StartServer()
     {
+        ScreenConsole("STARTING SERVER");
         if(IsConnected)
         {
+            ScreenConsole("ABORTING SERVER START!!! WE think we are already connected!");
             return;
         }
         try
@@ -559,7 +561,15 @@ public class GenericCore_Web : MonoBehaviour
             //Server uses the websocket shart wss variable.
             IsServer = true;
             Debug.Log("Started server @" + "ws://" + IP + ":" + PortNumber);
-            wss = new WebSocketServer("ws://"+IP+":"+PortNumber);
+            ScreenConsole("Started server @" + "ws://" + IP + ":" + PortNumber);
+#if PLATFORM_STANDALONE_LINUX
+            //wss = new WebSocketServer(PortNumber, false);
+            wss = new WebSocketServer(IPAddress.Parse(IP), PortNumber, false);
+            //IP = "127.0.0.1";
+            //wss = new WebSocketServer("ws://" + IP + ":" + PortNumber);
+#else
+            wss = new WebSocketServer("ws://" + IP + ":" + PortNumber);
+#endif
             wss.Start();
             Debug.Log("Server Started!");
             IsServer = true;
@@ -576,6 +586,7 @@ public class GenericCore_Web : MonoBehaviour
         catch (Exception e )
         {
             Debug.Log("ERROR OCCURED ON START SERVER: "+e.ToString());
+            ScreenConsole("ERROR OCCURED ON START SERVER: " + e.ToString());
         }
     }
     public IEnumerator StartClient()
@@ -950,6 +961,7 @@ public class GenericCore_Web : MonoBehaviour
     /// <param name="msg">The messge to add to the log.</param>
     public static void Logger(string msg)
     {
+     
         /*if (SystemLog.Length > GenericCore_Web.MaxConsoleLogSize)
         {
             SystemLog = "";
