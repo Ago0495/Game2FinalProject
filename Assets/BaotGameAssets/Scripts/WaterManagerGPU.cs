@@ -51,23 +51,23 @@ public class WaterManagerGPU : MonoBehaviour
 
     private void Update()
     {
-        //material.SetFloat("_Amplitude", WaveManager.instance.amplitude);
-        //material.SetFloat("_Steepness", WaveManager.instance.steepness);
-        //material.SetFloat("_Wavelength", WaveManager.instance.length);
-        //material.SetFloat("_Speed", WaveManager.instance.speed);
+        //material.SetFloat("_Amplitude", NetworkWaveMaster.instance.amplitude);
+        //material.SetFloat("_Steepness", NetworkWaveMaster.instance.steepness);
+        //material.SetFloat("_Wavelength", NetworkWaveMaster.instance.length);
+        //material.SetFloat("_Speed", NetworkWaveMaster.instance.speed);
 
         Vector4[] float4Array;
-        float4Array = new Vector4[WaveManager.instance.waves.Length];
+        float4Array = new Vector4[NetworkWaveMaster.instance.waves.Length];
 
 
-        for (int i = 0; i < WaveManager.instance.waves.Length; i++) 
+        for (int i = 0; i < NetworkWaveMaster.instance.waves.Length; i++) 
         {
-            WaveManager.Wave wave = WaveManager.instance.waves[i];
+            NetworkWaveMaster.Wave wave = NetworkWaveMaster.instance.waves[i];
             float4Array[i] = new Vector4(wave.direction.x, wave.direction.y, wave.steepness, wave.length);
         }
 
         material.SetVectorArray("_Waves", float4Array); 
         material.SetFloat("_ArraySize", float4Array.Length);
-        material.SetFloat("_Offset", WaveManager.instance.offset);
+        material.SetFloat("_Offset", NetworkWaveMaster.instance.offset);
     }
 }

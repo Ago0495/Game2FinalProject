@@ -102,7 +102,7 @@ public class GameMaster : NetworkComponent
 
             while (!gameFinished)
             {
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(60);
                 SendUpdate("ENDGAME", "1");
 
                 yield return new WaitForSeconds(5);
