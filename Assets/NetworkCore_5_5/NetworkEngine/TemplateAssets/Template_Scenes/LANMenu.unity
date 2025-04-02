@@ -2826,6 +2826,18 @@ PrefabInstance:
       value: NetworkedPlayerShip
       objectReference: {fileID: 0}
     - target: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2863,6 +2875,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231304171573758653, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: Threshold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231304171573758653, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: EThreshold
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

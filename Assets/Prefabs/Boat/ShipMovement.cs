@@ -5,10 +5,11 @@ using System.Collections;
 public class ShipMovement : NetworkComponent
 {
     [SerializeField] Rigidbody rb;
+    GameMaster gm;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb.isKinematic = true;
+        rb.useGravity= false;
     }
 
     // Update is called once per frame
@@ -19,12 +20,24 @@ public class ShipMovement : NetworkComponent
 
     public override IEnumerator SlowUpdate()
     {
-        rb.isKinematic = true;
+        rb.useGravity = false;
         while (!IsConnected)
         {
             yield return new WaitForSeconds(MyCore.MasterTimer);
         }
-        rb.isKinematic = false;
+        if (IsServer)
+        {
+            rb.useGravity = true;
+
+            while (IsServer)
+            {
+                if (gm.GetGameStarted())
+                {
+                    rb.AddForce(transform.forward * 5000);
+                }
+                yield return new WaitForSeconds(MyCore.MasterTimer);
+            }
+        }
     }
 
     public override void HandleMessage(string flag, string value)
@@ -34,6 +47,6 @@ public class ShipMovement : NetworkComponent
 
     public override void NetworkedStart()
     {
-
+        gm = FindAnyObjectByType<GameMaster>();
     }
 }

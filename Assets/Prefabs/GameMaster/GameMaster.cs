@@ -9,8 +9,9 @@ using TMPro;
 public class GameMaster : NetworkComponent
 {
     //sync vars
-    [SerializeField] private bool gameStarted;
-    [SerializeField] private bool gameFinished;
+    [SerializeField] private bool gameStarted = false;
+    [SerializeField] private bool gameFinished = false;
+    [SerializeField] private bool allPlayersReady = false;
     private int score;
 
     //non-sync vars
@@ -19,6 +20,7 @@ public class GameMaster : NetworkComponent
     {
         if (flag == "GAMESTART")
         {
+            gameStarted = true;
             GameObject lobbyPlayerCanvas = GameObject.Find("LobbyPlayerCanvas");
             if (lobbyPlayerCanvas == null)
             {
@@ -70,20 +72,20 @@ public class GameMaster : NetworkComponent
 
             do
             {
-                gameStarted = true;
+                allPlayersReady = true;
                 players = FindObjectsByType<PlayerPanelOptions>(FindObjectsSortMode.None);
 
                 foreach (PlayerPanelOptions player in players)
                 {
                     if (!player.GetIsReady())
                     {
-                        gameStarted = false;
+                        allPlayersReady = false;
                     }
                 }
 
                 yield return new WaitForSeconds(MyCore.MasterTimer);
 
-            } while (!gameStarted || players.Length < 2);
+            } while (!allPlayersReady || players.Length < 2);
 
             Debug.Log("ALL PLAYERS READY");
 
@@ -93,6 +95,7 @@ public class GameMaster : NetworkComponent
                 GameObject tempPlayer = MyCore.NetCreateObject(player.GetSkillSelection(), player.Owner, Vector3.up * 20, Quaternion.identity);
             }
 
+            gameStarted = true;
             SendUpdate("GAMESTART", "1");
 
             score = Random.Range(10, 1000);
@@ -126,5 +129,10 @@ public class GameMaster : NetworkComponent
     void StartGame()
     {
 
+    }
+
+    public bool GetGameStarted()
+    {
+        return gameStarted;
     }
 }

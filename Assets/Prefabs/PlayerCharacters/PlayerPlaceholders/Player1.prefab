@@ -214,9 +214,9 @@ MonoBehaviour:
   LastVelocity: {x: 0, y: 0, z: 0}
   LastAngular: {x: 0, y: 0, z: 0}
   OffsetVelocity: {x: 0, y: 0, z: 0}
-  Threshold: 0.1
-  EThreshold: 2.5
-  MyRig: {fileID: 7678186154726211163}
+  Threshold: 0
+  EThreshold: 0
+  MyRig: {fileID: 0}
   UseOffsetVelocity: 1
   ClientRecv: 0
 --- !u!114 &765879121553534076
@@ -237,7 +237,7 @@ MonoBehaviour:
   MyRig: {fileID: 7678186154726211163}
   MyInput: {fileID: 0}
   MyMap: {fileID: 0}
-  speed: 5
+  speed: 10
   canJump: 1
   lookSpeed: 2
 --- !u!114 &-1902475428296436500

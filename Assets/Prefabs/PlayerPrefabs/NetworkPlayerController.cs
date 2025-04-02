@@ -20,6 +20,7 @@ public class NetworkPlayerController : NetworkComponent
     private Vector2 lookInput;
     private float yaw;
     private float pitch;
+    private Vector3 movingPlatform;
 
     public Vector2 Vector2FromString(string s)
     {
@@ -111,19 +112,13 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (IsServer)
         {
-            //MyRig.linearVelocity = new Vector3(lastInput.x, 0, lastInput.y) * speed + new Vector3(0, MyRig.linearVelocity.y, 0);
-            MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0);
-
-            //if (lastInput != Vector2.zero)
-            //{
-            //    transform.forward = new Vector3(lastInput.x, 0, lastInput.y);
-            //}
-
-
+            MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0) + movingPlatform;
         }
 
         if (IsLocalPlayer && camearHolderPos != null && camera != null)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             camera.transform.position = camearHolderPos.transform.position;
             RotateView();
         }
@@ -138,6 +133,12 @@ public class NetworkPlayerController : NetworkComponent
                 if (collision.contacts[i].point.y < transform.position.y)
                 {
                     canJump = true;
+
+                    if (collision.contacts[i].otherCollider.GetComponent<Rigidbody>() != null)
+                    {
+                        Rigidbody TempRB = collision.contacts[i].otherCollider.GetComponent<Rigidbody>();
+                        movingPlatform = TempRB.linearVelocity;
+                    }
                 }
             }
         }
