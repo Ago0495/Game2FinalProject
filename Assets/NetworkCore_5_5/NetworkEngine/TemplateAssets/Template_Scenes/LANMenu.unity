@@ -2939,7 +2939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5231304171573758653, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: EThreshold
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5478886222066620170, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: waterAngularDrag
