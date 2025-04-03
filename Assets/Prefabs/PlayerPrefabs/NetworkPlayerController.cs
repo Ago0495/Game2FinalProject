@@ -8,7 +8,7 @@ public class NetworkPlayerController : NetworkComponent
 {
     [SerializeField] private Rigidbody MyRig;
     private GameObject camera;
-    private Transform camearHolderPos;
+    private Transform cameraHolderPos;
 
     [SerializeField] private PlayerInput MyInput;
     [SerializeField] private InputActionAsset MyMap;
@@ -21,6 +21,7 @@ public class NetworkPlayerController : NetworkComponent
     private float yaw;
     private float pitch;
     private Vector3 movingPlatform;
+    private Interactable currentInteractable;
 
     public Vector2 Vector2FromString(string s)
     {
@@ -58,6 +59,23 @@ public class NetworkPlayerController : NetworkComponent
                 transform.rotation = Quaternion.Euler(0f, yaw, 0f);
             }
         }
+        if (flag == "USE")
+        {
+            if (IsServer)
+            {
+                string[] args = value.Split(",");
+                Debug.Log(args[0]  + " " + args[1]);
+                GameObject tempInteract = MyCore.NetObjs[int.Parse(args[0])].gameObject;
+                if (tempInteract != null)
+                {
+                    tempInteract.GetComponent<Interactable>().Use(int.Parse(args[1]));
+                }
+                else
+                {
+                    Debug.LogError("ERROR: " + args[0] + " is not in scene or was removed");
+                }
+            }
+        }
     }
 
     public override void NetworkedStart()
@@ -65,7 +83,7 @@ public class NetworkPlayerController : NetworkComponent
         if (IsLocalPlayer)
         {
             camera = GameObject.FindGameObjectWithTag("MainCamera");
-            camearHolderPos = transform.GetChild(0).transform;
+            cameraHolderPos = transform.GetChild(0).transform;
         }
     }
 
@@ -115,12 +133,13 @@ public class NetworkPlayerController : NetworkComponent
             MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0) + movingPlatform;
         }
 
-        if (IsLocalPlayer && camearHolderPos != null && camera != null)
+        if (IsLocalPlayer && cameraHolderPos != null && camera != null)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            camera.transform.position = camearHolderPos.transform.position;
+            camera.transform.position = cameraHolderPos.transform.position;
             RotateView();
+            LookForInteractable();
         }
     }
 
@@ -152,5 +171,31 @@ public class NetworkPlayerController : NetworkComponent
         //transform.rotation = Quaternion.Euler(0f, yaw, 0f);
         SendCommand("ROTATE", yaw.ToString());
         camera.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+    }
+
+    private void LookForInteractable()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, Mathf.Infinity))
+        {
+            currentInteractable = hit.collider.GetComponent<Interactable>();
+
+            if (currentInteractable != null)
+            {
+                currentInteractable.BeingHovered(camera.transform.position);
+            }
+        }
+    }
+
+    public void UseInteractable(InputAction.CallbackContext context)
+    {
+        if (IsLocalPlayer)
+        {
+            if (context.started && currentInteractable != null)
+            {
+                Debug.Log("UseInteractable");
+                SendCommand("USE", currentInteractable.NetId + "," + this.NetId);
+            }
+        }
     }
 }
