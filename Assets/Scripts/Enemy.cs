@@ -9,14 +9,14 @@ public class Enemy : NonNetworkEntity //reset
     [SerializeField] protected float detectRange;
     [SerializeField] protected Collider DetectRange;
     [SerializeField] protected int scoreValue;
-    [SerializeField] protected NavMeshAgent myAgent;
-    [SerializeField] protected Vector3 markPosition;
+    //[SerializeField] protected NavMeshAgent myAgent;
+    //[SerializeField] protected Vector3 markPosition;
 
     public bool attacking;
 
     private void findTarget()
     {
-        myAgent = GetComponent<NavMeshAgent>();
+        //myAgent = GetComponent<NavMeshAgent>();
         //target = GameObject.FindAnyObjectByType<ShipMovement>();
         target = GameObject.FindGameObjectWithTag("SHIP");
     }
@@ -48,7 +48,7 @@ public class Enemy : NonNetworkEntity //reset
     protected void Start()
     {
         base.Start();
-
+        findTarget();
     }
 
     // Update is called once per frame

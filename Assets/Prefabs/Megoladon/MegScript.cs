@@ -21,30 +21,47 @@ public class MegScript : Enemy
     void Update()
     {
         base.Update();
-        if (false)
+        if (attacking)
         {
+            angle += (moveSpeed / radius) * Time.deltaTime;
 
+            Vector3 centerPoint = sharkArea.transform.position;
+
+            Vector3 orbitPosition = centerPoint + new Vector3(
+                Mathf.Cos(angle) * radius, 
+                0,                         
+                Mathf.Sin(angle) * radius  
+            );
+
+            Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
+
+            MyRig.linearVelocity = targetVelocity;
+
+            Vector3 lookPosition = centerPoint - transform.position;
+            lookPosition.y = 0; 
+            transform.rotation = Quaternion.LookRotation(lookPosition);
         }
         else
         {
             //markPosition = sharkArea.transform.position + (Vector3.right * radius) * Mathf.Cos(Time.time * circleTime) + (Vector3.forward * radius) * Mathf.Sin(Time.time * circleTime);
             //myAgent.SetDestination(markPosition);
             //myAgent.speed = (moveSpeed);
-            angle += (moveSpeed/radius) * Time.fixedDeltaTime;
+            angle += (moveSpeed / radius) * Time.deltaTime;
 
-            // Calculate target velocity in circular motion
-            Vector3 targetVelocity = new Vector3(
-                -Mathf.Sin(angle) * moveSpeed,
-                0,
-                Mathf.Cos(angle) * moveSpeed
+            Vector3 centerPoint = sharkArea.transform.position;
+
+            Vector3 orbitPosition = centerPoint + new Vector3(
+                Mathf.Cos(angle) * radius, 
+                0,                         
+                Mathf.Sin(angle) * radius  
             );
 
-            // Apply velocity to Rigidbody
+            Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
+
             MyRig.linearVelocity = targetVelocity;
 
-            // Make shark face movement direction
-            Vector3 lookPosition = sharkArea.transform.position - transform.position;
-            lookPosition.y = 0; // Keep it horizontal
+            Vector3 lookPosition = centerPoint - transform.position;
+            lookPosition.y = 0; 
             transform.rotation = Quaternion.LookRotation(lookPosition);
         }
     }
