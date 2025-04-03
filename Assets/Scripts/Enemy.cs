@@ -1,16 +1,23 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemy : Entity
+public class Enemy : NonNetworkEntity //reset
 {
-    [SerializeField] private GameObject target;
-    [SerializeField] private GameObject dropOnDeath;
-    [SerializeField] private float detectRange;
-    [SerializeField] private Collider DetectRange;
-    [SerializeField] private int scoreValue;
-    private bool attacking;
+    //[SerializeField] private ShipMovement target;
+    [SerializeField] protected GameObject target; //reset
+    [SerializeField] protected GameObject dropOnDeath;
+    [SerializeField] protected float detectRange;
+    [SerializeField] protected Collider DetectRange;
+    [SerializeField] protected int scoreValue;
+    [SerializeField] protected NavMeshAgent myAgent;
+    [SerializeField] protected Vector3 markPosition;
+
+    public bool attacking;
 
     private void findTarget()
     {
+        myAgent = GetComponent<NavMeshAgent>();
+        //target = GameObject.FindAnyObjectByType<ShipMovement>();
         target = GameObject.FindGameObjectWithTag("SHIP");
     }
 
@@ -38,13 +45,14 @@ public class Enemy : Entity
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected void Start()
     {
-        
+        base.Start();
+
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         
     }

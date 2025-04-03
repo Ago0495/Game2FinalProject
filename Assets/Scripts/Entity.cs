@@ -55,7 +55,7 @@ public class Entity : NetworkComponent
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected void Start()
     {
         MyRig = this.GetComponent<Rigidbody>();
         //MyAnime = this.GetComponent<Animator>();
@@ -63,7 +63,7 @@ public class Entity : NetworkComponent
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         
     }
