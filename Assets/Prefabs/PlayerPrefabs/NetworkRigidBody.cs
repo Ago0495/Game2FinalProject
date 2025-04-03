@@ -71,7 +71,7 @@ public class NetworkRigidBody : NetworkComponent
             //Update rotation
             LastRotation = VectorFromString(value);
             //MyRig.rotation = Quaternion.Euler(LastRotation);
-            MyRig.rotation = Quaternion.Slerp(MyRig.rotation, Quaternion.Euler(LastRotation), Time.deltaTime * 5);
+            //MyRig.rotation = Quaternion.Slerp(MyRig.rotation, Quaternion.Euler(LastRotation), Time.deltaTime * 10);
         }
         if (flag == "ANG" && IsClient)
         {

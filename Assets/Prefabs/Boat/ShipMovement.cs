@@ -25,9 +25,9 @@ public class ShipMovement : NetworkComponent
         {
             yield return new WaitForSeconds(MyCore.MasterTimer);
         }
+        rb.useGravity = true;
         if (IsServer)
         {
-            rb.useGravity = true;
 
             while (IsServer)
             {

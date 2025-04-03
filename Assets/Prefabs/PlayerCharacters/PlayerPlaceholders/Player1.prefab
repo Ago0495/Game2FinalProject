@@ -214,8 +214,8 @@ MonoBehaviour:
   LastVelocity: {x: 0, y: 0, z: 0}
   LastAngular: {x: 0, y: 0, z: 0}
   OffsetVelocity: {x: 0, y: 0, z: 0}
-  Threshold: 0
-  EThreshold: 0
+  Threshold: 0.1
+  EThreshold: 2.5
   MyRig: {fileID: 0}
   UseOffsetVelocity: 1
   ClientRecv: 0
