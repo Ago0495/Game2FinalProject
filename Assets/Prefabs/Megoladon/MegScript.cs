@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Timeline;
 using static UnityEngine.GraphicsBuffer;
 
@@ -9,6 +10,55 @@ public class MegScript : Enemy
     [SerializeField] private float circleTime;
 
     private float angle = 0f;
+    public bool charging;
+
+    public void HandleMessage(string flag, string value)
+    {
+        if (flag == "POS" && IsClient)
+        {
+            lastPosition = NetworkCore.Vector3FromString(value);
+        }
+        if (flag == "ROT" && IsClient)
+        {
+            lastRotation = NetworkCore.Vector3FromString(value);
+        }
+    }
+
+    public void NetworkedStart()
+    {
+        base.NetworkedStart();
+    }
+
+    public override IEnumerator SlowUpdate()
+    {
+        while (true)
+        {
+            if (IsServer)
+            {
+                float distance = (this.transform.position - lastPosition).magnitude;
+                if (distance > Threashhold)
+                {
+                    SendUpdate("POS", this.transform.position.ToString());
+                    lastPosition = this.transform.position;
+                }
+                if ((this.transform.rotation.eulerAngles - lastRotation).magnitude > Threashhold)
+                {
+                    lastRotation = this.transform.rotation.eulerAngles;
+                    SendUpdate("ROT", lastRotation.ToString());
+                }
+
+                if (IsDirty)
+                {
+                    SendUpdate("POS", lastPosition.ToString());
+                    SendUpdate("ROT", lastRotation.ToString());
+                    //animation
+
+                    IsDirty = false;
+                }
+            }
+            yield return new WaitForSeconds(MyCore.MasterTimer);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,52 +67,131 @@ public class MegScript : Enemy
         sharkArea = GameObject.FindGameObjectWithTag("SArea");
     }
 
+    public IEnumerator wait()
+    {
+        yield return new WaitForSeconds(4);
+        charging = false;
+        transition = true;
+    }
+
+    void RotateTowards(Vector3 direction)
+    {
+        Vector3 desiredForward = direction.normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(desiredForward);
+
+        MyRig.angularVelocity = Vector3.up * Mathf.Sign(Vector3.SignedAngle(transform.forward, desiredForward, Vector3.up)) * 2;
+    }
+    //TO-Do
+    //Add delay before charge
+    //add rotation
+    public void Charge()
+    {
+        if (IsServer)
+        {
+            MyRig.linearVelocity = Vector3.zero;
+            MyRig.angularVelocity = Vector3.zero;
+            transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized);
+            //wait
+            MyRig.linearVelocity = (target.transform.position - transform.position).normalized * moveSpeed;
+            StartCoroutine(wait());
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
-        base.Update();
-        if (attacking)
+        if (IsServer)
         {
-            angle += (moveSpeed / radius) * Time.deltaTime;
+            if (attacking && !charging && transition)
+            {
+                Vector3 centerPoint = target.transform.position;
+                Vector3 toShark = transform.position - centerPoint;
+                Vector3 closestOrbitPoint = centerPoint + toShark.normalized * radius;
 
-            Vector3 centerPoint = sharkArea.transform.position;
+                Vector3 moveDirection = (closestOrbitPoint - transform.position).normalized * moveSpeed;
+                MyRig.linearVelocity = moveDirection;
+                RotateTowards(moveDirection);
+                if ((Vector3.Distance(transform.position, closestOrbitPoint) > 5.0f))
+                {
+                    transition = false;
+                }
+            }
+            else if (attacking && !charging && !transition)
+            {
+                angle += (moveSpeed / radius) * Time.deltaTime;
 
-            Vector3 orbitPosition = centerPoint + new Vector3(
-                Mathf.Cos(angle) * radius, 
-                0,                         
-                Mathf.Sin(angle) * radius  
-            );
+                Vector3 centerPoint = target.transform.position;
 
-            Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
+                Vector3 orbitPosition = centerPoint + new Vector3(
+                    Mathf.Cos(angle) * radius,
+                    0,
+                    Mathf.Sin(angle) * radius
+                );
 
-            MyRig.linearVelocity = targetVelocity;
+                Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
 
-            Vector3 lookPosition = centerPoint - transform.position;
-            lookPosition.y = 0; 
-            transform.rotation = Quaternion.LookRotation(lookPosition);
+                MyRig.linearVelocity = targetVelocity;
+
+                RotateTowards(targetVelocity);
+
+                if (Random.Range(0, 900) == 0)
+                {
+                    charging = true;
+                    Charge();
+                }
+            }
+            else if (transition && !charging)
+            {
+                Vector3 centerPoint = sharkArea.transform.position;
+                Vector3 toShark = transform.position - centerPoint;
+                Vector3 closestOrbitPoint = centerPoint + toShark.normalized * radius;
+
+                Vector3 moveDirection = (closestOrbitPoint - transform.position).normalized * moveSpeed;
+                MyRig.linearVelocity = moveDirection;
+                RotateTowards(moveDirection);
+                if ((Vector3.Distance(transform.position, closestOrbitPoint) > 5.0f))
+                {
+                    transition = false;
+                }
+            }
+            else if (!charging)
+            {
+                angle += (moveSpeed / radius) * Time.deltaTime;
+
+                Vector3 centerPoint = sharkArea.transform.position;
+
+                Vector3 orbitPosition = centerPoint + new Vector3(
+                    Mathf.Cos(angle) * radius,
+                    0,
+                    Mathf.Sin(angle) * radius
+                );
+
+                Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
+
+                MyRig.linearVelocity = targetVelocity;
+                RotateTowards(targetVelocity);
+
+                //Vector3 lookPosition = centerPoint - transform.position;
+                //lookPosition.y = 0;
+                //transform.rotation = Quaternion.LookRotation(lookPosition);
+
+            }
         }
-        else
+
+        if (IsClient)
         {
-            //markPosition = sharkArea.transform.position + (Vector3.right * radius) * Mathf.Cos(Time.time * circleTime) + (Vector3.forward * radius) * Mathf.Sin(Time.time * circleTime);
-            //myAgent.SetDestination(markPosition);
-            //myAgent.speed = (moveSpeed);
-            angle += (moveSpeed / radius) * Time.deltaTime;
+            float distance = (this.transform.position - this.lastPosition).magnitude;
+            if (distance > Ethreashhold)
+            {
+                this.transform.position = this.lastPosition;
+            }
+            else
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, lastPosition, Time.deltaTime * moveSpeed);
+            }
 
-            Vector3 centerPoint = sharkArea.transform.position;
-
-            Vector3 orbitPosition = centerPoint + new Vector3(
-                Mathf.Cos(angle) * radius, 
-                0,                         
-                Mathf.Sin(angle) * radius  
-            );
-
-            Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
-
-            MyRig.linearVelocity = targetVelocity;
-
-            Vector3 lookPosition = centerPoint - transform.position;
-            lookPosition.y = 0; 
-            transform.rotation = Quaternion.LookRotation(lookPosition);
+            this.transform.rotation = Quaternion.Euler(lastRotation);
         }
     }
 }

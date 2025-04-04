@@ -5,15 +5,21 @@ using NETWORK_ENGINE;
 
 public class Entity : NetworkComponent
 {
-    [SerializeField] private Rigidbody MyRig;
-    [SerializeField] private Animator MyAnime;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private int health;
-    [SerializeField] private int Defence;
-    [SerializeField] private Collider[] hitBoxes;
-    [SerializeField] private GameMaster gameMaster;
-    private bool isAlive;
-    
+    [SerializeField] protected Rigidbody MyRig;
+    [SerializeField] protected Animator MyAnime;
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected int health;
+    [SerializeField] protected int Defence;
+    [SerializeField] protected Collider[] hitBoxes;
+    [SerializeField] protected GameMaster gameMaster;
+    protected bool isAlive;
+
+    public Vector3 lastPosition;
+    public Vector3 lastRotation;
+
+    public float Threashhold;
+    public float Ethreashhold;
+
 
     public override void HandleMessage(string flag, string value)
     {

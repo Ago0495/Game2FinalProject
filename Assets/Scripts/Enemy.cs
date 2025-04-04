@@ -1,39 +1,36 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Enemy : NonNetworkEntity //reset
+public class Enemy : Entity
 {
-    //[SerializeField] private ShipMovement target;
-    [SerializeField] protected GameObject target; //reset
+    [SerializeField] protected float rotationSpeed;
+    [SerializeField] protected ShipMovement target;
     [SerializeField] protected GameObject dropOnDeath;
     [SerializeField] protected float detectRange;
     [SerializeField] protected Collider DetectRange;
     [SerializeField] protected int scoreValue;
-    //[SerializeField] protected NavMeshAgent myAgent;
-    //[SerializeField] protected Vector3 markPosition;
-
     public bool attacking;
+    public bool transition;
 
-    private void findTarget()
+    public override void NetworkedStart()
     {
-        //myAgent = GetComponent<NavMeshAgent>();
-        //target = GameObject.FindAnyObjectByType<ShipMovement>();
-        target = GameObject.FindGameObjectWithTag("SHIP");
+        target = GameObject.FindAnyObjectByType<ShipMovement>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == target)
+        if(IsServer && other.gameObject == target)
         {
             attacking = true;
+            transition = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == target)
+        if(IsServer && other.gameObject == target)
         {
             attacking = false;
+            transition = true;
         }
     }
 
@@ -48,7 +45,6 @@ public class Enemy : NonNetworkEntity //reset
     protected void Start()
     {
         base.Start();
-        findTarget();
     }
 
     // Update is called once per frame
