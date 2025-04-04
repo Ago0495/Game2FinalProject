@@ -46,10 +46,4 @@ public class Enemy : Entity
     {
         base.Start();
     }
-
-    // Update is called once per frame
-    protected void Update()
-    {
-        
-    }
 }

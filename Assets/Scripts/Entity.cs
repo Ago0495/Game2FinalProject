@@ -67,10 +67,4 @@ public class Entity : NetworkComponent
         //MyAnime = this.GetComponent<Animator>();
         gameMaster = GameObject.FindAnyObjectByType<GameMaster>();
     }
-
-    // Update is called once per frame
-    protected void Update()
-    {
-        
-    }
 }

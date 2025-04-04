@@ -12,7 +12,7 @@ public class MegScript : Enemy
     private float angle = 0f;
     public bool charging;
 
-    public void HandleMessage(string flag, string value)
+    public override void HandleMessage(string flag, string value)
     {
         if (flag == "POS" && IsClient)
         {
@@ -98,6 +98,40 @@ public class MegScript : Enemy
         
     }
 
+    private void MoveToClosest(Vector3 direction)
+    {
+        Vector3 centerPoint = direction;
+        Vector3 toShark = transform.position - centerPoint;
+        Vector3 closestOrbitPoint = centerPoint + toShark.normalized * radius;
+
+        Vector3 moveDirection = (closestOrbitPoint - transform.position).normalized * moveSpeed;
+        MyRig.linearVelocity = moveDirection;
+        RotateTowards(moveDirection);
+        if ((Vector3.Distance(transform.position, closestOrbitPoint) < 10.0f))
+        {
+            transition = false;
+        }
+    }
+
+    private void Circle(Vector3 direction)
+    {
+        angle += (moveSpeed / radius) * Time.deltaTime;
+
+        Vector3 centerPoint = direction;
+
+        Vector3 orbitPosition = centerPoint + new Vector3(
+            Mathf.Cos(angle) * radius,
+            0,
+            Mathf.Sin(angle) * radius
+        );
+
+        Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
+
+        MyRig.linearVelocity = targetVelocity;
+
+        RotateTowards(targetVelocity);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -105,35 +139,11 @@ public class MegScript : Enemy
         {
             if (attacking && !charging && transition)
             {
-                Vector3 centerPoint = target.transform.position;
-                Vector3 toShark = transform.position - centerPoint;
-                Vector3 closestOrbitPoint = centerPoint + toShark.normalized * radius;
-
-                Vector3 moveDirection = (closestOrbitPoint - transform.position).normalized * moveSpeed;
-                MyRig.linearVelocity = moveDirection;
-                RotateTowards(moveDirection);
-                if ((Vector3.Distance(transform.position, closestOrbitPoint) > 5.0f))
-                {
-                    transition = false;
-                }
+                MoveToClosest(target.transform.position);
             }
             else if (attacking && !charging && !transition)
             {
-                angle += (moveSpeed / radius) * Time.deltaTime;
-
-                Vector3 centerPoint = target.transform.position;
-
-                Vector3 orbitPosition = centerPoint + new Vector3(
-                    Mathf.Cos(angle) * radius,
-                    0,
-                    Mathf.Sin(angle) * radius
-                );
-
-                Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
-
-                MyRig.linearVelocity = targetVelocity;
-
-                RotateTowards(targetVelocity);
+                Circle(target.transform.position);
 
                 if (Random.Range(0, 900) == 0)
                 {
@@ -143,34 +153,11 @@ public class MegScript : Enemy
             }
             else if (transition && !charging)
             {
-                Vector3 centerPoint = sharkArea.transform.position;
-                Vector3 toShark = transform.position - centerPoint;
-                Vector3 closestOrbitPoint = centerPoint + toShark.normalized * radius;
-
-                Vector3 moveDirection = (closestOrbitPoint - transform.position).normalized * moveSpeed;
-                MyRig.linearVelocity = moveDirection;
-                RotateTowards(moveDirection);
-                if ((Vector3.Distance(transform.position, closestOrbitPoint) > 5.0f))
-                {
-                    transition = false;
-                }
+                MoveToClosest(sharkArea.transform.position);
             }
             else if (!charging)
             {
-                angle += (moveSpeed / radius) * Time.deltaTime;
-
-                Vector3 centerPoint = sharkArea.transform.position;
-
-                Vector3 orbitPosition = centerPoint + new Vector3(
-                    Mathf.Cos(angle) * radius,
-                    0,
-                    Mathf.Sin(angle) * radius
-                );
-
-                Vector3 targetVelocity = (orbitPosition - transform.position).normalized * moveSpeed;
-
-                MyRig.linearVelocity = targetVelocity;
-                RotateTowards(targetVelocity);
+                Circle(sharkArea.transform.position);
 
                 //Vector3 lookPosition = centerPoint - transform.position;
                 //lookPosition.y = 0;
