@@ -5,7 +5,7 @@ using System.Collections;
 public class Interactable : NetworkComponent
 {
     //sync vals
-    int user;
+    public int user;
 
     //non-sync vals
     [SerializeField] int interactablePrefab; // //index in NetworkCore SpawnPrefab array
@@ -29,7 +29,7 @@ public class Interactable : NetworkComponent
     {
         if (IsServer)
         {
-            user = Owner;
+            user = -1;
             SendUpdate("USER", user.ToString());
         }
     }
@@ -76,15 +76,10 @@ public class Interactable : NetworkComponent
         hovered = true;
     }
 
-    public void Use(int player)
+    public void SetUser(int player)
     {
-        Debug.Log(IsServer);
-        Debug.Log("Interactable - Use() with " + player);
-        if (user < 0)
-        {
-            user = player;
-            SendUpdate("USER", user.ToString());
-        }
+        user = player;
+        SendUpdate("USER", user.ToString());
     }
 
     public virtual void UseFunctionality()
