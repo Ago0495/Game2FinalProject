@@ -72,7 +72,7 @@ public class NetworkPlayerController : NetworkComponent
                     Interactable interactable = tempInteract.GetComponent<Interactable>();
                     if (!usingInteractable)
                     {
-                        if (interactable.user < 0)
+                        if (interactable.Owner < 0)
                         {
                             interactable.SetUser(int.Parse(args[1]));
                             usingInteractable = true;

@@ -5,7 +5,7 @@ using System.Collections;
 public class Interactable : NetworkComponent
 {
     //sync vals
-    public int user;
+    public int user = -1;
 
     //non-sync vals
     [SerializeField] int interactablePrefab; // //index in NetworkCore SpawnPrefab array
@@ -21,6 +21,7 @@ public class Interactable : NetworkComponent
             if (IsClient)
             {
                 user = int.Parse(value);
+                Debug.Log("USER: " + user);
             }
         }
     }
@@ -29,7 +30,6 @@ public class Interactable : NetworkComponent
     {
         if (IsServer)
         {
-            user = -1;
             SendUpdate("USER", user.ToString());
         }
     }
@@ -58,7 +58,7 @@ public class Interactable : NetworkComponent
     // Update is called once per frame
     void Update()
     {
-        if (hovered && user < 0)
+        if (hovered && Owner < 0)
         {
             canvas.enabled = true;
             canvasObj.transform.LookAt(observerPosition);
@@ -78,8 +78,28 @@ public class Interactable : NetworkComponent
 
     public void SetUser(int player)
     {
-        user = player;
-        SendUpdate("USER", user.ToString());
+        if (player > 0)
+        {
+            PlayerControl(player);
+        }
+        else
+        {
+            GameObject newInteractable = MyCore.NetCreateObject(interactablePrefab, -1, transform.position, transform.rotation);
+            user = -1;
+            newInteractable.GetComponent<Interactable>().SendUpdate("USER", "-1");
+            MyCore.NetDestroyObject(NetId);
+        }
+    }
+
+    public void PlayerControl(int player)
+    {
+        if (IsServer)
+        {
+            GameObject newInteractable = MyCore.NetCreateObject(interactablePrefab, MyCore.NetObjs[player].Owner, transform.position, transform.rotation);
+            newInteractable.GetComponent<Interactable>().user = player;
+            newInteractable.GetComponent<Interactable>().SendUpdate("USER", player.ToString());
+            MyCore.NetDestroyObject(NetId);
+        }
     }
 
     public virtual void UseFunctionality()
