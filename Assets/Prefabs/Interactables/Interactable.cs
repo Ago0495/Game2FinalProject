@@ -21,7 +21,6 @@ public class Interactable : NetworkComponent
             if (IsClient)
             {
                 user = int.Parse(value);
-                Debug.Log("USER: " + user);
             }
         }
     }
@@ -48,7 +47,7 @@ public class Interactable : NetworkComponent
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Start()
     {
         //should be canvas
         canvasObj = transform.GetChild(0).gameObject;
@@ -56,7 +55,7 @@ public class Interactable : NetworkComponent
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (hovered && Owner < 0)
         {
@@ -85,7 +84,7 @@ public class Interactable : NetworkComponent
         else
         {
             GameObject newInteractable = MyCore.NetCreateObject(interactablePrefab, -1, transform.position, transform.rotation);
-            user = -1;
+            newInteractable.GetComponent<Interactable>().user = -1;
             newInteractable.GetComponent<Interactable>().SendUpdate("USER", "-1");
             MyCore.NetDestroyObject(NetId);
         }
@@ -101,6 +100,8 @@ public class Interactable : NetworkComponent
             MyCore.NetDestroyObject(NetId);
         }
     }
+
+
 
     public virtual void UseFunctionality()
     {

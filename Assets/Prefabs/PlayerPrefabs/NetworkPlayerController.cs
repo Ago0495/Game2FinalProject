@@ -25,16 +25,6 @@ public class NetworkPlayerController : NetworkComponent
     private bool usingInteractable;
     private bool disableMovement;
 
-    public Vector2 Vector2FromString(string s)
-    {
-        //"(X,Y)"
-        string[] args = s.Trim().Trim('(').Trim(')').Split(',');
-
-        return new Vector2(
-            float.Parse(args[0]),
-            float.Parse(args[1])
-            );
-    }
 
     public override void HandleMessage(string flag, string value)
     {
@@ -42,7 +32,7 @@ public class NetworkPlayerController : NetworkComponent
         {
             if (IsServer && !disableMovement)
             {
-                lastInput = Vector2FromString(value);
+                lastInput = NetworkCore.Vector2FromString(value);
             }
         }
         if (flag == "JUMP")
