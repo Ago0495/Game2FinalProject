@@ -83,7 +83,7 @@ public class Interactable : NetworkComponent
         }
         else
         {
-            GameObject newInteractable = MyCore.NetCreateObject(interactablePrefab, -1, transform.position, transform.rotation);
+            GameObject newInteractable = MyCore.NetCreateObject(interactablePrefab, -1, transform.position, Quaternion.identity);
             newInteractable.GetComponent<Interactable>().user = -1;
             newInteractable.GetComponent<Interactable>().SendUpdate("USER", "-1");
             MyCore.NetDestroyObject(NetId);
@@ -94,7 +94,7 @@ public class Interactable : NetworkComponent
     {
         if (IsServer)
         {
-            GameObject newInteractable = MyCore.NetCreateObject(interactablePrefab, MyCore.NetObjs[player].Owner, transform.position, transform.rotation);
+            GameObject newInteractable = MyCore.NetCreateObject(interactablePrefab, MyCore.NetObjs[player].Owner, transform.position, Quaternion.identity);
             newInteractable.GetComponent<Interactable>().user = player;
             newInteractable.GetComponent<Interactable>().SendUpdate("USER", player.ToString());
             MyCore.NetDestroyObject(NetId);

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class InteractableCannon : Interactable
 {
     [SerializeField] float cannonMoveSpeed = 10;
+    [SerializeField] int cannonballPrefab;
     Vector2 lastInput;
     Rigidbody rb;
     private float pitch = 0f;
@@ -18,6 +19,18 @@ public class InteractableCannon : Interactable
             if (IsServer) 
             {
                 lastInput = NetworkCore.Vector2FromString(value);
+            }
+        }
+        if (flag == "FIRE")
+        {
+            if (IsServer)
+            {
+                GameObject tempBall = MyCore.NetCreateObject(cannonballPrefab, -1, transform.position + transform.forward * 5, Quaternion.identity);
+                Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
+                if (tempRB != null)
+                {
+                    tempRB.linearVelocity = transform.forward * 20;
+                }
             }
         }
     }
