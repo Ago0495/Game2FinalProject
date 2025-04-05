@@ -33,7 +33,7 @@ public class ShipMovement : NetworkComponent
             {
                 if (gm.GetGameStarted())
                 {
-                    rb.AddForce(transform.forward * 5000);
+                    //rb.AddForce(transform.forward * 5000);
                 }
                 yield return new WaitForSeconds(MyCore.MasterTimer);
             }

@@ -44,6 +44,10 @@ public class Interactable : NetworkComponent
             if (IsDirty)
             {
                 SendUpdate("USER", user.ToString());
+                if (user >= 0)
+                {
+                    MyCore.NetObjs[user].GetComponent<NetworkPlayerController>().currentInteractable = this;
+                }
                 IsDirty = false;
             }
             yield return new WaitForSeconds(MyCore.MasterTimer);

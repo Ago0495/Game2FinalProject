@@ -150,7 +150,7 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (IsServer)
         {
-            MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0) + movingPlatform;
+            MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0)/* + movingPlatform*/;
         }
 
         if (IsLocalPlayer && cameraHolderPos != null && camera != null)

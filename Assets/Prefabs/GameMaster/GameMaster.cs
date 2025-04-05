@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using TMPro;
-using static UnityEditor.PlayerSettings;
 
 public class GameMaster : NetworkComponent
 {
@@ -102,11 +101,6 @@ public class GameMaster : NetworkComponent
 
             numcoinchestscollected = 0;
 
-            Vector3 chestSpawnPos = new Vector3(1f, 1f, 14f);
-
-            Debug.Log("Spawning chest at " + chestSpawnPos);
-            GameObject chest = MyCore.NetCreateObject(9, -1, chestSpawnPos, Quaternion.identity);
-
             score = Random.Range(10, 1000);
             SendUpdate("SCORE", score.ToString());
 
@@ -115,7 +109,7 @@ public class GameMaster : NetworkComponent
             while (!gameFinished)
             {
                 float timer = 0;
-                while ((numcoinchestscollected < 1) && timer < 10)
+                while ((numcoinchestscollected < 1) && timer < 100)
                 {
                     yield return new WaitForSeconds(1);
                     timer++;
