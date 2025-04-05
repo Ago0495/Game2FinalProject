@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.PlayerSettings;
 
 public class GameMaster : NetworkComponent
 {
@@ -13,6 +14,7 @@ public class GameMaster : NetworkComponent
     [SerializeField] private bool gameFinished = false;
     [SerializeField] private bool allPlayersReady = false;
     private int score;
+    public int numcoinchestscollected;
 
     //non-sync vars
 
@@ -98,6 +100,13 @@ public class GameMaster : NetworkComponent
             gameStarted = true;
             SendUpdate("GAMESTART", "1");
 
+            numcoinchestscollected = 0;
+
+            Vector3 chestSpawnPos = new Vector3(1f, 1f, 14f);
+
+            Debug.Log("Spawning chest at " + chestSpawnPos);
+            GameObject chest = MyCore.NetCreateObject(9, -1, chestSpawnPos, Quaternion.identity);
+
             score = Random.Range(10, 1000);
             SendUpdate("SCORE", score.ToString());
 
@@ -105,7 +114,12 @@ public class GameMaster : NetworkComponent
 
             while (!gameFinished)
             {
-                yield return new WaitForSeconds(60);
+                float timer = 0;
+                while ((numcoinchestscollected < 1) && timer < 10)
+                {
+                    yield return new WaitForSeconds(1);
+                    timer++;
+                }
                 SendUpdate("ENDGAME", "1");
 
                 yield return new WaitForSeconds(5);
@@ -134,5 +148,14 @@ public class GameMaster : NetworkComponent
     public bool GetGameStarted()
     {
         return gameStarted;
+    }
+    public void AddScore(int points)
+    {
+        score += points;
+        if (IsServer)
+        {
+            SendUpdate("SCORE", score.ToString());
+            Debug.Log("Score Updated: " + score);
+        }
     }
 }

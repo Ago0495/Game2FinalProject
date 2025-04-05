@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SHIP
   - SArea
+  - CHEST
   layers:
   - Default
   - TransparentFX
