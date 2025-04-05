@@ -6,22 +6,31 @@ public class Collectable : NetworkComponent
 {
     public int scoreValue = 1000;
     private bool collected = false;
+    public GameMaster gm;
 
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "COLLECTED")
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
     public override void NetworkedStart()
     {
+        gm = FindObjectOfType<GameMaster>();
     }
 
     public override IEnumerator SlowUpdate()
     {
-        yield return new WaitForSeconds(.1f);
+        while (IsServer)
+        {
+            if (collected)
+            {
+                MyCore.NetDestroyObject(this.NetId);
+            }
+            yield return new WaitForSeconds(MyCore.MasterTimer);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -31,24 +40,16 @@ public class Collectable : NetworkComponent
         if (other.CompareTag("SHIP"))
         {
             collected = true;
+            gm.AddScore(scoreValue);
             OnCollected();
             SendUpdate("COLLECTED", "1");
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
     public virtual void OnCollected()
     {
-        if (IsServer)
-        {
-            GameMaster gm = FindObjectOfType<GameMaster>();
-            if (gm != null)
-            {
-                gm.AddScore(scoreValue);
-            }
 
-            MyCore.NetDestroyObject(NetId);
-        }
     }
 }
 

@@ -13,8 +13,12 @@ public class CoinChest : Collectable
 
     public override void OnCollected()
     {
-        Debug.Log("Override called");
-        base.OnCollected();
-        scoreValue += 1000;
+        if (IsServer)
+        {
+            gm.numcoinchestscollected++;
+            Debug.Log(gm.numcoinchestscollected);
+
+        }
+
     }
 }
