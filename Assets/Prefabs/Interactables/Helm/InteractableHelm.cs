@@ -42,6 +42,7 @@ public class InteractableHelm : Interactable
             if (shipRB != null)
             {
                 shipRB.AddForce(transform.forward * lastInput.y * speed);
+                shipRB.AddTorque(transform.up * lastInput.x * speed);
             }
             else
             {

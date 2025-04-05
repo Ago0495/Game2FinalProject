@@ -21,6 +21,10 @@ public class Interactable : NetworkComponent
             if (IsClient)
             {
                 user = int.Parse(value);
+                if (user >= 0)
+                {
+                    MyCore.NetObjs[user].GetComponent<NetworkPlayerController>().currentInteractable = this;
+                }
             }
         }
     }

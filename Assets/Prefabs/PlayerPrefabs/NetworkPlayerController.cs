@@ -21,7 +21,7 @@ public class NetworkPlayerController : NetworkComponent
     private float yaw;
     private float pitch;
     private Vector3 movingPlatform;
-    private Interactable currentInteractable;
+    public Interactable currentInteractable;
     private bool usingInteractable;
     private bool disableMovement;
 
