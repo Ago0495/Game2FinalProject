@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - CHEST
   - SHIP
+  - SArea
+  - CHEST
   layers:
   - Default
   - TransparentFX

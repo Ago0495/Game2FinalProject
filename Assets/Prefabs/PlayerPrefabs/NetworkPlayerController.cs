@@ -8,7 +8,7 @@ public class NetworkPlayerController : NetworkComponent
 {
     [SerializeField] private Rigidbody MyRig;
     private GameObject camera;
-    private Transform camearHolderPos;
+    private Transform cameraHolderPos;
 
     [SerializeField] private PlayerInput MyInput;
     [SerializeField] private InputActionAsset MyMap;
@@ -21,30 +21,23 @@ public class NetworkPlayerController : NetworkComponent
     private float yaw;
     private float pitch;
     private Vector3 movingPlatform;
+    public Interactable currentInteractable;
+    private bool usingInteractable;
+    private bool disableMovement;
 
-    public Vector2 Vector2FromString(string s)
-    {
-        //"(X,Y)"
-        string[] args = s.Trim().Trim('(').Trim(')').Split(',');
-
-        return new Vector2(
-            float.Parse(args[0]),
-            float.Parse(args[1])
-            );
-    }
 
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "MOVE")
         {
-            if (IsServer)
+            if (IsServer && !disableMovement)
             {
-                lastInput = Vector2FromString(value);
+                lastInput = NetworkCore.Vector2FromString(value);
             }
         }
         if (flag == "JUMP")
         {
-            if (IsServer && canJump)
+            if (IsServer && canJump && !disableMovement)
             {
                 canJump = false;
                 MyRig.linearVelocity += new Vector3(0, 10, 0);
@@ -52,20 +45,62 @@ public class NetworkPlayerController : NetworkComponent
         }
         if (flag == "ROTATE")
         {
-            if (IsServer)
+            if (IsServer && !disableMovement)
             {
                 yaw = float.Parse(value);
                 transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+            }
+        }
+        if (flag == "USE")
+        {
+            string[] args = value.Split(",");
+            if (IsServer)
+            {
+                GameObject tempInteract = MyCore.NetObjs[int.Parse(args[0])].gameObject;
+                if (tempInteract != null)
+                {
+                    Interactable interactable = tempInteract.GetComponent<Interactable>();
+                    if (!usingInteractable)
+                    {
+                        if (interactable.Owner < 0)
+                        {
+                            interactable.SetUser(int.Parse(args[1]));
+                            usingInteractable = true;
+                            disableMovement = true;
+                            SendUpdate("USE", args[0] + "," + args[1] + "," + usingInteractable);
+                        }
+                    }
+                    else
+                    {
+                        interactable.SetUser(-1);
+                        usingInteractable = false;
+                        disableMovement = false;
+                        SendUpdate("USE", args[0] + "," + args[1] + "," + usingInteractable);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("ERROR: " + args[0] + " is not in scene or was removed");
+                }
+            }
+            if (IsLocalPlayer)
+            {
+                usingInteractable = bool.Parse(args[2]);
+                disableMovement = usingInteractable;
             }
         }
     }
 
     public override void NetworkedStart()
     {
+        if (IsServer)
+        {
+
+        }
         if (IsLocalPlayer)
         {
             camera = GameObject.FindGameObjectWithTag("MainCamera");
-            camearHolderPos = transform.GetChild(0).transform;
+            cameraHolderPos = transform.GetChild(0).transform;
         }
     }
 
@@ -94,7 +129,10 @@ public class NetworkPlayerController : NetworkComponent
 
     public void OnLook(InputAction.CallbackContext lk)
     {
-        lookInput = lk.ReadValue<Vector2>();
+        if (!disableMovement)
+        {
+            lookInput = lk.ReadValue<Vector2>();
+        }
     }
 
     public override IEnumerator SlowUpdate()
@@ -115,12 +153,13 @@ public class NetworkPlayerController : NetworkComponent
             MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0) + movingPlatform;
         }
 
-        if (IsLocalPlayer && camearHolderPos != null && camera != null)
+        if (IsLocalPlayer && cameraHolderPos != null && camera != null)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            camera.transform.position = camearHolderPos.transform.position;
+            camera.transform.position = cameraHolderPos.transform.position;
             RotateView();
+            LookForInteractable();
         }
     }
 
@@ -152,5 +191,30 @@ public class NetworkPlayerController : NetworkComponent
         //transform.rotation = Quaternion.Euler(0f, yaw, 0f);
         SendCommand("ROTATE", yaw.ToString());
         camera.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+    }
+
+    private void LookForInteractable()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, Mathf.Infinity))
+        {
+            currentInteractable = hit.collider.GetComponent<Interactable>();
+
+            if (currentInteractable != null)
+            {
+                currentInteractable.BeingHovered(camera.transform.position);
+            }
+        }
+    }
+
+    public void UseInteractable(InputAction.CallbackContext context)
+    {
+        if (IsLocalPlayer)
+        {
+            if(context.started && currentInteractable != null)
+            {
+                SendCommand("USE", currentInteractable.NetId + "," + this.NetId + "," + usingInteractable);
+            }
+        }
     }
 }
