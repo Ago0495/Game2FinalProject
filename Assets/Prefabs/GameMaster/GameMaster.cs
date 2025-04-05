@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.PlayerSettings;
 
 public class GameMaster : NetworkComponent
 {
@@ -98,6 +99,11 @@ public class GameMaster : NetworkComponent
             gameStarted = true;
             SendUpdate("GAMESTART", "1");
 
+            Vector3 chestSpawnPos = new Vector3(1f, 1f, 14f);
+
+            Debug.Log("Spawning chest at " + chestSpawnPos);
+            GameObject chest = MyCore.NetCreateObject(9, -1, chestSpawnPos, Quaternion.identity);
+
             score = Random.Range(10, 1000);
             SendUpdate("SCORE", score.ToString());
 
@@ -134,5 +140,14 @@ public class GameMaster : NetworkComponent
     public bool GetGameStarted()
     {
         return gameStarted;
+    }
+    public void AddScore(int points)
+    {
+        score += points;
+        if (IsServer)
+        {
+            SendUpdate("SCORE", score.ToString());
+            Debug.Log("Score Updated: " + score);
+        }
     }
 }
