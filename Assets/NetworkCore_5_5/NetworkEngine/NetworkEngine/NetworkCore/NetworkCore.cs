@@ -62,6 +62,16 @@ public class NetworkCore     : GenericCore_Web
         string [] args = raw.Split(',');
         return new Vector3(float.Parse(args[0].Trim()), float.Parse(args[1].Trim()), float.Parse(args[2].Trim()));
     }
+    public static Vector2 Vector2FromString(string s)
+    {
+        //"(X,Y)"
+        string[] args = s.Trim().Trim('(').Trim(')').Split(',');
+
+        return new Vector2(
+            float.Parse(args[0]),
+            float.Parse(args[1])
+            );
+    }
     /// <summary>
     /// This function will be called once a client is established
     /// This function will synchronize the new player with all 
