@@ -39,6 +39,8 @@ public class InteractableCannon : Interactable
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
+        yaw = transform.rotation.eulerAngles.y;
+        pitch = transform.rotation.eulerAngles.x;
     }
 
     public void Update()
@@ -49,7 +51,8 @@ public class InteractableCannon : Interactable
 
     public void FixedUpdate()
     {
-        if (IsServer)
+        // pitch and yaw missing up rotation when creating new object
+        if (IsServer && Owner >= 0)
         {
             yaw += lastInput.x * cannonMoveSpeed * Time.deltaTime;
             pitch -= lastInput.y * cannonMoveSpeed * Time.deltaTime;

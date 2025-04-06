@@ -30,12 +30,13 @@ public class NetworkTransform : NetworkComponent
 
     public override void NetworkedStart()
     {
-        //if (IsServer)
-        //{
-        //    this.transform.position = new Vector3(-10, 0, 0);
-        //    lastPosition = transform.position;
-        //    lastRotation = transform.rotation.eulerAngles;
-        //}
+        if (IsServer)
+        {
+            Debug.Log(NetId + " NetTransform NetStart A: " + transform.rotation);
+            //lastPosition = transform.position;
+            //lastRotation = transform.rotation.eulerAngles;
+            Debug.Log(NetId + " NetTransform NetStart B: " + lastRotation);
+        }
     }
 
     public override IEnumerator SlowUpdate()
@@ -52,6 +53,8 @@ public class NetworkTransform : NetworkComponent
                 }
                 if ((this.transform.rotation.eulerAngles - lastRotation).magnitude > Threshold)
                 {
+                    Debug.Log(NetId + " NetTransform SlowUpdate: " + transform.rotation);
+
                     lastRotation = this.transform.rotation.eulerAngles;
                     SendUpdate("ROT", lastRotation.ToString()); 
                 }
@@ -63,19 +66,30 @@ public class NetworkTransform : NetworkComponent
                     IsDirty = false;
                 }
             }
-            yield return new WaitForSeconds(Threshold);
+            yield return new WaitForSeconds(MyCore.MasterTimer);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (IsServer)
+        {
+            Debug.Log(NetId + " NetTransform Start A: " + transform.rotation);
+            lastPosition = transform.position;
+            lastRotation = transform.rotation.eulerAngles;
+            Debug.Log(NetId + " NetTransform Start B: " + lastRotation);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (IsServer)
+        {
+            Debug.Log(NetId + " Update Rotation: " + transform.rotation);
+            Debug.Log(NetId + " Update lastRotation: " + lastRotation);
+        }
         if (IsClient)
         {
             float distance = (this.transform.position - this.lastPosition).magnitude;

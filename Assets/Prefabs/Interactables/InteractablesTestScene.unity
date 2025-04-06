@@ -2913,6 +2913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RepairZone
       objectReference: {fileID: 0}
+    - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 975650403078533589, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.32
@@ -3009,6 +3013,10 @@ PrefabInstance:
     - target: {fileID: 1416141043706036454, guid: 61f1683f38abe1740ad3c93b6a2b417f, type: 3}
       propertyPath: m_Name
       value: TestShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416141043706036454, guid: 61f1683f38abe1740ad3c93b6a2b417f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1416141043706036454, guid: 61f1683f38abe1740ad3c93b6a2b417f, type: 3}
       propertyPath: m_TagString
@@ -3126,6 +3134,10 @@ PrefabInstance:
     - target: {fileID: 1149477800717045669, guid: d7f27f13908eb9542a6088a2684cc678, type: 3}
       propertyPath: m_Name
       value: InteractableTestObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149477800717045669, guid: d7f27f13908eb9542a6088a2684cc678, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1428419223090942144, guid: d7f27f13908eb9542a6088a2684cc678, type: 3}
       propertyPath: m_LocalPosition.x
