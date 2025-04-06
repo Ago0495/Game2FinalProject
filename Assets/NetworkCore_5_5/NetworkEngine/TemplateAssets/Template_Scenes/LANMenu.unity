@@ -3013,6 +3013,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1405047248404698921, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b511af6c8620a5945a7bffb76ef08850, type: 2}
     - target: {fileID: 1561708731090320911, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: waterAngularDrag
       value: 9
@@ -3036,6 +3040,26 @@ PrefabInstance:
     - target: {fileID: 2309662186367675336, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: m_TagString
       value: SHIP
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289566312070129345, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289566312070129345, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289566312070129345, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289566312070129345, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_CookingOptions
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289566312070129345, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3397511554205064877, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: waterAngularDrag
@@ -3153,6 +3177,10 @@ PrefabInstance:
       propertyPath: displacementAmount
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7274498732509912931, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b511af6c8620a5945a7bffb76ef08850, type: 2}
     - target: {fileID: 7841279823035752210, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: waterAngularDrag
       value: 9
@@ -3162,7 +3190,9 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 119491558678956729, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+    - {fileID: 2615528214052704320, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
