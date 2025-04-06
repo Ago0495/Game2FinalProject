@@ -14,6 +14,7 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] private InputActionAsset MyMap;
 
     [SerializeField] private float speed;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private bool canJump = true;
     public float lookSpeed = 0.5f;
     private Vector2 lastInput;
@@ -40,7 +41,8 @@ public class NetworkPlayerController : NetworkComponent
             if (IsServer && canJump && !disableMovement)
             {
                 canJump = false;
-                MyRig.linearVelocity += new Vector3(0, 10, 0);
+                //MyRig.linearVelocity += new Vector3(0, 10, 0);
+                MyRig.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
             }
         }
         if (flag == "ROTATE")
@@ -150,7 +152,12 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (IsServer)
         {
-            MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0)/* + movingPlatform*/;
+            MyRig.AddForce((transform.forward * lastInput.y + transform.right * lastInput.x) * speed * Time.deltaTime, ForceMode.VelocityChange);
+            //MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0)/* + movingPlatform*/;
+            if (MyRig.linearVelocity.magnitude > maxSpeed)
+            {
+
+            }
         }
 
         if (IsLocalPlayer && cameraHolderPos != null && camera != null)
