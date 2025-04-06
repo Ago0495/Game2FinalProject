@@ -11,7 +11,8 @@ public class InteractableCannon : Interactable
     private float pitch = 0f;
     private float yaw = 0f;
     private float startYaw = 0f;
-    private float startPitch = 0f;  
+    private float startPitch = 0f;
+    private bool valuesSet = false;
     public override void HandleMessage(string flag, string value)
     {
         base.HandleMessage(flag, value);
@@ -41,11 +42,14 @@ public class InteractableCannon : Interactable
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
-        yaw = transform.rotation.eulerAngles.y;
-        pitch = transform.rotation.eulerAngles.x;
 
-        startYaw = yaw;
-        startPitch = pitch;
+        if (!valuesSet)
+        {
+            yaw = transform.rotation.eulerAngles.y;
+            pitch = transform.rotation.eulerAngles.x;
+            startYaw = yaw;
+            startPitch = pitch;
+        }
     }
 
     public void Update()
@@ -67,6 +71,18 @@ public class InteractableCannon : Interactable
 
             transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
         }
+    }
+
+    public override void SetValues(int oldInteractable)
+    {
+        InteractableCannon oldCannon = MyCore.NetObjs[oldInteractable].GetComponent<InteractableCannon>();
+
+        yaw = oldCannon.yaw;
+        pitch = oldCannon.pitch;
+        startYaw = oldCannon.startYaw;
+        startPitch = oldCannon.startPitch;
+
+        valuesSet = true;
     }
 
     public void OnMove(InputAction.CallbackContext context)
