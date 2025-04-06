@@ -239,7 +239,8 @@ MonoBehaviour:
   MyMap: {fileID: 0}
   speed: 10
   canJump: 1
-  lookSpeed: 2
+  lookSpeed: 0.5
+  currentInteractable: {fileID: 0}
 --- !u!114 &-1902475428296436500
 MonoBehaviour:
   m_ObjectHideFlags: 0
