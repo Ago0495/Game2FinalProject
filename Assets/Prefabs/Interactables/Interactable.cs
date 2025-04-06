@@ -96,6 +96,7 @@ public class Interactable : NetworkComponent
             newInteractable.GetComponent<Interactable>().user = -1;
             newInteractable.GetComponent<Interactable>().SendUpdate("USER", "-1");
             MyCore.NetDestroyObject(NetId);
+            Debug.Log("SetUser: " + newInteractable.transform.rotation);
         }
     }
 

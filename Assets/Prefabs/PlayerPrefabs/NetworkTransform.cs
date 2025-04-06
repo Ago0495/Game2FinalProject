@@ -30,12 +30,10 @@ public class NetworkTransform : NetworkComponent
 
     public override void NetworkedStart()
     {
-        //if (IsServer)
-        //{
-        //    this.transform.position = new Vector3(-10, 0, 0);
-        //    lastPosition = transform.position;
-        //    lastRotation = transform.rotation.eulerAngles;
-        //}
+        if (IsServer)
+        {
+
+        }
     }
 
     public override IEnumerator SlowUpdate()
@@ -63,22 +61,31 @@ public class NetworkTransform : NetworkComponent
                     IsDirty = false;
                 }
             }
-            yield return new WaitForSeconds(Threshold);
+            yield return new WaitForSeconds(MyCore.MasterTimer);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (IsServer)
+        {
+            lastPosition = transform.position;
+            lastRotation = transform.rotation.eulerAngles;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (IsServer)
+        {
+
+        }
         if (IsClient)
         {
             float distance = (this.transform.position - this.lastPosition).magnitude;
+            float rDistance = (this.transform.rotation.eulerAngles - this.lastRotation).magnitude;
             if (distance > Threshold)
             {
                 this.transform.position = this.lastPosition;
@@ -87,7 +94,14 @@ public class NetworkTransform : NetworkComponent
             {
                 this.transform.position = Vector3.Lerp(this.transform.position, lastPosition, Time.deltaTime * Speed);
             }
-            this.transform.rotation = Quaternion.Euler(lastRotation);
+            if (rDistance > Threshold)
+            {
+                this.transform.rotation = Quaternion.Euler(lastRotation);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(lastRotation), Time.deltaTime * Speed);
+            }
         }
     }
 }

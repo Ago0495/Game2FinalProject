@@ -25,10 +25,10 @@ public class ShipMovement : NetworkComponent
         {
             yield return new WaitForSeconds(MyCore.MasterTimer);
         }
-        rb.useGravity = true;
+        //rb.useGravity = true;
         if (IsServer)
         {
-
+            rb.useGravity = true;
             while (IsServer)
             {
                 if (gm.GetGameStarted())
