@@ -342,7 +342,7 @@ MonoBehaviour:
   IsDirty: 0
   MyRig: {fileID: 254343255224946848}
   MyAnime: {fileID: 0}
-  moveSpeed: 100
+  moveSpeed: 50
   health: 0
   Defence: 0
   hitBoxes:

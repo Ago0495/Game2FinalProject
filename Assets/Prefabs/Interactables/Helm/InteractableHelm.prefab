@@ -150,7 +150,7 @@ MonoBehaviour:
   IsDirty: 0
   user: -1
   interactablePrefab: 12
-  speed: 10000
+  speed: 25000
   shipRB: {fileID: 0}
 --- !u!114 &8747600838096764766
 MonoBehaviour:
