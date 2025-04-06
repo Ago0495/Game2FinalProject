@@ -15,7 +15,7 @@ public class NetworkPlayerController : NetworkComponent
 
     [SerializeField] private float speed;
     [SerializeField] private bool canJump = true;
-    public float lookSpeed = 2f;
+    public float lookSpeed = 0.5f;
     private Vector2 lastInput;
     private Vector2 lookInput;
     private float yaw;
