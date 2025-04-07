@@ -445,8 +445,8 @@ MonoBehaviour:
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
-  Threshold: 0
-  Ethreshold: 0
+  Threshold: 0.1
+  Ethreshold: 2.5
   Speed: 5
 --- !u!1 &3678041216268535458
 GameObject:

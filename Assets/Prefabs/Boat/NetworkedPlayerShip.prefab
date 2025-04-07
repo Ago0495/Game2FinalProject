@@ -971,6 +971,7 @@ GameObject:
   - component: {fileID: 4992636858984234221}
   - component: {fileID: 4253732576071670578}
   - component: {fileID: 6476273409335586133}
+  - component: {fileID: 8030035811110545012}
   m_Layer: 0
   m_Name: NetworkedPlayerShip
   m_TagString: Untagged
@@ -1131,7 +1132,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2309662186367675336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86193c3e70bf64b4dbd2eec7f28a92cd, type: 3}
   m_Name: 
@@ -1142,6 +1143,31 @@ MonoBehaviour:
   Threshold: 0
   Ethreshold: 0
   Speed: 5
+--- !u!114 &8030035811110545012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309662186367675336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bea3a689ef274b46b3f376ae176a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
+  LastPosition: {x: 0, y: 0, z: 0}
+  LastRotation: {x: 0, y: 0, z: 0}
+  LastVelocity: {x: 0, y: 0, z: 0}
+  LastAngular: {x: 0, y: 0, z: 0}
+  OffsetVelocity: {x: 0, y: 0, z: 0}
+  Threshold: 0.1
+  EThreshold: 2.5
+  MyRig: {fileID: 4703830712787085399}
+  UseOffsetVelocity: 1
+  ClientRecv: 0
 --- !u!1 &2545772609176018010
 GameObject:
   m_ObjectHideFlags: 0
