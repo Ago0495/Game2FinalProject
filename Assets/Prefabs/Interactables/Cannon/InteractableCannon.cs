@@ -82,7 +82,7 @@ public class InteractableCannon : Interactable
         startYaw = oldCannon.startYaw;
         startPitch = oldCannon.startPitch;
 
-        valuesSet = true;
+        valuesSet = false;
     }
 
     public void OnMove(InputAction.CallbackContext context)
