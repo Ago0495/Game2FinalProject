@@ -18,8 +18,10 @@ public class Enemy : Entity
 
     protected void OnTriggerEnter(Collider other)
     {
-        if(IsServer && other.gameObject == target)
+        Debug.Log(other.gameObject);
+        if(other.gameObject.tag == "SHIP")
         {
+            Debug.Log("???");
             attacking = true;
             transition = true;
         }
@@ -27,7 +29,7 @@ public class Enemy : Entity
 
     protected void OnTriggerExit(Collider other)
     {
-        if(IsServer && other.gameObject == target)
+        if(other.gameObject == target)
         {
             attacking = false;
             transition = true;
