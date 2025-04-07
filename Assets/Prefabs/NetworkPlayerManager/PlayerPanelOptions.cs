@@ -163,7 +163,7 @@ public class PlayerPanelOptions : NetworkComponent
         return skill;
     }
 
-    public string GetPlayerpName()
+    public string GetPlayerName()
     {
         return playerName;
     }

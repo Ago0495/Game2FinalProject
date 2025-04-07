@@ -31,7 +31,7 @@ public class NetworkFloater : NetworkComponent
 
     private void FixedUpdate()
     {
-        if (IsServer)
+        if (IsServer && NetworkWaveMaster.instance != null)
         {
             rb.AddForceAtPosition(Physics.gravity / floaterCount, transform.position, ForceMode.Acceleration);
             float waveHeight = NetworkWaveMaster.instance.GetWaveHeight(transform.position);

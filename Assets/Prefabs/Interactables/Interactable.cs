@@ -68,7 +68,7 @@ public class Interactable : NetworkComponent
         if (hovered && Owner < 0)
         {
             canvas.enabled = true;
-            canvasObj.transform.LookAt(observerPosition);
+            //canvasObj.transform.LookAt(observerPosition);
         }
         else
         {

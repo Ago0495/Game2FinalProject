@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameMaster : NetworkComponent
 {
@@ -94,6 +95,10 @@ public class GameMaster : NetworkComponent
             {
                 //spawn player's chosen character
                 GameObject tempPlayer = MyCore.NetCreateObject(player.GetSkillSelection(), player.Owner, Vector3.up * 20, Quaternion.identity);
+                //tempPlayer.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = player.GetPlayerName();
+                //tempPlayer.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = skillNames[player.GetSkillSelection()];
+                tempPlayer.GetComponent<NetworkPlayerController>().SendUpdate("TITLE", player.GetPlayerName() + "," + PlayerStats.skills[player.GetSkillSelection()]);
+                tempPlayer.GetComponent<PlayerStats>().skill = player.GetSkillSelection();
             }
 
             gameStarted = true;

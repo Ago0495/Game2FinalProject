@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NETWORK_ENGINE;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class NetworkPlayerController : NetworkComponent
 {
@@ -89,6 +90,15 @@ public class NetworkPlayerController : NetworkComponent
             {
                 usingInteractable = bool.Parse(args[2]);
                 disableMovement = usingInteractable;
+            }
+        }
+        if (flag == "TITLE")
+        {
+            string[] args = value.Split(",");
+            if (IsClient)
+            {
+                transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = args[0];
+                transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = args[1];
             }
         }
     }
