@@ -1,11 +1,13 @@
 using UnityEngine;
 using NETWORK_ENGINE;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class InteractableCannon : Interactable
 {
     [SerializeField] float cannonMoveSpeed = 10;
     [SerializeField] int cannonballPrefab;
+    [SerializeField] float ballForce = 50;
     Vector2 lastInput;
     Rigidbody rb;
     private float pitch = 0f;
@@ -13,6 +15,10 @@ public class InteractableCannon : Interactable
     private float startYaw = 0f;
     private float startPitch = 0f;
     private bool valuesSet = false;
+    public bool canFire = true;
+    public float reloadTime = 2;
+    public float reloadTimer = 0;
+
     public override void HandleMessage(string flag, string value)
     {
         base.HandleMessage(flag, value);
@@ -26,14 +32,29 @@ public class InteractableCannon : Interactable
         }
         if (flag == "FIRE")
         {
-            if (IsServer)
+            if (IsServer && canFire)
             {
                 GameObject tempBall = MyCore.NetCreateObject(cannonballPrefab, -1, transform.position + transform.forward * 5, Quaternion.identity);
                 Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
                 if (tempRB != null)
                 {
-                    tempRB.linearVelocity = transform.forward * 20;
+                    tempRB.gameObject.layer = gameObject.layer;
+                    tempRB.linearVelocity = transform.forward * ballForce;
+                    canFire = false;
+                    SendUpdate("CANFIRE", canFire.ToString());
                 }
+            }
+        }
+        if (flag == "CANFIRE")
+        {
+            if (IsServer)
+            {
+                canFire = bool.Parse(value);
+                SendUpdate("CANFIRE", canFire.ToString());
+            }
+            if (IsClient)
+            {
+                canFire = bool.Parse(value);
             }
         }
     }
@@ -56,6 +77,19 @@ public class InteractableCannon : Interactable
     {
         base.Update();
 
+        if (!canFire)
+        {
+            reloadTimer += Time.deltaTime;
+            if (reloadTimer > reloadTime)
+            {
+                canFire = true;
+                reloadTimer = 0;
+            }
+            if (IsServer)
+            {
+                SendUpdate("CANFIRE", canFire.ToString());
+            }
+        }
     }
 
     public void FixedUpdate()

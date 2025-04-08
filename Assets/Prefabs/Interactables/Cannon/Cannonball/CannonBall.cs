@@ -30,4 +30,13 @@ public class CannonBall : NetworkComponent
     {
         
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+        if (other.gameObject.layer != this.gameObject.layer)
+        {
+            //damage other
+        }
+    }
 }
