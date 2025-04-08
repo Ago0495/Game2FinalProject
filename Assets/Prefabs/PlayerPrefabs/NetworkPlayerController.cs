@@ -141,10 +141,10 @@ public class NetworkPlayerController : NetworkComponent
 
     public void OnLook(InputAction.CallbackContext lk)
     {
-        if (!disableMovement)
-        {
+        //if (!disableMovement)
+        //{
             lookInput = lk.ReadValue<Vector2>();
-        }
+        //}
     }
 
     public override IEnumerator SlowUpdate()
@@ -176,7 +176,10 @@ public class NetworkPlayerController : NetworkComponent
             Cursor.visible = false;
             camera.transform.position = cameraHolderPos.transform.position;
             RotateView();
-            LookForInteractable();
+            if (!usingInteractable)
+            {
+                LookForInteractable();
+            }
         }
     }
 

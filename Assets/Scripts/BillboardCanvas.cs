@@ -12,6 +12,9 @@ public class BillboardCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(cameraObj.transform.position);
+        if (cameraObj != null)
+        {
+            transform.LookAt(cameraObj.transform.position);
+        }
     }
 }
