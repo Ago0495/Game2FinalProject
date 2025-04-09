@@ -2,12 +2,12 @@ using UnityEngine;
 using NETWORK_ENGINE;
 using System.Collections;
 
-public class EnemyCannon : NetworkComponent
+public class EnemyCannon : InteractableCannon
 {
     public float detectionRange = 20f;
     public float fireCooldown = 2f;
-    public int projectilePrefabIndex = 10; //Projectile prefab
     public Transform firePoint;
+    public int projectilePrefabIndex = 10;
 
     public float lastFireTime = 0f;
 
@@ -22,7 +22,21 @@ public class EnemyCannon : NetworkComponent
 
     public override IEnumerator SlowUpdate()
     {
-        yield return new WaitForSeconds(.05f);
+        while (IsServer)
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("SHIP");
+            foreach (GameObject player in players)
+            {
+                float dist = Vector3.Distance(transform.position, player.transform.position);
+                if (dist <= detectionRange && Time.time - lastFireTime >= fireCooldown)
+                {
+                    FireAtPlayer(player.transform);
+                    lastFireTime = Time.time;
+                }
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +51,11 @@ public class EnemyCannon : NetworkComponent
         
     }
 
-
+    void FireAtPlayer(Transform target)
+    {
+        Vector3 direction = (target.position - firePoint.position).normalized;
+        GameObject projectile = MyCore.NetCreateObject(projectilePrefabIndex, -1, firePoint.position, Quaternion.LookRotation(direction));
+        Debug.Log("Cannon fired at: " + target.name);
+    }
 
 }
