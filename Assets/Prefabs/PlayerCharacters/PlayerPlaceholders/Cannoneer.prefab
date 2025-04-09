@@ -667,6 +667,7 @@ MonoBehaviour:
   speed: 20
   maxSpeed: 20
   canJump: 0
+  jumpForce: 15
   lookSpeed: 0.5
   currentInteractable: {fileID: 0}
 --- !u!114 &6213961172326852503

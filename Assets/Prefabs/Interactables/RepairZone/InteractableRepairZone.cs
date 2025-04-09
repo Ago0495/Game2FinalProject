@@ -1,4 +1,5 @@
 using UnityEngine;
+using NETWORK_ENGINE;
 
 public class InteractableRepairZone : Interactable
 {
@@ -7,15 +8,22 @@ public class InteractableRepairZone : Interactable
     float damageCooldownTimer = 0f;
     float damageCooldownTime = 2f;
 
+    
+
     private void Start()
     {
         base.Start();
-        playerShip = transform.parent.GetComponent<ShipStats>();
+        if (transform.parent != null)
+        {
+            playerShip = transform.parent.GetComponent<ShipStats>();
+        }
     }
 
     private void Update()
     {
-        if (IsServer)
+        base.Update();
+
+        if (IsServer && playerShip != null)
         {
             damageCooldownTimer += Time.deltaTime;
             if (damageCooldownTimer > damageCooldownTime)
@@ -24,6 +32,9 @@ public class InteractableRepairZone : Interactable
                 damageCooldownTimer -= damageCooldownTime;
             }
         }
-        base.Update();
+        else if (playerShip == null && transform.parent != null)
+        {
+            playerShip = transform.parent.GetComponent<ShipStats>();
+        }
     }
 }
