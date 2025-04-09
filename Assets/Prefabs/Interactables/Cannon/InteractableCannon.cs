@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class InteractableCannon : Interactable
 {
     [SerializeField] float cannonMoveSpeed = 10;
-    [SerializeField] int cannonballPrefab;
+    protected int cannonballPrefab;
     Vector2 lastInput;
     Rigidbody rb;
     private float pitch = 0f;

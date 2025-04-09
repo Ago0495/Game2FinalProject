@@ -7,7 +7,6 @@ public class EnemyCannon : InteractableCannon
     public float detectionRange = 20f;
     public float fireCooldown = 2f;
     public Transform firePoint;
-    public int projectilePrefabIndex = 10;
 
     public float lastFireTime = 0f;
 
@@ -54,7 +53,7 @@ public class EnemyCannon : InteractableCannon
     void FireAtPlayer(Transform target)
     {
         Vector3 direction = (target.position - firePoint.position).normalized;
-        GameObject projectile = MyCore.NetCreateObject(projectilePrefabIndex, -1, firePoint.position, Quaternion.LookRotation(direction));
+        GameObject projectile = MyCore.NetCreateObject(cannonballPrefab, -1, firePoint.position, Quaternion.LookRotation(direction));
         Debug.Log("Cannon fired at: " + target.name);
     }
 
