@@ -6,7 +6,7 @@ public class FortScript : Enemy
     [SerializeField] private GameObject[] cannonLocations;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void NetworkedStart()
     {
         base.Start();
         foreach(GameObject canLoc in cannonLocations)
