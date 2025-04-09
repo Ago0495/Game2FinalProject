@@ -971,6 +971,7 @@ GameObject:
   - component: {fileID: 3492889578237515608}
   - component: {fileID: 4992636858984234221}
   - component: {fileID: 8030035811110545012}
+  - component: {fileID: 1881957305240892579}
   m_Layer: 0
   m_Name: NetworkedPlayerShip
   m_TagString: Untagged
@@ -1153,6 +1154,28 @@ MonoBehaviour:
   MyRig: {fileID: 4703830712787085399}
   UseOffsetVelocity: 1
   ClientRecv: 0
+--- !u!114 &1881957305240892579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309662186367675336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd3af049b9b4134aad3727d86e33343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
+  MyRig: {fileID: 0}
+  MyAnime: {fileID: 0}
+  moveSpeed: 0
+  health: 200
+  defence: 1
+  hitBoxes: []
+  gameMaster: {fileID: 0}
 --- !u!1 &2545772609176018010
 GameObject:
   m_ObjectHideFlags: 0

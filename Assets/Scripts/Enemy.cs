@@ -34,7 +34,7 @@ public class Enemy : Entity
         }
     }
 
-    public override void takeDamage(int damage)
+    public override void takeDamage(float damage)
     {
         base.takeDamage(damage);
         //spawn dropOnDeath object

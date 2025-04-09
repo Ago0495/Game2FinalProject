@@ -8,28 +8,35 @@ public class Entity : NetworkComponent
     [SerializeField] protected Rigidbody MyRig;
     [SerializeField] protected Animator MyAnime;
     [SerializeField] protected float moveSpeed;
-    [SerializeField] protected int health;
-    [SerializeField] protected int Defence;
+    [SerializeField] protected float health;
+    [SerializeField] protected float defence;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
     protected bool isAlive;
 
     public override void HandleMessage(string flag, string value)
     {
-        throw new System.NotImplementedException();
+        if (flag == "HP")
+        {
+            if (IsClient)
+            {
+                health = int.Parse(value);
+                Debug.Log("Ship Health: " + health);
+            }
+        }
     }
 
     public override void NetworkedStart()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override IEnumerator SlowUpdate()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(MyCore.MasterTimer);
     }
 
-    public int getHealth()
+    public float getHealth()
     {
         return health;
     }
@@ -39,17 +46,19 @@ public class Entity : NetworkComponent
         health = hp;
     }
 
-    public virtual void takeDamage(int damage)
+    public virtual void takeDamage(float damage)
     {
         //TO-DO
         //Implement Defence
-        health -= damage;
+        health -= damage/* * (1-defence)*/;
+        SendUpdate("HP", health.ToString());
 
         if(health <= 0)
         {
             isAlive = false;
             //play death animation
         }
+
 
     }
 

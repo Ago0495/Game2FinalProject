@@ -83,7 +83,7 @@ public class InteractableCannon : Interactable
             if (reloadTimer > reloadTime)
             {
                 canFire = true;
-                reloadTimer = 0;
+                reloadTimer -= reloadTime;
             }
             if (IsServer)
             {
