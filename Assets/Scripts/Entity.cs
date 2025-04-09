@@ -14,13 +14,6 @@ public class Entity : NetworkComponent
     [SerializeField] protected GameMaster gameMaster;
     protected bool isAlive;
 
-    public Vector3 lastPosition;
-    public Vector3 lastRotation;
-
-    public float Threashhold;
-    public float Ethreashhold;
-
-
     public override void HandleMessage(string flag, string value)
     {
         throw new System.NotImplementedException();

@@ -751,6 +751,7 @@ MonoBehaviour:
   - {fileID: 6106651233662011886, guid: 0109013c1b8641c429e3deeb5bce0f67, type: 3}
   - {fileID: 4862164644336455852, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
   - {fileID: 6933480826861259220, guid: 485d2ae6e654dfb46b7b957f7642b3e8, type: 3}
+  - {fileID: 1970358698291447384, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
   NetworkPlayerManager: {fileID: 9114435196644440787, guid: 04a66e8d824ffc04987633ca90e16587, type: 3}
   DefaultReturnScene: 0
 --- !u!4 &408156394
@@ -3199,10 +3200,6 @@ PrefabInstance:
     - target: {fileID: 5478886222066620170, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: displacementAmount
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6476273409335586133, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      propertyPath: Speed
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6588641816009587431, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: waterAngularDrag

@@ -216,7 +216,7 @@ public class NetworkPlayerController : NetworkComponent
     private void LookForInteractable()
     {
         RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, Mathf.Infinity))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 3f))
         {
             currentInteractable = hit.collider.GetComponent<Interactable>();
 

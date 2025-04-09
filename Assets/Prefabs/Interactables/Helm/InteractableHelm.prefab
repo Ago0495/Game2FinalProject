@@ -289,7 +289,7 @@ MonoBehaviour:
   IsDirty: 0
   Threshold: 0
   Ethreshold: 0
-  Speed: 0
+  Speed: 5
 --- !u!1 &1408319236758719876
 GameObject:
   m_ObjectHideFlags: 0
