@@ -1176,6 +1176,12 @@ MonoBehaviour:
   defence: 1
   hitBoxes: []
   gameMaster: {fileID: 0}
+  cannonsArray: []
+  repairZoneArray:
+  - {fileID: 5816275327288534196}
+  - {fileID: 5282198463490500599}
+  - {fileID: 9002284203254098496}
+  - {fileID: 7477761822683609270}
 --- !u!1 &2545772609176018010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,6 +4492,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+--- !u!1 &5282198463490500599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+  m_PrefabInstance: {fileID: 4825587327074053111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5727974836611209762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 975650403078533589, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
@@ -4794,6 +4805,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+--- !u!1 &5816275327288534196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+  m_PrefabInstance: {fileID: 6561254306726668468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6234238455296530785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 975650403078533589, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
@@ -5107,6 +5123,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 975650403078533589, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
   m_PrefabInstance: {fileID: 7818131705669072054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7477761822683609270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+  m_PrefabInstance: {fileID: 7818131705669072054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8446991908914413107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5257,6 +5278,11 @@ PrefabInstance:
 --- !u!4 &8853356177366669205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 975650403078533589, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+  m_PrefabInstance: {fileID: 8599417149939066432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9002284203254098496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
   m_PrefabInstance: {fileID: 8599417149939066432}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8783401123840959465

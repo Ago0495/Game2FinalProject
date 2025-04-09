@@ -28,7 +28,10 @@ public class Entity : NetworkComponent
 
     public override void NetworkedStart()
     {
-
+        if (IsServer)
+        {
+            SendUpdate("HP", health.ToString());
+        }
     }
 
     public override IEnumerator SlowUpdate()
@@ -50,15 +53,26 @@ public class Entity : NetworkComponent
     {
         //TO-DO
         //Implement Defence
-        health -= damage/* * (1-defence)*/;
+        float totalDamage = damage/* * (1-defence)*/;
+        health -= totalDamage;
         SendUpdate("HP", health.ToString());
 
         if(health <= 0)
         {
             isAlive = false;
-            //play death animation
+            OnDeath();
         }
 
+        OnDamageTaken(totalDamage);
+    }
+
+    public virtual void OnDamageTaken(float damageTaken)
+    {
+
+    }
+
+    public virtual void OnDeath()
+    {
 
     }
 
