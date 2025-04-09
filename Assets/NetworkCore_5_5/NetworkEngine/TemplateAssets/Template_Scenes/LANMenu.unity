@@ -737,10 +737,10 @@ MonoBehaviour:
   DisconnectScreen: {fileID: 0}
   ObjectCounter: 0
   SpawnPrefab:
-  - {fileID: -6997000877958652957, guid: c0266e2d7478c2a4694520d493e883b8, type: 3}
-  - {fileID: -6997000877958652957, guid: bca64d65bd997bf44969a55b644b4a93, type: 3}
-  - {fileID: -6997000877958652957, guid: 4def26ae1c8868f48b2f9effa6f04b5c, type: 3}
-  - {fileID: -6997000877958652957, guid: f8d67ba9f0d202b459c5480c3cf851dc, type: 3}
+  - {fileID: 3260826770920335512, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+  - {fileID: 4050842883281160686, guid: c0266e2d7478c2a4694520d493e883b8, type: 3}
+  - {fileID: 6135748156130101436, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
+  - {fileID: 833760001276476053, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
   - {fileID: 2153944100391916583, guid: 5ac2fc30489688d4ca057c00521180da, type: 3}
   - {fileID: 2398171972591018291, guid: 00c364b808caaaa41b72906d808c3884, type: 3}
   - {fileID: 6897503874563660455, guid: 1522ba327f3019b488520bad0413307c, type: 3}

@@ -6,6 +6,7 @@ public class InteractableRepairZone : Interactable
     float damage = 2;
     float damageCooldownTimer = 0f;
     float damageCooldownTime = 2f;
+
     private void Start()
     {
         base.Start();

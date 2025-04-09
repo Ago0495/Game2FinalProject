@@ -17,6 +17,7 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] private float speed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private bool canJump = true;
+    [SerializeField] float jumpForce;
     public float lookSpeed = 0.5f;
     private Vector2 lastInput;
     private Vector2 lookInput;
@@ -43,7 +44,7 @@ public class NetworkPlayerController : NetworkComponent
             {
                 canJump = false;
                 //MyRig.linearVelocity += new Vector3(0, 10, 0);
-                MyRig.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
+                MyRig.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             }
         }
         if (flag == "ROTATE")
