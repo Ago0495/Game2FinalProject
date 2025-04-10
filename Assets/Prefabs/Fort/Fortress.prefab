@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3474080860546336522}
   - component: {fileID: 2425560273948611686}
-  - component: {fileID: 5577023137797717775}
+  - component: {fileID: 7758448735406005322}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -73,7 +73,7 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
---- !u!154 &5577023137797717775
+--- !u!154 &7758448735406005322
 TerrainCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 9041c2d87b152c948956398e1185497e, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!1 &1012590102695730212
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   scoreValue: 0
   attacking: 0
   transition: 0
-  cannonPrefab: {fileID: 0}
+  cannonPrefab: 0
   cannonLocations:
   - {fileID: 7688417494452664412}
   - {fileID: 5707202048217277092}
