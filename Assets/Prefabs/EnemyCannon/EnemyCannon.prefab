@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 416710380825907523}
   - component: {fileID: 4102327794770009881}
   - component: {fileID: 6737456968286158901}
-  - component: {fileID: -7524894369587558488}
-  - component: {fileID: -2674953745919824626}
-  - component: {fileID: -8061375678076873938}
+  - component: {fileID: 4936235494861127032}
+  - component: {fileID: 136114652493282212}
+  - component: {fileID: 7645861206202796679}
+  - component: {fileID: 8127532088121673145}
   m_Layer: 0
   m_Name: EnemyCannon
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6737456968286158900}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.46, y: 1.39, z: 108.32535}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -111,7 +112,58 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8149264, y: 1.5310771, z: 3.4784567}
   m_Center: {x: -0.00016757846, y: 0.13911536, z: 0.605271}
---- !u!114 &-7524894369587558488
+--- !u!114 &4936235494861127032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6737456968286158900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60dd0aabef0d1f468ba7554f8067636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
+  target: {fileID: 0}
+  detectionRange: 20
+  fireCooldown: 2
+  firePoint: {fileID: 0}
+  lastFireTime: 0
+  reloadTime: 8
+  reloading: 0
+  cannonballPrefab: {fileID: 1312906300730037810, guid: 0109013c1b8641c429e3deeb5bce0f67, type: 3}
+  MyRig: {fileID: 0}
+--- !u!54 &136114652493282212
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6737456968286158900}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7645861206202796679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +183,7 @@ MonoBehaviour:
   UseLobby: 0
   UpdateFrequency: 0.1
   MyCore: {fileID: 0}
---- !u!114 &-2674953745919824626
+--- !u!114 &8127532088121673145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,32 +192,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6737456968286158900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86193c3e70bf64b4dbd2eec7f28a92cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bea3a689ef274b46b3f376ae176a5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
-  Threshold: 0
-  Ethreshold: 0
-  Speed: 0
---- !u!114 &-8061375678076873938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6737456968286158900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60dd0aabef0d1f468ba7554f8067636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyCore: {fileID: 0}
-  MyId: {fileID: 0}
-  IsDirty: 0
-  detectionRange: 20
-  fireCooldown: 2
-  projectilePrefabIndex: 10
-  firePoint: {fileID: 0}
-  lastFireTime: 0
+  LastPosition: {x: 0, y: 0, z: 0}
+  LastRotation: {x: 0, y: 0, z: 0}
+  LastVelocity: {x: 0, y: 0, z: 0}
+  LastAngular: {x: 0, y: 0, z: 0}
+  OffsetVelocity: {x: 0, y: 0, z: 0}
+  Threshold: 0.1
+  EThreshold: 2.5
+  MyRig: {fileID: 0}
+  UseOffsetVelocity: 1
+  ClientRecv: 0
