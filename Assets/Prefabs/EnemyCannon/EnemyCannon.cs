@@ -2,7 +2,7 @@ using UnityEngine;
 using NETWORK_ENGINE;
 using System.Collections;
 
-public class EnemyCannon : InteractableCannon
+public class EnemyCannon : NetworkComponent
 {
     public GameObject target;
     public float detectionRange = 20f;
@@ -14,25 +14,14 @@ public class EnemyCannon : InteractableCannon
     public float reloadTime;
     public bool reloading;
 
-    public void HandleMessage(string flag, string value)
-    {
-        base.HandleMessage(flag, value);
-    }
+    public GameObject cannonballPrefab;
+    public Rigidbody MyRig;
 
-    public override void NetworkedStart()
-    {
-        target = GameObject.FindGameObjectWithTag("SHIP");
-    }
-
-    public IEnumerator reload()
-    {
-        yield return new WaitForSeconds(reloadTime);
-        reloading = false;
-    }
+    //protected int cannonballPrefab;
 
     public override IEnumerator SlowUpdate()
     {
-        /*while (IsServer)
+        while (IsServer)
         {
             //GameObject[] players = GameObject.FindGameObjectsWithTag("SHIP");
             //look at player 
@@ -43,27 +32,56 @@ public class EnemyCannon : InteractableCannon
                 lastFireTime = Time.time;
             }
             yield return new WaitForSeconds(0.5f);
-        }*/
+        }
+    }
+
+    public override void HandleMessage(string flag, string value)
+    {
+        
+    }
+
+    public override void NetworkedStart()
+    {
+        
+    }
+
+    public IEnumerator reload()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        reloading = false;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        target = GameObject.FindGameObjectWithTag("SHIP");
+        MyRig = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //RotateTowards(transform.position - target.transform.position);
+        Vector3 direction = (transform.position - target.transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(-direction);
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation,
+            targetRotation,
+            20 * Time.deltaTime
+        );
+        if (!reloading)
+        {
+            GameObject tmp = (GameObject)Instantiate(cannonballPrefab, transform.position + transform.forward * 5, Quaternion.identity);
+            reloading = true;
+            StartCoroutine(reload());
+        }
     }
 
     void FireAtPlayer(Transform target)
     {
         Vector3 direction = (target.position - firePoint.position).normalized;
-        GameObject projectile = MyCore.NetCreateObject(cannonballPrefab, -1, firePoint.position, Quaternion.LookRotation(direction));
+        //GameObject projectile = MyCore.NetCreateObject(cannonballPrefab, -1, firePoint.position, Quaternion.LookRotation(direction));
         //Debug.Log("Cannon fired at: " + target.name);
         reloading = true;
     }
-
 }
