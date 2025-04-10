@@ -4,38 +4,46 @@ using System.Collections;
 
 public class EnemyCannon : InteractableCannon
 {
+    public GameObject target;
     public float detectionRange = 20f;
     public float fireCooldown = 2f;
     public Transform firePoint;
 
     public float lastFireTime = 0f;
 
-    public override void HandleMessage(string flag, string value)
+    public float reloadTime;
+    public bool reloading;
+
+    public void HandleMessage(string flag, string value)
     {
+        base.HandleMessage(flag, value);
     }
 
     public override void NetworkedStart()
     {
+        target = GameObject.FindGameObjectWithTag("SHIP");
+    }
 
+    public IEnumerator reload()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        reloading = false;
     }
 
     public override IEnumerator SlowUpdate()
     {
-        while (IsServer)
+        /*while (IsServer)
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("SHIP");
-            foreach (GameObject player in players)
+            //GameObject[] players = GameObject.FindGameObjectsWithTag("SHIP");
+            //look at player 
+            float dist = Vector3.Distance(transform.position, target.transform.position);
+            if (dist <= detectionRange && !reloading)
             {
-                float dist = Vector3.Distance(transform.position, player.transform.position);
-                if (dist <= detectionRange && Time.time - lastFireTime >= fireCooldown)
-                {
-                    FireAtPlayer(player.transform);
-                    lastFireTime = Time.time;
-                }
+                FireAtPlayer(target.transform);
+                lastFireTime = Time.time;
             }
-
             yield return new WaitForSeconds(0.5f);
-        }
+        }*/
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,7 +62,8 @@ public class EnemyCannon : InteractableCannon
     {
         Vector3 direction = (target.position - firePoint.position).normalized;
         GameObject projectile = MyCore.NetCreateObject(cannonballPrefab, -1, firePoint.position, Quaternion.LookRotation(direction));
-        Debug.Log("Cannon fired at: " + target.name);
+        //Debug.Log("Cannon fired at: " + target.name);
+        reloading = true;
     }
 
 }
