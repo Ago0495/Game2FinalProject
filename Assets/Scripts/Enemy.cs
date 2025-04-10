@@ -34,11 +34,20 @@ public class Enemy : Entity
         }
     }
 
-    public override void takeDamage(int damage)
+    public override void takeDamage(float damage)
     {
         base.takeDamage(damage);
+    }
+
+    public override void OnDamageTaken(float damageTaken)
+    {
         //spawn dropOnDeath object
         //add score
+    }
+
+    public override void OnDeath()
+    {
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

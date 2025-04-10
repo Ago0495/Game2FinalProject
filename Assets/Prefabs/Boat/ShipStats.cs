@@ -1,0 +1,40 @@
+using UnityEngine;
+
+public class ShipStats : Entity
+{
+    public GameObject[] cannonsArray;
+    public GameObject[] repairZoneArray;
+    private float damageThreshold = 20;
+    private float damageTracker = 0;
+
+    private void Start()
+    {
+        base.Start();
+
+        foreach (GameObject rz in repairZoneArray)
+        {
+            InteractableRepairZone tempRZ = rz.GetComponent<InteractableRepairZone>();
+            if (tempRZ != null)
+            {
+                //rz.SetActive(false);
+            }
+        }
+
+        takeDamage(25);
+    }
+
+    public override void OnDamageTaken(float damageTaken)
+    {
+        Debug.Log("Damage Taken");
+        damageTracker += damageTaken;
+        if (IsServer)
+        {
+            if (damageTracker > damageThreshold && repairZoneArray.Length > 0)
+            {
+                int rand = Random.Range(0, repairZoneArray.Length);
+                repairZoneArray[rand].SetActive(true);
+                damageTracker -= damageThreshold;
+            }
+        }
+    }
+}

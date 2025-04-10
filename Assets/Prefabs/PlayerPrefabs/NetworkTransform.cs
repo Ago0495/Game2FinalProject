@@ -50,8 +50,6 @@ public class NetworkTransform : NetworkComponent
                 }
                 if ((this.transform.rotation.eulerAngles - lastRotation).magnitude > Threshold)
                 {
-                    Debug.Log(NetId + " NetTransform SlowUpdate: " + transform.rotation);
-
                     lastRotation = this.transform.rotation.eulerAngles;
                     SendUpdate("ROT", lastRotation.ToString()); 
                 }

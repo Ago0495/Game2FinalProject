@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NETWORK_ENGINE;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class NetworkPlayerController : NetworkComponent
 {
@@ -14,7 +15,9 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] private InputActionAsset MyMap;
 
     [SerializeField] private float speed;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private bool canJump = true;
+    [SerializeField] float jumpForce;
     public float lookSpeed = 0.5f;
     private Vector2 lastInput;
     private Vector2 lookInput;
@@ -40,7 +43,8 @@ public class NetworkPlayerController : NetworkComponent
             if (IsServer && canJump && !disableMovement)
             {
                 canJump = false;
-                MyRig.linearVelocity += new Vector3(0, 10, 0);
+                //MyRig.linearVelocity += new Vector3(0, 10, 0);
+                MyRig.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             }
         }
         if (flag == "ROTATE")
@@ -89,6 +93,15 @@ public class NetworkPlayerController : NetworkComponent
                 disableMovement = usingInteractable;
             }
         }
+        if (flag == "TITLE")
+        {
+            string[] args = value.Split(",");
+            if (IsClient)
+            {
+                transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = args[0];
+                transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = args[1];
+            }
+        }
     }
 
     public override void NetworkedStart()
@@ -129,10 +142,10 @@ public class NetworkPlayerController : NetworkComponent
 
     public void OnLook(InputAction.CallbackContext lk)
     {
-        if (!disableMovement)
-        {
+        //if (!disableMovement)
+        //{
             lookInput = lk.ReadValue<Vector2>();
-        }
+        //}
     }
 
     public override IEnumerator SlowUpdate()
@@ -150,7 +163,12 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (IsServer)
         {
-            MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0)/* + movingPlatform*/;
+            MyRig.AddForce((transform.forward * lastInput.y + transform.right * lastInput.x) * speed * Time.deltaTime, ForceMode.VelocityChange);
+            //MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0)/* + movingPlatform*/;
+            if (MyRig.linearVelocity.magnitude > maxSpeed)
+            {
+
+            }
         }
 
         if (IsLocalPlayer && cameraHolderPos != null && camera != null)
@@ -159,7 +177,10 @@ public class NetworkPlayerController : NetworkComponent
             Cursor.visible = false;
             camera.transform.position = cameraHolderPos.transform.position;
             RotateView();
-            LookForInteractable();
+            if (!usingInteractable)
+            {
+                LookForInteractable();
+            }
         }
     }
 
@@ -196,7 +217,7 @@ public class NetworkPlayerController : NetworkComponent
     private void LookForInteractable()
     {
         RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, Mathf.Infinity))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 3f))
         {
             currentInteractable = hit.collider.GetComponent<Interactable>();
 
