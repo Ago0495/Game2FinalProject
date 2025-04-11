@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 416710380825907523}
   - component: {fileID: 4102327794770009881}
   - component: {fileID: 6737456968286158901}
-  - component: {fileID: 4936235494861127032}
   - component: {fileID: 136114652493282212}
   - component: {fileID: 7645861206202796679}
   - component: {fileID: 8127532088121673145}
+  - component: {fileID: 4936235494861127032}
   m_Layer: 0
   m_Name: EnemyCannon
   m_TagString: Untagged
@@ -112,30 +112,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8149264, y: 1.5310771, z: 3.4784567}
   m_Center: {x: -0.00016757846, y: 0.13911536, z: 0.605271}
---- !u!114 &4936235494861127032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6737456968286158900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60dd0aabef0d1f468ba7554f8067636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyCore: {fileID: 0}
-  MyId: {fileID: 0}
-  IsDirty: 0
-  target: {fileID: 0}
-  detectionRange: 20
-  fireCooldown: 2
-  firePoint: {fileID: 0}
-  lastFireTime: 0
-  reloadTime: 8
-  reloading: 0
-  cannonballPrefab: {fileID: 1312906300730037810, guid: 0109013c1b8641c429e3deeb5bce0f67, type: 3}
-  MyRig: {fileID: 0}
 --- !u!54 &136114652493282212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -208,3 +184,31 @@ MonoBehaviour:
   MyRig: {fileID: 0}
   UseOffsetVelocity: 1
   ClientRecv: 0
+--- !u!114 &4936235494861127032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6737456968286158900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60dd0aabef0d1f468ba7554f8067636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
+  target: {fileID: 0}
+  detectionRange: 20
+  cannonBallSpeed: 40
+  gravity: 0
+  reloadTime: 8
+  reloading: 0
+  aimOffset: {x: 0, y: -5, z: 0}
+  MyRig: {fileID: 0}
+  cannonballPrefab: 11
+  lastPosition: {x: 0, y: 0, z: 0}
+  lastRotation: {x: 0, y: 0, z: 0}
+  Threashhold: 0.1
+  Ethreashhold: 2.5
