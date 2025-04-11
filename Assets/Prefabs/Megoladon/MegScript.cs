@@ -36,9 +36,10 @@ public class MegScript : Enemy
 
     public IEnumerator wait()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         charging = false;
         transition = true;
+        moveSpeed -= 30;
     }
 
     void RotateTowards(Vector3 direction)
@@ -59,6 +60,7 @@ public class MegScript : Enemy
             MyRig.angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized);
             //wait
+            moveSpeed += 30; 
             MyRig.linearVelocity = (target.transform.position - transform.position).normalized * moveSpeed;
             StartCoroutine(wait());
         }
@@ -112,7 +114,7 @@ public class MegScript : Enemy
             {
                 Circle(target.transform.position);
 
-                if (Random.Range(0, 900) == 0)
+                if (Random.Range(0, 700) == 0)
                 {
                     charging = true;
                     Charge();
