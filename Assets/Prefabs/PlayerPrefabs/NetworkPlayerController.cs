@@ -8,7 +8,7 @@ using TMPro;
 public class NetworkPlayerController : NetworkComponent
 {
     [SerializeField] private Rigidbody MyRig;
-    private GameObject camera;
+    protected GameObject cameraObj;
     private Transform cameraHolderPos;
 
     [SerializeField] private PlayerInput MyInput;
@@ -112,7 +112,7 @@ public class NetworkPlayerController : NetworkComponent
         }
         if (IsLocalPlayer)
         {
-            camera = GameObject.FindGameObjectWithTag("MainCamera");
+            cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
             cameraHolderPos = transform.GetChild(0).transform;
         }
     }
@@ -159,7 +159,7 @@ public class NetworkPlayerController : NetworkComponent
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (IsServer)
         {
@@ -171,11 +171,11 @@ public class NetworkPlayerController : NetworkComponent
             }
         }
 
-        if (IsLocalPlayer && cameraHolderPos != null && camera != null)
+        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            camera.transform.position = cameraHolderPos.transform.position;
+            cameraObj.transform.position = cameraHolderPos.transform.position;
             RotateView();
             if (!usingInteractable)
             {
@@ -211,19 +211,19 @@ public class NetworkPlayerController : NetworkComponent
 
         //transform.rotation = Quaternion.Euler(0f, yaw, 0f);
         SendCommand("ROTATE", yaw.ToString());
-        camera.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        cameraObj.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 
     private void LookForInteractable()
     {
         RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 3f))
+        if (Physics.Raycast(cameraObj.transform.position, cameraObj.transform.forward, out hit, 3f))
         {
             currentInteractable = hit.collider.GetComponent<Interactable>();
 
             if (currentInteractable != null)
             {
-                currentInteractable.BeingHovered(camera.transform.position);
+                currentInteractable.BeingHovered(cameraObj.transform.position);
             }
         }
     }

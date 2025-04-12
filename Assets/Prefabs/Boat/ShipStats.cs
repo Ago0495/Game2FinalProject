@@ -25,7 +25,6 @@ public class ShipStats : Entity
 
     public override void OnDamageTaken(float damageTaken)
     {
-        Debug.Log("Damage Taken");
         damageTracker += damageTaken;
         if (IsServer)
         {

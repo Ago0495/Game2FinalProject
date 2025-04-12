@@ -52,6 +52,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4024518135161280119}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4024518135161280119}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4024518135161280119}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4024518135161280119}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4024518135161280119}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDirectionChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLook
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseInteractable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MarksmanPlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213961172326852503, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7985160590798394168, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
       propertyPath: m_Name
       value: Marksman
@@ -63,5 +123,46 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7985160590798394168, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4024518135161280119}
   m_SourcePrefab: {fileID: 100100000, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+--- !u!1 &1636701791663059740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7985160590798394168, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+  m_PrefabInstance: {fileID: 8675699641132441636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4024518135161280119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636701791663059740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04eae6dd32f7fdf48b26ce111c9065e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
+  MyRig: {fileID: 2399647938001120516}
+  MyInput: {fileID: 0}
+  MyMap: {fileID: 0}
+  speed: 20
+  maxSpeed: 20
+  canJump: 1
+  jumpForce: 0
+  lookSpeed: 0.5
+  currentInteractable: {fileID: 0}
+  canFire: 1
+  reloadTimer: 0
+  reloadTime: 2
+  markerPrefabIndex: 0
+--- !u!54 &2399647938001120516 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6425235677392194848, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+  m_PrefabInstance: {fileID: 8675699641132441636}
+  m_PrefabAsset: {fileID: 0}
