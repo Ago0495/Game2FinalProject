@@ -5,7 +5,6 @@ public class Enemy : Entity
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected ShipMovement target;
     [SerializeField] protected GameObject dropOnDeath;
-    [SerializeField] protected float detectRange;
     [SerializeField] protected Collider DetectRange;
     [SerializeField] protected int scoreValue;
     public bool attacking;
