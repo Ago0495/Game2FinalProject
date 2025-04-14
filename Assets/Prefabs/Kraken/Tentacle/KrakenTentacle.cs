@@ -9,14 +9,7 @@ public class KrakenTentacle : Enemy
 
     public override void HandleMessage(string flag, string value)
     {
-        if (flag == "POS" && IsClient)
-        {
-            lastPosition = NetworkCore.Vector3FromString(value);
-        }
-        if (flag == "ROT" && IsClient)
-        {
-            lastRotation = NetworkCore.Vector3FromString(value);
-        }
+
     }
 
     public void NetworkedStart()
@@ -26,33 +19,8 @@ public class KrakenTentacle : Enemy
 
     public override IEnumerator SlowUpdate()
     {
-        while (true)
-        {
-            if (IsServer)
-            {
-                float distance = (this.transform.position - lastPosition).magnitude;
-                if (distance > Threashhold)
-                {
-                    SendUpdate("POS", this.transform.position.ToString());
-                    lastPosition = this.transform.position;
-                }
-                if ((this.transform.rotation.eulerAngles - lastRotation).magnitude > Threashhold)
-                {
-                    lastRotation = this.transform.rotation.eulerAngles;
-                    SendUpdate("ROT", lastRotation.ToString());
-                }
 
-                if (IsDirty)
-                {
-                    SendUpdate("POS", lastPosition.ToString());
-                    SendUpdate("ROT", lastRotation.ToString());
-                    //animation
-
-                    IsDirty = false;
-                }
-            }
-            yield return new WaitForSeconds(MyCore.MasterTimer);
-        }
+         yield return new WaitForSeconds(MyCore.MasterTimer);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
