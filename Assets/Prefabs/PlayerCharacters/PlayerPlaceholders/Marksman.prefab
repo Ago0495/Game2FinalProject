@@ -155,11 +155,11 @@ MonoBehaviour:
   speed: 20
   maxSpeed: 20
   canJump: 1
-  jumpForce: 0
+  jumpForce: 10
   lookSpeed: 0.5
   currentInteractable: {fileID: 0}
   canFire: 1
-  reloadTimer: 0
+  reloadTimer: 4
   reloadTime: 2
   markerPrefabIndex: 16
 --- !u!54 &2399647938001120516 stripped
