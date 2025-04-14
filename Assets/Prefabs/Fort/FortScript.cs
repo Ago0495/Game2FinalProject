@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FortScript : Enemy
 {
@@ -9,9 +10,15 @@ public class FortScript : Enemy
     void NetworkedStart()
     {
         base.Start();
-        foreach(GameObject canLoc in cannonLocations)
-        {
-            //MyCore.NetCreateObject(cannonPrefab, -1, canLoc.transform.position, Quaternion.identity);
-        }
+    }
+
+    public void HandleMessage(string flag, string value)
+    {
+        
+    }
+
+    public override IEnumerator SlowUpdate()
+    {
+        yield return new WaitForSeconds(MyCore.MasterTimer);
     }
 }
