@@ -115,11 +115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8387662051283205585, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.08786359
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8387662051283205585, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.055230405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8387662051283205585, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       propertyPath: m_LocalRotation.w
@@ -143,11 +143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.08786359
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.055230405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       propertyPath: m_LocalRotation.w
@@ -182,7 +182,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2863396700724699823}
+      addedObject: {fileID: 2624376657354263513}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7059630349329989227}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 254343255224946848}
@@ -209,8 +212,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
   m_PrefabInstance: {fileID: 7210684177047031547}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &2863396700724699823
-MeshCollider:
+--- !u!136 &2624376657354263513
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -222,15 +225,39 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 17
+    m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4108424097152807243, guid: a37eaf12b38e6f94aafb99a8b40dcc17, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.32
+  m_Height: 1.57
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0.15}
+--- !u!136 &7059630349329989227
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7552561725428872106}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.62
+  m_Height: 6.26
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &254343255224946848
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -342,20 +369,18 @@ MonoBehaviour:
   IsDirty: 0
   MyRig: {fileID: 254343255224946848}
   MyAnime: {fileID: 0}
-  moveSpeed: 50
-  health: 0
+  moveSpeed: 100
+  health: 1000
   Defence: 0
-  hitBoxes:
-  - {fileID: 2863396700724699823}
+  hitBoxes: []
   gameMaster: {fileID: 0}
   lastPosition: {x: 0, y: 0, z: 0}
   lastRotation: {x: 0, y: 0, z: 0}
-  Threashhold: 0
-  Ethreashhold: 0
+  Threashhold: 0.1
+  Ethreashhold: 2.5
   rotationSpeed: 10
   target: {fileID: 0}
   dropOnDeath: {fileID: 0}
-  detectRange: 0
   DetectRange: {fileID: 4040574916454609870}
   scoreValue: 0
   attacking: 0
