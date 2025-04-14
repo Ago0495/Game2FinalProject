@@ -20,7 +20,6 @@ public class Enemy : Entity
         Debug.Log(other.gameObject);
         if(other.gameObject.tag == "SHIP")
         {
-            Debug.Log("???");
             attacking = true;
             transition = true;
         }
