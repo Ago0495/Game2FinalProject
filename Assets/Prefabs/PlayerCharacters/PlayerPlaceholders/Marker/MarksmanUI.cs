@@ -10,17 +10,17 @@ public class MarksmanUI : MonoBehaviour
     Canvas UICanvas;
     [SerializeField] Image background;
     [SerializeField] Image progressBar;
-    MarksmanPlayerController cannon;
+    MarksmanPlayerController marksman;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         UICanvas = GetComponent<Canvas>();
-        //cannon = transform.parent.GetComponent<InteractableCannon>();
+        marksman = transform.parent.GetComponent<MarksmanPlayerController>();
 
-        if (cannon != null)
+        if (marksman != null)
         {
-            if (cannon.IsLocalPlayer)
+            if (marksman.IsLocalPlayer)
             {
                 UICanvas.enabled = true;
             }
@@ -34,11 +34,11 @@ public class MarksmanUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!cannon.canFire && cannon.IsLocalPlayer)
+        if (!marksman.canFire && marksman.IsLocalPlayer)
         {
             UICanvas.enabled = true;
 
-            progressBar.fillAmount = cannon.reloadTimer / cannon.reloadTime;
+            progressBar.fillAmount = marksman.reloadTimer / marksman.reloadTime;
         }
         else
         {

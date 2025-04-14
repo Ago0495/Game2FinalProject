@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 405491227330461738}
   - component: {fileID: 8338632405269920022}
   - component: {fileID: 2111549393531808239}
+  - component: {fileID: 4379735011160207772}
   m_Layer: 0
   m_Name: MarksmanUI
   m_TagString: Untagged
@@ -102,6 +103,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4379735011160207772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762893368410030089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3ec6c885c69b947b82c2c936bcd34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UICanvasObj: {fileID: 0}
+  background: {fileID: 3381197470342361268}
+  progressBar: {fileID: 8917441387509177945}
 --- !u!1 &7523633829759120724
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,8 +431,8 @@ MonoBehaviour:
   lookSpeed: 0.5
   currentInteractable: {fileID: 0}
   canFire: 1
-  reloadTimer: 4
-  reloadTime: 2
+  reloadTimer: 0
+  reloadTime: 4
   markerPrefabIndex: 16
 --- !u!54 &2399647938001120516 stripped
 Rigidbody:
