@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -7797267076915656575, guid: 6a97dc4af2a7b1d4db7eeb0506620253, type: 3}
+    - target: {fileID: 7596842317193946206, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: jumpForce
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8018595702356195872, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -57,7 +61,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7677768378071069216, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
