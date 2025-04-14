@@ -160,7 +160,7 @@ MonoBehaviour:
   canFire: 1
   reloadTimer: 0
   reloadTime: 2
-  markerPrefabIndex: 0
+  markerPrefabIndex: 16
 --- !u!54 &2399647938001120516 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6425235677392194848, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
