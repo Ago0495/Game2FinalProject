@@ -19,33 +19,27 @@ public class MarksmanPlayerController : NetworkPlayerController
 
         if (flag == "HIT")
         {
-            ////camera is only local server cannot do this
-            //Debug.Log(cameraPos);
-            //if (IsServer && canFire)
-            //{
-            //    RaycastHit hit;
-            //    if (Physics.Raycast(cameraPos, cameraPos.forward, out hit, Mathf.Infinity))
-            //    {
-            //        Debug.Log(hit.transform.name);
-            //        Enemy markedEnemy = hit.collider.GetComponent<Enemy>();
+            if (IsServer && canFire)
+            {
+                string[] args = value.Split(",");
 
-            //        if (markedEnemy != null)
-            //        {
-            //            Debug.Log(markedEnemy.name);
-            //            //do damage and spawn marker
-            //            GameObject tempMarker = MyCore.NetCreateObject(markerPrefabIndex, -1, hit.point, Quaternion.identity);
-            //            Transform tempMarkerTransform = tempMarker.transform;
-            //            if (tempMarkerTransform != null)
-            //            {
-            //                tempMarkerTransform.SetParent(markedEnemy.transform);
-            //            }
-            //        }
+                GameObject enemyHitObj = MyCore.NetObjs[int.Parse(args[0])].gameObject;
+                Vector3 hitPos = NetworkCore.Vector3FromString(args[1] + "," + args[2] + "," + args[3]);
 
+                Debug.Log(hitPos);
 
-            //        canFire = false;
-            //        SendUpdate("CANFIRE", canFire.ToString());
-            //    }
-            //}
+                Debug.Log(enemyHitObj.name);
+                //do damage and spawn marker
+                GameObject tempMarker = MyCore.NetCreateObject(markerPrefabIndex, -1, hitPos, Quaternion.identity);
+                Transform tempMarkerTransform = tempMarker.transform;
+                if (tempMarkerTransform != null)
+                {
+                    tempMarkerTransform.SetParent(enemyHitObj.transform);
+                }
+
+                canFire = false;
+                SendUpdate("CANFIRE", canFire.ToString());
+            }
         }
         if (flag == "CANFIRE")
         {
@@ -105,8 +99,8 @@ public class MarksmanPlayerController : NetworkPlayerController
                     {
                         Debug.Log(hit.transform.name + " is Enemy");
                         int enemyID = hit.transform.GetComponent<NetworkID>().NetId;
-                        Vector3 hitPos = hit.transform.position;
-                        SendCommand("HIT", enemyID.ToString() + hitPos); 
+                        Vector3 hitPos = hit.point;
+                        SendCommand("HIT", enemyID.ToString() + "," + hitPos); 
                     }
 
                 }
