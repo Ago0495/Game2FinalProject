@@ -5,7 +5,6 @@ public class Enemy : Entity
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected ShipMovement target;
     [SerializeField] protected GameObject dropOnDeath;
-    [SerializeField] protected float detectRange;
     [SerializeField] protected Collider DetectRange;
     [SerializeField] protected int scoreValue;
     public bool attacking;
@@ -18,7 +17,8 @@ public class Enemy : Entity
 
     protected void OnTriggerEnter(Collider other)
     {
-        if(IsServer && other.gameObject == target)
+        Debug.Log(other.gameObject);
+        if(other.gameObject.tag == "SHIP")
         {
             attacking = true;
             transition = true;
@@ -27,18 +27,27 @@ public class Enemy : Entity
 
     protected void OnTriggerExit(Collider other)
     {
-        if(IsServer && other.gameObject == target)
+        if(other.gameObject == target)
         {
             attacking = false;
             transition = true;
         }
     }
 
-    public override void takeDamage(int damage)
+    public override void takeDamage(float damage)
     {
         base.takeDamage(damage);
+    }
+
+    public override void OnDamageTaken(float damageTaken)
+    {
         //spawn dropOnDeath object
         //add score
+    }
+
+    public override void OnDeath()
+    {
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

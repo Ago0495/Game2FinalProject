@@ -8,6 +8,8 @@ public class InteractableHelm : Interactable
     Vector2 lastInput;
     Rigidbody rb;
     [SerializeField] Rigidbody shipRB;
+    private GameObject cameraObj;
+    [SerializeField] private Transform cameraHolderPos;
     public override void HandleMessage(string flag, string value)
     {
         base.HandleMessage(flag, value);
@@ -26,11 +28,17 @@ public class InteractableHelm : Interactable
         base.NetworkedStart();
 
         //shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
+        if (IsLocalPlayer)
+        {
+            cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
+            cameraObj.transform.SetParent(cameraHolderPos, false);
+        }
     }
 
     public void Start()
     {
         base.Start();
+
     }
 
     public void Update()
@@ -42,12 +50,28 @@ public class InteractableHelm : Interactable
             if (shipRB != null)
             {
                 shipRB.AddForce(transform.forward * lastInput.y * speed);
-                shipRB.AddTorque(transform.up * lastInput.x * speed * 100);
+                shipRB.AddTorque(transform.up * lastInput.x * speed * 10);
             }
             else
             {
                 shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
             }
+        }
+    }
+
+    public void OnDestroy()
+    {
+        //if (cameraObj != null && IsLocalPlayer)
+        //{
+        //    cameraObj.transform.SetParent(MyCore.NetObjs[user].transform.GetChild(0).transform);
+        //}
+        if (cameraObj != null && user >= 0)
+        {
+            cameraObj.transform.SetParent(MyCore.NetObjs[user].transform.GetChild(0).transform);
+        }
+        else if (cameraObj != null)
+        {
+            cameraObj.transform.SetParent(null);
         }
     }
 

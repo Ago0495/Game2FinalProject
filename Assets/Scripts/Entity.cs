@@ -8,35 +8,38 @@ public class Entity : NetworkComponent
     [SerializeField] protected Rigidbody MyRig;
     [SerializeField] protected Animator MyAnime;
     [SerializeField] protected float moveSpeed;
-    [SerializeField] protected int health;
-    [SerializeField] protected int Defence;
+    [SerializeField] protected float health;
+    [SerializeField] protected float defense;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
     protected bool isAlive;
 
-    public Vector3 lastPosition;
-    public Vector3 lastRotation;
-
-    public float Threashhold;
-    public float Ethreashhold;
-
-
     public override void HandleMessage(string flag, string value)
     {
-        throw new System.NotImplementedException();
+        if (flag == "HP")
+        {
+            if (IsClient)
+            {
+                health = int.Parse(value);
+                Debug.Log("Ship Health: " + health);
+            }
+        }
     }
 
     public override void NetworkedStart()
     {
-        throw new System.NotImplementedException();
+        if (IsServer)
+        {
+            SendUpdate("HP", health.ToString());
+        }
     }
 
     public override IEnumerator SlowUpdate()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(MyCore.MasterTimer);
     }
 
-    public int getHealth()
+    public float getHealth()
     {
         return health;
     }
@@ -46,17 +49,30 @@ public class Entity : NetworkComponent
         health = hp;
     }
 
-    public virtual void takeDamage(int damage)
+    public virtual void takeDamage(float damage)
     {
         //TO-DO
-        //Implement Defence
-        health -= damage;
+        //Implement Defense
+        float totalDamage = damage/* * (1-defense)*/;
+        health -= totalDamage;
+        SendUpdate("HP", health.ToString());
 
         if(health <= 0)
         {
             isAlive = false;
-            //play death animation
+            OnDeath();
         }
+
+        OnDamageTaken(totalDamage);
+    }
+
+    public virtual void OnDamageTaken(float damageTaken)
+    {
+
+    }
+
+    public virtual void OnDeath()
+    {
 
     }
 

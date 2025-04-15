@@ -28,7 +28,7 @@ public class ShipMovement : NetworkComponent
         //rb.useGravity = true;
         if (IsServer)
         {
-            rb.useGravity = true;
+            //rb.useGravity = true;
             while (IsServer)
             {
                 if (gm.GetGameStarted())
