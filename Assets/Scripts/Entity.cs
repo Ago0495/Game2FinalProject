@@ -9,7 +9,7 @@ public class Entity : NetworkComponent
     [SerializeField] protected Animator MyAnime;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float health;
-    [SerializeField] protected float defence;
+    [SerializeField] protected float defense;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
     protected bool isAlive;
@@ -52,8 +52,8 @@ public class Entity : NetworkComponent
     public virtual void takeDamage(float damage)
     {
         //TO-DO
-        //Implement Defence
-        float totalDamage = damage/* * (1-defence)*/;
+        //Implement Defense
+        float totalDamage = damage/* * (1-defense)*/;
         health -= totalDamage;
         SendUpdate("HP", health.ToString());
 
