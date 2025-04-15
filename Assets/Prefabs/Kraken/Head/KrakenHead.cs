@@ -15,7 +15,6 @@ public class KrakenHead : Enemy
     public bool bashing;
 
     //Animations
-    private bool idle;
     private bool bash;
     private bool move = false;
 
@@ -61,6 +60,7 @@ public class KrakenHead : Enemy
                     {
                         SendUpdate("Idle", "404");
                     }
+                    IsDirty = false;
                 }
             }
             yield return new WaitForSeconds(MyCore.MasterTimer);
@@ -172,7 +172,7 @@ public class KrakenHead : Enemy
                 if((transform.position - krakenArea.transform.position).magnitude > 50)
                 {
                     Vector3 direction = (transform.position - krakenArea.transform.position).normalized;
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    Quaternion targetRotation = Quaternion.LookRotation(-direction);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                     Vector3 moveDirection = (krakenArea.transform.position - transform.position).normalized;
                     MyRig.linearVelocity = moveDirection * moveSpeed;
