@@ -8,6 +8,7 @@ using TMPro;
 public class NetworkPlayerController : NetworkComponent
 {
     [SerializeField] private Rigidbody MyRig;
+    [SerializeField] private Animator MyAnime;
     private GameObject camera;
     private Transform cameraHolderPos;
 
@@ -102,6 +103,42 @@ public class NetworkPlayerController : NetworkComponent
                 transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = args[1];
             }
         }
+        if(flag == "IDLE")
+        {
+            if (IsServer)
+            {
+                MyAnime.SetBool("Idle", bool.Parse(value));
+                SendUpdate(flag, value);
+            }
+            if (IsClient)
+            {
+                MyAnime.SetBool("Idle", bool.Parse(value));
+            }
+        }
+        if (flag == "ANJUMP")
+        {
+            if (IsServer)
+            {
+                MyAnime.SetBool("Jump", bool.Parse(value));
+                SendUpdate(flag, value);
+            }
+            if (IsClient)
+            {
+                MyAnime.SetBool("Jump", bool.Parse(value));
+            }
+        }
+        if(flag == "MOVING")
+        {
+            if (IsServer)
+            {
+                MyAnime.SetBool("Forward", bool.Parse(value));
+                SendUpdate(flag, value);
+            }
+            if (IsClient)
+            {
+                MyAnime.SetBool("Forward", bool.Parse(value));
+            }
+        }
     }
 
     public override void NetworkedStart()
@@ -124,10 +161,14 @@ public class NetworkPlayerController : NetworkComponent
             if (context.started || context.performed)
             {
                 SendCommand("MOVE", context.ReadValue<Vector2>().ToString());
+                SendCommand("IDLE", false.ToString());
+                SendCommand("MOVING", true.ToString());
             }
             if (context.canceled)
             {
                 SendCommand("MOVE", Vector2.zero.ToString());
+                SendCommand("IDLE", true.ToString());
+                SendCommand("MOVING", true.ToString());
             }
         }
     }
@@ -137,6 +178,8 @@ public class NetworkPlayerController : NetworkComponent
         if (context.started)
         {
             SendCommand("JUMP", context.ReadValue<float>().ToString());
+            //SendCommand("IDLE", false.ToString());
+            //SendCommand("ANJUMP", true.ToString());
         }
     }
 
@@ -156,6 +199,7 @@ public class NetworkPlayerController : NetworkComponent
     // Start is called before the first frame update
     void Start()
     {
+        MyAnime = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -193,7 +237,7 @@ public class NetworkPlayerController : NetworkComponent
                 if (collision.contacts[i].point.y < transform.position.y)
                 {
                     canJump = true;
-
+                    //SendCommand("ANJUMP", false.ToString());
                     if (collision.contacts[i].otherCollider.GetComponent<Rigidbody>() != null)
                     {
                         Rigidbody TempRB = collision.contacts[i].otherCollider.GetComponent<Rigidbody>();
