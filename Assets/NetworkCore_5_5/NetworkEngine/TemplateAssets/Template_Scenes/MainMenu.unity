@@ -325,7 +325,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3820af2d47a254b469484e416e6c92ca, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -565,7 +565,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 047b929beb10565479851d39b452dfb6, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -687,7 +687,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -698,7 +698,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 047b929beb10565479851d39b452dfb6, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1113,7 +1113,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3820af2d47a254b469484e416e6c92ca, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
@@ -1380,7 +1380,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1391,7 +1391,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 047b929beb10565479851d39b452dfb6, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1661,7 +1661,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3820af2d47a254b469484e416e6c92ca, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -2078,33 +2078,34 @@ PrefabInstance:
     - {fileID: 3060266081517978769, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
     - {fileID: 1996933047949312181, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
     - {fileID: 3506103045160824767, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+    - {fileID: 2716245770110281488, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 28
+      insertIndex: 27
       addedObject: {fileID: 372269886}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 29
+      insertIndex: 28
       addedObject: {fileID: 2133806549}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 30
+      insertIndex: 29
       addedObject: {fileID: 1172470011}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 31
+      insertIndex: 30
       addedObject: {fileID: 161323011}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 32
+      insertIndex: 31
       addedObject: {fileID: 160177996}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 33
+      insertIndex: 32
       addedObject: {fileID: 371563081}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 34
+      insertIndex: 33
       addedObject: {fileID: 1885837978}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 35
+      insertIndex: 34
       addedObject: {fileID: 2003759088}
     - targetCorrespondingSourceObject: {fileID: 3912388282554147969, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
-      insertIndex: 36
+      insertIndex: 35
       addedObject: {fileID: 1404666359}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
@@ -2176,7 +2177,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3820af2d47a254b469484e416e6c92ca, type: 3}
     m_FontSize: 42
     m_FontStyle: 1
     m_BestFit: 0
