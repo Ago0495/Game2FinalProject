@@ -148,6 +148,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c533ebcd509c41a4a91b0a31601aab22, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6759540570687920997}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c533ebcd509c41a4a91b0a31601aab22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1815387930601511947}
     - targetCorrespondingSourceObject: {fileID: 8254059189390126951, guid: c533ebcd509c41a4a91b0a31601aab22, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5335096760220727082}
@@ -251,15 +254,11 @@ MonoBehaviour:
   MyAnime: {fileID: 0}
   moveSpeed: 50
   health: 1000
-  Defence: 0
+  defense: 0
   hitBoxes:
   - {fileID: 5335096760220727082}
   - {fileID: 4639079808498040626}
   gameMaster: {fileID: 0}
-  lastPosition: {x: 0, y: 0, z: 0}
-  lastRotation: {x: 0, y: 0, z: 0}
-  Threashhold: 0.1
-  Ethreashhold: 2.5
   rotationSpeed: 20
   target: {fileID: 0}
   dropOnDeath: {fileID: 0}
@@ -267,15 +266,37 @@ MonoBehaviour:
   scoreValue: 0
   attacking: 0
   transition: 0
-  tentaclePrefab: 15
+  tentaclePrefab: 0
   krakenArea: {fileID: 0}
   stopDistance: 100
-  bashDistance: 30
+  bashDistance: 50
   canSummon: 1
   maxTentacles: 8
   totalTentacles: 0
   summonDalaySeconds: 10
   bashing: 0
+--- !u!95 &1815387930601511947
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423496862018422950}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c80debbe56736894ca575883425ea2f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1057009500653457948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c533ebcd509c41a4a91b0a31601aab22, type: 3}
