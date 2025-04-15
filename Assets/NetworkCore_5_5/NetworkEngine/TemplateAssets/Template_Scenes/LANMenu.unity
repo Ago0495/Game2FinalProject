@@ -1017,6 +1017,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5593874836200280234, guid: 087db21a491eddf44b27950ee7d8ce79, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8630912028389799237, guid: 087db21a491eddf44b27950ee7d8ce79, type: 3}
       propertyPath: m_Name
       value: ScoreCanvas
