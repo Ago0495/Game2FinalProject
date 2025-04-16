@@ -140,6 +140,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b337f83378814fb4e8398926520ce551, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8829529586936386466}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b337f83378814fb4e8398926520ce551, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5273881486367380775}
     - targetCorrespondingSourceObject: {fileID: 7148305211886209430, guid: b337f83378814fb4e8398926520ce551, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8407818672881023271}
@@ -248,16 +251,12 @@ MonoBehaviour:
   MyId: {fileID: 0}
   IsDirty: 0
   MyRig: {fileID: 0}
-  MyAnime: {fileID: 0}
+  MyAnime: {fileID: -5273881486367380775}
   moveSpeed: 0
   health: 50
-  Defence: 0
+  defense: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
-  lastPosition: {x: 0, y: 0, z: 0}
-  lastRotation: {x: 0, y: 0, z: 0}
-  Threashhold: 0.1
-  Ethreashhold: 2.5
   rotationSpeed: 80
   target: {fileID: 0}
   dropOnDeath: {fileID: 0}
@@ -267,6 +266,30 @@ MonoBehaviour:
   transition: 0
   head: {fileID: 0}
   maxDistence: 200
+  slamming: 0
+  waiting: 0
+--- !u!95 &-5273881486367380775
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666535111577157984}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9383c640c384b414f9ad2179e3bea1e6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2675364436058427742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2351343211057065327, guid: b337f83378814fb4e8398926520ce551, type: 3}
