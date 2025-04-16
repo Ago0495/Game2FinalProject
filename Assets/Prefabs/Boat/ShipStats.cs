@@ -8,7 +8,6 @@ public class ShipStats : Entity
     public InteractableRepairZone[] repairZoneArray;
     private float damageThreshold = 20;
     private float damageTracker = 0;
-
     private void Start()
     {
         base.Start();
