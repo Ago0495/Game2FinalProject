@@ -107,36 +107,54 @@ public class NetworkPlayerController : NetworkComponent
         {
             if (IsServer)
             {
-                MyAnime.SetBool("Idle", bool.Parse(value));
+                MyAnime.SetBool("Idle", true);
+                MyAnime.SetBool("Move", false);
                 SendUpdate(flag, value);
             }
             if (IsClient)
             {
-                MyAnime.SetBool("Idle", bool.Parse(value));
+                MyAnime.SetBool("Idle", true);
+                MyAnime.SetBool("Move", false);
             }
         }
         if (flag == "ANJUMP")
         {
             if (IsServer)
             {
-                MyAnime.SetBool("Jump", bool.Parse(value));
+                MyAnime.SetBool("Jump", true);
+                MyAnime.SetBool("Idle", false);
                 SendUpdate(flag, value);
             }
             if (IsClient)
             {
-                MyAnime.SetBool("Jump", bool.Parse(value));
+                MyAnime.SetBool("Jump", true);
+                MyAnime.SetBool("Idle", false);
             }
         }
-        if(flag == "MOVING")
+        if (flag == "OnGround")
         {
             if (IsServer)
             {
-                MyAnime.SetBool("Forward", bool.Parse(value));
+                MyAnime.SetBool("Jump", false);
+                SendUpdate("OnGround", value);
+            }
+            if (IsClient)
+            {
+                MyAnime.SetBool("Jump", false);
+            }
+        }
+        if (flag == "MOVING")
+        {
+            if (IsServer)
+            {
+                MyAnime.SetBool("Move", true);
+                MyAnime.SetBool("Idle", false);
                 SendUpdate(flag, value);
             }
             if (IsClient)
             {
-                MyAnime.SetBool("Forward", bool.Parse(value));
+                MyAnime.SetBool("Move", true);
+                MyAnime.SetBool("Idle", false);
             }
         }
     }
@@ -161,14 +179,12 @@ public class NetworkPlayerController : NetworkComponent
             if (context.started || context.performed)
             {
                 SendCommand("MOVE", context.ReadValue<Vector2>().ToString());
-                SendCommand("IDLE", false.ToString());
-                SendCommand("MOVING", true.ToString());
+                SendCommand("MOVING", "404");
             }
             if (context.canceled)
             {
                 SendCommand("MOVE", Vector2.zero.ToString());
-                SendCommand("IDLE", true.ToString());
-                SendCommand("MOVING", true.ToString());
+                SendCommand("IDLE", "404");
             }
         }
     }
@@ -178,8 +194,7 @@ public class NetworkPlayerController : NetworkComponent
         if (context.started)
         {
             SendCommand("JUMP", context.ReadValue<float>().ToString());
-            //SendCommand("IDLE", false.ToString());
-            //SendCommand("ANJUMP", true.ToString());
+            SendCommand("ANJUMP", "404");
         }
     }
 
@@ -237,7 +252,8 @@ public class NetworkPlayerController : NetworkComponent
                 if (collision.contacts[i].point.y < transform.position.y)
                 {
                     canJump = true;
-                    //SendCommand("ANJUMP", false.ToString());
+                    SendUpdate("OnGround", "404");
+                    MyAnime.SetBool("Jump", false);
                     if (collision.contacts[i].otherCollider.GetComponent<Rigidbody>() != null)
                     {
                         Rigidbody TempRB = collision.contacts[i].otherCollider.GetComponent<Rigidbody>();
