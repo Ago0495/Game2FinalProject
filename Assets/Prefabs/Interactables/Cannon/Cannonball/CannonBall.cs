@@ -2,7 +2,7 @@ using UnityEngine;
 using NETWORK_ENGINE;
 using System.Collections;
 
-public class CannonBall : NetworkComponent
+public class CannonBall : Entity
 {
     public override void HandleMessage(string flag, string value)
     {
@@ -33,10 +33,16 @@ public class CannonBall : NetworkComponent
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
-        if (other.gameObject.layer != this.gameObject.layer)
+        if (IsServer)
         {
-            //damage other
+            Debug.Log(other.name);
+            Entity entity = other.GetComponent<Entity>();
+
+            if (other.gameObject.layer != this.gameObject.layer)
+            {
+                //damage other
+                entity.takeDamage(25);
+            }
         }
     }
 }
