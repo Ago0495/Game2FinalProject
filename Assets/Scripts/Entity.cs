@@ -53,7 +53,8 @@ public class Entity : NetworkComponent
     {
         //TO-DO
         //Implement Defense
-        float totalDamage = damage/* * (1-defense)*/;
+        
+        float totalDamage = damage * (1-this.defense);
         health -= totalDamage;
         SendUpdate("HP", health.ToString());
 
