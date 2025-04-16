@@ -33,13 +33,16 @@ public class CannonBall : Entity
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
-        Entity entity = other.GetComponent<Entity>();
-
-        if (other.gameObject.layer != this.gameObject.layer)
+        if (IsServer)
         {
-            //damage other
-            entity.takeDamage(25);
+            Debug.Log(other.name);
+            Entity entity = other.GetComponent<Entity>();
+
+            if (other.gameObject.layer != this.gameObject.layer)
+            {
+                //damage other
+                entity.takeDamage(25);
+            }
         }
     }
 }
