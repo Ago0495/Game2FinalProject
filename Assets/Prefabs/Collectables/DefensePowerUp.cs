@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DefensePowerUp : Collectable
 {
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +20,9 @@ public class DefensePowerUp : Collectable
         if (IsServer)
         {
             Debug.Log("Defense Power Up collected");
+            Entity entity = ship.GetComponent<Entity>();
+            entity.defense = 0.1f;
+            Debug.Log(entity.defense);
         }
 
     }

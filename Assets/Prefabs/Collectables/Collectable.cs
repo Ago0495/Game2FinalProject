@@ -1,4 +1,4 @@
- using NETWORK_ENGINE;
+using NETWORK_ENGINE;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ public class Collectable : NetworkComponent
     public int scoreValue = 1000;
     private bool collected = false;
     public GameMaster gm;
+    public GameObject ship;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -19,6 +20,7 @@ public class Collectable : NetworkComponent
     public override void NetworkedStart()
     {
         gm = FindObjectOfType<GameMaster>();
+        ship = GameObject.FindWithTag("SHIP");
     }
 
     public override IEnumerator SlowUpdate()

@@ -9,7 +9,7 @@ public class Entity : NetworkComponent
     [SerializeField] protected Animator MyAnime;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float health;
-    [SerializeField] protected float defense;
+    [SerializeField] public float defense;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
     protected bool isAlive;
