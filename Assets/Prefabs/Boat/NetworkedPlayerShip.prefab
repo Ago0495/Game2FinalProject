@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 1881957305240892579}
   m_Layer: 0
   m_Name: NetworkedPlayerShip
-  m_TagString: Untagged
+  m_TagString: SHIP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1173,7 +1173,8 @@ MonoBehaviour:
   MyAnime: {fileID: 0}
   moveSpeed: 0
   health: 200
-  defence: 1
+  maxHealth: 200
+  defense: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
   cannonsArray: []
