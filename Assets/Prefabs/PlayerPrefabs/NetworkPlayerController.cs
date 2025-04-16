@@ -8,8 +8,7 @@ using TMPro;
 public class NetworkPlayerController : NetworkComponent
 {
     [SerializeField] private Rigidbody MyRig;
-    [SerializeField] private Animator MyAnime;
-    private GameObject camera;
+    protected GameObject cameraObj;
     private Transform cameraHolderPos;
 
     [SerializeField] private PlayerInput MyInput;
@@ -103,60 +102,6 @@ public class NetworkPlayerController : NetworkComponent
                 transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = args[1];
             }
         }
-        if(flag == "IDLE")
-        {
-            if (IsServer)
-            {
-                MyAnime.SetBool("Idle", true);
-                MyAnime.SetBool("Move", false);
-                SendUpdate(flag, value);
-            }
-            if (IsClient)
-            {
-                MyAnime.SetBool("Idle", true);
-                MyAnime.SetBool("Move", false);
-            }
-        }
-        if (flag == "ANJUMP")
-        {
-            if (IsServer)
-            {
-                MyAnime.SetBool("Jump", true);
-                MyAnime.SetBool("Idle", false);
-                SendUpdate(flag, value);
-            }
-            if (IsClient)
-            {
-                MyAnime.SetBool("Jump", true);
-                MyAnime.SetBool("Idle", false);
-            }
-        }
-        if (flag == "OnGround")
-        {
-            if (IsServer)
-            {
-                MyAnime.SetBool("Jump", false);
-                SendUpdate("OnGround", value);
-            }
-            if (IsClient)
-            {
-                MyAnime.SetBool("Jump", false);
-            }
-        }
-        if (flag == "MOVING")
-        {
-            if (IsServer)
-            {
-                MyAnime.SetBool("Move", true);
-                MyAnime.SetBool("Idle", false);
-                SendUpdate(flag, value);
-            }
-            if (IsClient)
-            {
-                MyAnime.SetBool("Move", true);
-                MyAnime.SetBool("Idle", false);
-            }
-        }
     }
 
     public override void NetworkedStart()
@@ -167,7 +112,7 @@ public class NetworkPlayerController : NetworkComponent
         }
         if (IsLocalPlayer)
         {
-            camera = GameObject.FindGameObjectWithTag("MainCamera");
+            cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
             cameraHolderPos = transform.GetChild(0).transform;
         }
     }
@@ -179,12 +124,10 @@ public class NetworkPlayerController : NetworkComponent
             if (context.started || context.performed)
             {
                 SendCommand("MOVE", context.ReadValue<Vector2>().ToString());
-                SendCommand("MOVING", "404");
             }
             if (context.canceled)
             {
                 SendCommand("MOVE", Vector2.zero.ToString());
-                SendCommand("IDLE", "404");
             }
         }
     }
@@ -194,7 +137,6 @@ public class NetworkPlayerController : NetworkComponent
         if (context.started)
         {
             SendCommand("JUMP", context.ReadValue<float>().ToString());
-            SendCommand("ANJUMP", "404");
         }
     }
 
@@ -214,11 +156,10 @@ public class NetworkPlayerController : NetworkComponent
     // Start is called before the first frame update
     void Start()
     {
-        MyAnime = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (IsServer)
         {
@@ -230,11 +171,11 @@ public class NetworkPlayerController : NetworkComponent
             }
         }
 
-        if (IsLocalPlayer && cameraHolderPos != null && camera != null)
+        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            camera.transform.position = cameraHolderPos.transform.position;
+            cameraObj.transform.position = cameraHolderPos.transform.position;
             RotateView();
             if (!usingInteractable)
             {
@@ -252,8 +193,7 @@ public class NetworkPlayerController : NetworkComponent
                 if (collision.contacts[i].point.y < transform.position.y)
                 {
                     canJump = true;
-                    SendUpdate("OnGround", "404");
-                    MyAnime.SetBool("Jump", false);
+
                     if (collision.contacts[i].otherCollider.GetComponent<Rigidbody>() != null)
                     {
                         Rigidbody TempRB = collision.contacts[i].otherCollider.GetComponent<Rigidbody>();
@@ -271,19 +211,19 @@ public class NetworkPlayerController : NetworkComponent
 
         //transform.rotation = Quaternion.Euler(0f, yaw, 0f);
         SendCommand("ROTATE", yaw.ToString());
-        camera.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        cameraObj.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 
     private void LookForInteractable()
     {
         RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 3f))
+        if (Physics.Raycast(cameraObj.transform.position, cameraObj.transform.forward, out hit, 3f))
         {
             currentInteractable = hit.collider.GetComponent<Interactable>();
 
             if (currentInteractable != null)
             {
-                currentInteractable.BeingHovered(camera.transform.position);
+                currentInteractable.BeingHovered(cameraObj.transform.position);
             }
         }
     }

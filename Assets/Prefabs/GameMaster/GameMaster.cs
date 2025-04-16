@@ -122,7 +122,7 @@ public class GameMaster : NetworkComponent
                 SendUpdate("ENDGAME", "1");
 
                 yield return new WaitForSeconds(5);
-                StartCoroutine(MyCore.DisconnectServer());
+                MyCore.UI_Quit();
             }
         }
     }

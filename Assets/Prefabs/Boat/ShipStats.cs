@@ -16,7 +16,7 @@ public class ShipStats : Entity
             InteractableRepairZone tempRZ = rz.GetComponent<InteractableRepairZone>();
             if (tempRZ != null)
             {
-                //rz.SetActive(false);
+                tempRZ.complete = true;
             }
         }
 
@@ -25,14 +25,13 @@ public class ShipStats : Entity
 
     public override void OnDamageTaken(float damageTaken)
     {
-        Debug.Log("Damage Taken");
         damageTracker += damageTaken;
         if (IsServer)
         {
             if (damageTracker > damageThreshold && repairZoneArray.Length > 0)
             {
                 int rand = Random.Range(0, repairZoneArray.Length);
-                repairZoneArray[rand].SetActive(true);
+                repairZoneArray[rand].GetComponent<InteractableRepairZone>().complete = false;
                 damageTracker -= damageThreshold;
             }
         }

@@ -9,6 +9,7 @@ public class KrakenTentacle : Enemy
 
     public override void HandleMessage(string flag, string value)
     {
+
     }
 
     public void NetworkedStart()
@@ -18,8 +19,7 @@ public class KrakenTentacle : Enemy
 
     public override IEnumerator SlowUpdate()
     {
-        
-            yield return new WaitForSeconds(MyCore.MasterTimer);
+        yield return new WaitForSeconds(MyCore.MasterTimer);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
