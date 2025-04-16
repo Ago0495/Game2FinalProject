@@ -31,7 +31,6 @@ public class Entity : NetworkComponent
     {
         if (IsServer)
         {
-            health = maxHealth;
             SendUpdate("HP", health.ToString());
         }
     }
@@ -88,5 +87,6 @@ public class Entity : NetworkComponent
         MyRig = this.GetComponent<Rigidbody>();
         //MyAnime = this.GetComponent<Animator>();
         gameMaster = GameObject.FindAnyObjectByType<GameMaster>();
+        health = maxHealth;
     }
 }

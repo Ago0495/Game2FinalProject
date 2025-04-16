@@ -26,11 +26,11 @@ public class PlayerUI : MonoBehaviour
         {
             if (!playerController.IsServer && playerController.IsLocalPlayer)
             {
-                this.gameObject.SetActive(true);
+                this.gameObject.GetComponent<Canvas>().enabled = true;
             }
             else
             {
-                this.gameObject.SetActive(false);
+                this.gameObject.GetComponent<Canvas>().enabled = false;
             }
         }
         else
@@ -44,6 +44,21 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hpBar.fillAmount = shipStats.getHealth() / shipStats.getMaxHealth();
+        if (playerController != null)
+        {
+            if (!playerController.IsServer && playerController.IsLocalPlayer)
+            {
+                this.gameObject.GetComponent<Canvas>().enabled = true;
+            }
+            else
+            {
+                this.gameObject.GetComponent<Canvas>().enabled = false;
+            }
+        }
+
+        if (shipStats != null)
+        {
+            hpBar.fillAmount = shipStats.getHealth() / shipStats.getMaxHealth();
+        }
     }
 }
