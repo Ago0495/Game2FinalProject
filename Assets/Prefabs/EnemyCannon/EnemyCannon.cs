@@ -146,6 +146,7 @@ public class EnemyCannon : NetworkComponent
     {
         GameObject tempBall = MyCore.NetCreateObject(cannonballPrefab, -1, transform.position + transform.forward * 5, Quaternion.identity);
         Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
+        tempRB.gameObject.layer = gameObject.layer;
         if (tempRB != null)
         {
             tempRB.linearVelocity = transform.forward * cannonBallSpeed;
