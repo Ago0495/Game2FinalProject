@@ -19,7 +19,12 @@ public class AttackPowerUp : Collectable
         if (IsServer)
         {
             Debug.Log("Attack Up Collected");
-
+            foreach(GameObject cannon in cannons)
+            {
+                InteractableCannon pCannon = cannon.GetComponent<InteractableCannon>();
+                pCannon.atk += 10f;
+                Debug.Log("CannonAtk upgraded!");
+            }
         }
 
     }
