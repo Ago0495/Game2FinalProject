@@ -39,7 +39,7 @@ public class InteractableCannon : Interactable
                 Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
                 if (tempRB != null)
                 {
-                    tempBall.GetComponent<CannonBall>().atk = this.atk;
+                    tempBall.GetComponent<CannonBall>().attack = this.atk;
                     tempRB.gameObject.layer = gameObject.layer;
                     tempRB.linearVelocity = transform.forward * ballForce;
                     canFire = false;

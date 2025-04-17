@@ -4,7 +4,6 @@ using System.Collections;
 
 public class CannonBall : Entity
 {
-    public float atk = 0;
     public override void HandleMessage(string flag, string value)
     {
 
@@ -36,13 +35,13 @@ public class CannonBall : Entity
     {
         if (IsServer)
         {
-            //Debug.Log(other.name);
-            Entity entity = other.GetComponent<Entity>();
+            Debug.Log(other.name);
+            Entity entity = other.GetComponentInParent<Entity>();
 
             if (entity != null && other.gameObject.layer != this.gameObject.layer)
             {
                 //damage other
-                entity.takeDamage(atk);
+                entity.takeDamage(attack);
                 MyCore.NetDestroyObject(NetId);
             }
         }

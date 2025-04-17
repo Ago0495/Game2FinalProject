@@ -131,7 +131,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -205,6 +205,6 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   defense: 0
+  attack: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
-  atk: 0

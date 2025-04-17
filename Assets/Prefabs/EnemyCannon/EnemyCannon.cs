@@ -94,7 +94,7 @@ public class EnemyCannon : NetworkComponent
         tempRB.gameObject.layer = gameObject.layer;
         if (tempRB != null)
         {
-            tempBall.GetComponent<CannonBall>().atk = atk;
+            tempBall.GetComponent<CannonBall>().attack = atk;
             tempRB.linearVelocity = transform.forward * cannonBallSpeed;
         }
         reloading = true;
