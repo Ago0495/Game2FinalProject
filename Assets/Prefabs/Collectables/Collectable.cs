@@ -7,7 +7,8 @@ public class Collectable : NetworkComponent
     public int scoreValue = 1000;
     private bool collected = false;
     public GameMaster gm;
-
+    public GameObject ship;
+    public GameObject[] cannons;
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "COLLECTED")
@@ -19,6 +20,7 @@ public class Collectable : NetworkComponent
     public override void NetworkedStart()
     {
         gm = FindObjectOfType<GameMaster>();
+        ship = GameObject.FindGameObjectWithTag("SHIP");
     }
 
     public override IEnumerator SlowUpdate()

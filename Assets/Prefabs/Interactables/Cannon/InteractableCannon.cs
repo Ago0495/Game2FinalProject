@@ -8,6 +8,7 @@ public class InteractableCannon : Interactable
     [SerializeField] float cannonMoveSpeed = 10;
     [SerializeField] int cannonballPrefab;
     [SerializeField] float ballForce = 50;
+    [SerializeField] public float atk = 10;
     Vector2 lastInput;
     Rigidbody rb;
     private float pitch = 0f;
@@ -38,6 +39,7 @@ public class InteractableCannon : Interactable
                 Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
                 if (tempRB != null)
                 {
+                    tempBall.GetComponent<CannonBall>().atk = this.atk;
                     tempRB.gameObject.layer = gameObject.layer;
                     tempRB.linearVelocity = transform.forward * ballForce;
                     canFire = false;
