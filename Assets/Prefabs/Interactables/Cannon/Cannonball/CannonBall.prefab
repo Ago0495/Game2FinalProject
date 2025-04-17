@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 585359780352558049}
   - component: {fileID: 6106651233662011886}
   - component: {fileID: 4118434836905605735}
+  - component: {fileID: 7479999776217612868}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: Untagged
@@ -183,3 +184,27 @@ MonoBehaviour:
   MyRig: {fileID: 0}
   UseOffsetVelocity: 1
   ClientRecv: 0
+--- !u!114 &7479999776217612868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312906300730037810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5793a680e5f494eb469b48fb255545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
+  MyRig: {fileID: 0}
+  MyAnime: {fileID: 0}
+  moveSpeed: 0
+  health: 0
+  maxHealth: 0
+  defense: 0
+  hitBoxes: []
+  gameMaster: {fileID: 0}
+  atk: 0

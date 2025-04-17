@@ -102,8 +102,8 @@ public class InteractableCannon : Interactable
             yaw += lastInput.x * cannonMoveSpeed * Time.deltaTime;
             pitch -= lastInput.y * cannonMoveSpeed * Time.deltaTime;
 
-            yaw = Mathf.Clamp(yaw, startYaw + -25, startYaw + 25);
-            pitch = Mathf.Clamp(pitch, startPitch - 15, startPitch + 10);
+            //yaw = Mathf.Clamp(yaw, startYaw + -25, startYaw + 25);
+            //pitch = Mathf.Clamp(pitch, startPitch - 15, startPitch + 10);
 
             transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
         }
@@ -113,12 +113,14 @@ public class InteractableCannon : Interactable
     {
         InteractableCannon oldCannon = MyCore.NetObjs[oldInteractable].GetComponent<InteractableCannon>();
 
+        atk = oldCannon.atk;
         yaw = oldCannon.yaw;
         pitch = oldCannon.pitch;
         startYaw = oldCannon.startYaw;
         startPitch = oldCannon.startPitch;
 
         valuesSet = false;
+
     }
 
     public void OnMove(InputAction.CallbackContext context)

@@ -39,10 +39,11 @@ public class CannonBall : Entity
             Debug.Log(other.name);
             Entity entity = other.GetComponent<Entity>();
 
-            if (other.gameObject.layer != this.gameObject.layer)
+            if (entity != null && other.gameObject.layer != this.gameObject.layer)
             {
                 //damage other
                 entity.takeDamage(atk);
+                MyCore.NetDestroyObject(NetId);
             }
         }
     }

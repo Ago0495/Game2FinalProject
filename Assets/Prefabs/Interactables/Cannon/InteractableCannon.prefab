@@ -483,7 +483,7 @@ MonoBehaviour:
   cannonMoveSpeed: 30
   cannonballPrefab: 11
   ballForce: 50
-  atk: 0
+  atk: 20
   canFire: 1
   reloadTime: 2
   reloadTimer: 0

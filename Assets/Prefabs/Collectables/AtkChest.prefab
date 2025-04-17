@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6634786076235094447}
   - component: {fileID: 8527510046553569587}
   - component: {fileID: 2361221190510638527}
-  - component: {fileID: 5833487485594755386}
   - component: {fileID: 89828399427555553}
   m_Layer: 0
   m_Name: AtkChest
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7671839073613558343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 130.66, y: 16.13, z: 46.51629}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81,23 +80,6 @@ MonoBehaviour:
   UseLobby: 0
   UpdateFrequency: 0.1
   MyCore: {fileID: 0}
---- !u!114 &5833487485594755386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7671839073613558343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911408e91cc7fc045910d2dc36c8c02e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyCore: {fileID: 0}
-  MyId: {fileID: 0}
-  IsDirty: 0
-  scoreValue: 1000
-  gm: {fileID: 0}
 --- !u!114 &89828399427555553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,8 +95,10 @@ MonoBehaviour:
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
-  scoreValue: 1000
+  scoreValue: 250
   gm: {fileID: 0}
+  ship: {fileID: 0}
+  cannons: []
 --- !u!1001 &2293506535627262286
 PrefabInstance:
   m_ObjectHideFlags: 0
