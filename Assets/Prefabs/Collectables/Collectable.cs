@@ -21,7 +21,6 @@ public class Collectable : NetworkComponent
     {
         gm = FindObjectOfType<GameMaster>();
         ship = GameObject.FindGameObjectWithTag("SHIP");
-        cannons = GameObject.FindGameObjectsWithTag("PCANNON");
     }
 
     public override IEnumerator SlowUpdate()

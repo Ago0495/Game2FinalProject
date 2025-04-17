@@ -18,6 +18,7 @@ public class AttackPowerUp : Collectable
     {
         if (IsServer)
         {
+            cannons = GameObject.FindGameObjectsWithTag("PCANNON");
             Debug.Log("Attack Up Collected");
             foreach(GameObject cannon in cannons)
             {

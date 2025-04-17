@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CannonBall : Entity
 {
+    public float atk = 0;
     public override void HandleMessage(string flag, string value)
     {
 
@@ -41,7 +42,7 @@ public class CannonBall : Entity
             if (other.gameObject.layer != this.gameObject.layer)
             {
                 //damage other
-                entity.takeDamage(25);
+                entity.takeDamage(atk);
             }
         }
     }
