@@ -768,7 +768,7 @@ MonoBehaviour:
   DisconnectScreen: {fileID: 0}
   ObjectCounter: 0
   SpawnPrefab:
-  - {fileID: 237079609126451582, guid: bac5d502e51791b4d807b682bd279591, type: 3}
+  - {fileID: 3260826770920335512, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
   - {fileID: 4050842883281160686, guid: c0266e2d7478c2a4694520d493e883b8, type: 3}
   - {fileID: 6135748156130101436, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
   - {fileID: 833760001276476053, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
@@ -776,7 +776,7 @@ MonoBehaviour:
   - {fileID: 2398171972591018291, guid: 00c364b808caaaa41b72906d808c3884, type: 3}
   - {fileID: 6897503874563660455, guid: 1522ba327f3019b488520bad0413307c, type: 3}
   - {fileID: 3352822870470861520, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
-  - {fileID: 3492889578237515608, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+  - {fileID: 2672821040523508544, guid: 04a66e8d824ffc04987633ca90e16587, type: 3}
   - {fileID: 1872062056767324702, guid: cabd45385d9a5544eab48398a7b89892, type: 3}
   - {fileID: 1173285167169013206, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
   - {fileID: 6106651233662011886, guid: 0109013c1b8641c429e3deeb5bce0f67, type: 3}
@@ -788,6 +788,7 @@ MonoBehaviour:
   - {fileID: 8446984511037885485, guid: 6c05f0a9df3d2dc45b618a278ba996b3, type: 3}
   - {fileID: 2581729858997746226, guid: a8ecd7ef45b4a844fbaeefb3d929f831, type: 3}
   - {fileID: 7645861206202796679, guid: 20ec9b9823bcf8d488f10a7280b26ff9, type: 3}
+  - {fileID: 3492889578237515608, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
   NetworkPlayerManager: {fileID: 9114435196644440787, guid: 04a66e8d824ffc04987633ca90e16587, type: 3}
   DefaultReturnScene: 0
 --- !u!4 &408156394
