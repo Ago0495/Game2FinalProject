@@ -9,6 +9,7 @@ TagManager:
   - CHEST
   - KrakenHead
   - KArea
+  - PCANNON
   layers:
   - Default
   - TransparentFX
