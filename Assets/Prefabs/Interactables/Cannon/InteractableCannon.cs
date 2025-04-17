@@ -8,7 +8,7 @@ public class InteractableCannon : Interactable
     [SerializeField] float cannonMoveSpeed = 10;
     [SerializeField] int cannonballPrefab;
     [SerializeField] float ballForce = 50;
-    [SerializeField] public float atk;
+    [SerializeField] public float atk = 10;
     Vector2 lastInput;
     Rigidbody rb;
     private float pitch = 0f;

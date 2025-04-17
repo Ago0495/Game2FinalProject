@@ -10,7 +10,7 @@ public class Entity : NetworkComponent
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float health;
     [SerializeField] protected float maxHealth;
-    [SerializeField] protected float defense;
+    [SerializeField] public float defense;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
     protected bool isAlive;

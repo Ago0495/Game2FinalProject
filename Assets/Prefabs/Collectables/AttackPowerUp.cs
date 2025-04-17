@@ -23,7 +23,7 @@ public class AttackPowerUp : Collectable
             foreach(GameObject cannon in cannons)
             {
                 InteractableCannon pCannon = cannon.GetComponent<InteractableCannon>();
-                pCannon.atk += 10f;
+                pCannon.atk *= 2f;
                 Debug.Log("CannonAtk upgraded!");
             }
         }
