@@ -14,9 +14,26 @@ public class KrakenHead : Enemy
     public float summonDalaySeconds;
     public bool bashing;
 
+    //Animations
+    private bool bash;
+    private bool move = false;
+    private bool idle = false;
+
     public override void HandleMessage(string flag, string value)
     {
-
+        if(flag == "Bash" && IsClient)
+        {
+            MyAnime.SetBool("Bash", true);
+        }
+        if (flag == "Move" && IsClient)
+        {
+            MyAnime.SetBool("Move", true);
+        }
+        if (flag == "Idle" && IsClient)
+        {
+            MyAnime.SetBool("Bash", false);
+            MyAnime.SetBool("Move", false);
+        }
     }
 
     public void NetworkedStart()
@@ -26,7 +43,30 @@ public class KrakenHead : Enemy
 
     public override IEnumerator SlowUpdate()
     {
-        yield return new WaitForSeconds(MyCore.MasterTimer);
+        while (true)
+        {
+            if (IsServer)
+            {
+                if (IsDirty)
+                {
+                    if (move)
+                    {
+                        SendUpdate("Move", "404");
+                    }
+                    if (bash)
+                    {
+                        SendUpdate("Bash", "404");
+                    }
+                    else
+                    {
+                        SendUpdate("Idle", "404");
+                    }
+                    IsDirty = false;
+                }
+            }
+            yield return new WaitForSeconds(MyCore.MasterTimer);
+        }
+        
     }
 
     public IEnumerator spawnDelay()
@@ -38,8 +78,16 @@ public class KrakenHead : Enemy
     public IEnumerator bashDelay()
     {
         //play animation
-        Debug.Log("Bash");
-        yield return new WaitForSeconds(5.0f);
+        idle = false;
+        bash = true;
+        MyAnime.SetBool("Bash", true);
+        SendUpdate("Bash", "404");
+        yield return new WaitForSeconds(2.0f);
+        SendUpdate("Idle", "404");
+        MyAnime.SetBool("Bash", false);
+        idle = true;
+        bash = false;
+        yield return new WaitForSeconds(4.0f);
         bashing = false;
     }
 
@@ -77,6 +125,8 @@ public class KrakenHead : Enemy
     {
         base.Start();
         krakenArea = GameObject.FindGameObjectWithTag("KArea");
+        MyAnime = GetComponent<Animator>();
+        target = GameObject.FindAnyObjectByType<ShipMovement>();
     }
 
     // Update is called once per frame
@@ -89,7 +139,7 @@ public class KrakenHead : Enemy
             {
                 bashing = true;
                 StartCoroutine(bashDelay());
-                //spawn tentacle
+                spawnTentacle();
             }
             else if (attacking && distence <= stopDistance && !bashing)
             {
@@ -97,9 +147,12 @@ public class KrakenHead : Enemy
                 if(MyRig.linearVelocity.magnitude > 0)
                 {
                     MyRig.linearVelocity = Vector3.zero;
+                    MyAnime.SetBool("Move", false);
+                    move = false;
+                    idle = true;
+                    SendUpdate("Idle", "404");
                 }
                 spawnTentacle();
-                //spawn tent
             }
             else if (attacking && !bashing)
             {
@@ -107,28 +160,45 @@ public class KrakenHead : Enemy
                 Vector3 moveDirection = (target.transform.position - transform.position).normalized;
                 MyRig.linearVelocity = moveDirection * moveSpeed;
                 spawnTentacle();
+                if (!move)
+                {
+                    SendUpdate("Move", "404");
+                    move = true;
+                    idle = false;
+                    MyAnime.SetBool("Move", true);
+                }
             }
             else if (!bashing)
             {
                 if((transform.position - krakenArea.transform.position).magnitude > 50)
                 {
                     Vector3 direction = (transform.position - krakenArea.transform.position).normalized;
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    Quaternion targetRotation = Quaternion.LookRotation(-direction);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                     Vector3 moveDirection = (krakenArea.transform.position - transform.position).normalized;
                     MyRig.linearVelocity = moveDirection * moveSpeed;
+                    if (!move)
+                    {
+                        Debug.Log("Here");
+                        SendUpdate("Move", "404");
+                        move = true;
+                        idle = false;
+                        MyAnime.SetBool("Move", true);
+                    }
                 }
                 else
                 {
-                    MyRig.linearVelocity = Vector3.zero;
+                    if (MyRig.linearVelocity.magnitude > 0)
+                    {
+                        MyRig.linearVelocity = Vector3.zero;
+                        MyAnime.SetBool("Move", false);
+                        move = false;
+                        idle = true;
+                        SendUpdate("Idle", "404");
+                    }
                 }
                     
             }
-
-        }
-
-        if (IsClient)
-        {
 
         }
     }

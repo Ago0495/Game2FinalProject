@@ -114,7 +114,7 @@ public class GameMaster : NetworkComponent
             while (!gameFinished)
             {
                 float timer = 0;
-                while ((numcoinchestscollected < 1) && timer < 100)
+                while ((numcoinchestscollected < 4))
                 {
                     yield return new WaitForSeconds(1);
                     timer++;

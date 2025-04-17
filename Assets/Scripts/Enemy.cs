@@ -17,7 +17,7 @@ public class Enemy : Entity
 
     protected void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject);
+        //Debug.Log(other.gameObject);
         if(other.gameObject.tag == "SHIP")
         {
             attacking = true;

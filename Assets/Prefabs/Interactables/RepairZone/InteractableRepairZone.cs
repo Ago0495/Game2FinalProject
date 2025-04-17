@@ -8,7 +8,7 @@ public class InteractableRepairZone : Interactable
     float damage = 2;
     float damageCooldownTimer = 0f;
     float damageCooldownTime = 2f;
-    public bool complete = false;
+    public bool complete = true;
 
     public override void HandleMessage(string flag, string value)
     {
