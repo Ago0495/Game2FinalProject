@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7177548629959665936}
@@ -51,7 +51,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7210684177047031547
 PrefabInstance:
@@ -283,7 +283,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &1400552422691747354
 Animator:
@@ -369,15 +369,12 @@ MonoBehaviour:
   IsDirty: 0
   MyRig: {fileID: 254343255224946848}
   MyAnime: {fileID: 0}
-  moveSpeed: 100
-  health: 1000
-  Defence: 0
+  moveSpeed: 25
+  health: 150
+  maxHealth: 0
+  defense: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
-  lastPosition: {x: 0, y: 0, z: 0}
-  lastRotation: {x: 0, y: 0, z: 0}
-  Threashhold: 0.1
-  Ethreashhold: 2.5
   rotationSpeed: 10
   target: {fileID: 0}
   dropOnDeath: {fileID: 0}
@@ -386,6 +383,6 @@ MonoBehaviour:
   attacking: 0
   transition: 0
   sharkArea: {fileID: 0}
-  radius: 150
+  radius: 50
   circleTime: 0.5
   charging: 0

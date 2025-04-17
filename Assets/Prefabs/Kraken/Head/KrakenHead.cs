@@ -17,6 +17,7 @@ public class KrakenHead : Enemy
     //Animations
     private bool bash;
     private bool move = false;
+    private bool idle = false;
 
     public override void HandleMessage(string flag, string value)
     {
