@@ -1824,6 +1824,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4425820750892495820}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4425820750892495820}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4425820750892495820}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4425820750892495820}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDirectionChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLook
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseInteractable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137644047072605594, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnJump
+      objectReference: {fileID: 0}
     - target: {fileID: 9221631683087425325, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
       propertyPath: m_Constraints
       value: 112
@@ -1842,6 +1874,17 @@ PrefabInstance:
       addedObject: {fileID: 6117489653354949685}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+--- !u!114 &4425820750892495820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+  m_PrefabInstance: {fileID: 3721486693105660795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b167ca54b332124c943ef8113adaf15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6693094654986799451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8018595702356195872, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
