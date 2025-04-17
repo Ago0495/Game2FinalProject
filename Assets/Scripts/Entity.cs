@@ -22,7 +22,6 @@ public class Entity : NetworkComponent
             if (IsClient)
             {
                 health = int.Parse(value);
-                Debug.Log("Ship Health: " + health);
             }
         }
     }

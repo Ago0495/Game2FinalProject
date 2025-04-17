@@ -114,7 +114,7 @@ MonoBehaviour:
   IsDirty: 0
   user: -1
   interactablePrefab: 14
-  complete: 0
+  complete: 1
 --- !u!1 &984821850123934948
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShipStats : Entity
 {
@@ -11,8 +12,6 @@ public class ShipStats : Entity
     private void Start()
     {
         base.Start();
-
-        takeDamage(25);
     }
 
     public override void OnDamageTaken(float damageTaken)
@@ -20,7 +19,7 @@ public class ShipStats : Entity
         if (IsServer)
         {
             damageTracker += damageTaken;
-            Debug.Log("ShipHealth: " + health);
+            //Debug.Log("ShipHealth: " + health);
             repairZoneArray = gameObject.GetComponentsInChildren<InteractableRepairZone>();
 
             if (damageTracker > damageThreshold && repairZoneArray.Length > 0)
@@ -29,8 +28,18 @@ public class ShipStats : Entity
                 Debug.Log(rand);
 
                 repairZoneArray[rand].GetComponent<InteractableRepairZone>().complete = false;
+                repairZoneArray[rand].GetComponent<InteractableRepairZone>().SendUpdate("COMPLETE", false.ToString());
                 damageTracker -= damageThreshold;
             }
+        }
+    }
+
+    public void TestDamage(InputAction.CallbackContext context)
+    {
+        if (IsServer && context.started)
+        {
+            Debug.Log("Force Take Damage");
+            takeDamage(25);
         }
     }
 }
