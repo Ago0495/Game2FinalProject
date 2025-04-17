@@ -973,7 +973,7 @@ GameObject:
   - component: {fileID: 8030035811110545012}
   - component: {fileID: 1881957305240892579}
   - component: {fileID: 1043009892311646284}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NetworkedPlayerShip
   m_TagString: SHIP
   m_Icon: {fileID: 0}

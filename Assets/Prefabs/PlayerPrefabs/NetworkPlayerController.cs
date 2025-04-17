@@ -242,23 +242,19 @@ public class NetworkPlayerController : NetworkComponent
         }
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (IsServer)
         {
             for (int i = 0; i < collision.contacts.Length; i++)
             {
-                if (collision.contacts[i].point.y < transform.position.y)
-                {
-                    canJump = true;
-                    SendUpdate("OnGround", "404");
-                    MyAnime.SetBool("Jump", false);
-                    if (collision.contacts[i].otherCollider.GetComponent<Rigidbody>() != null)
-                    {
-                        Rigidbody TempRB = collision.contacts[i].otherCollider.GetComponent<Rigidbody>();
-                        movingPlatform = TempRB.linearVelocity;
-                    }
-                }
+                //if (collision.contacts[i].point.y < transform.position.y)
+                //{
+                canJump = true;
+                SendUpdate("OnGround", "404");
+                MyAnime.SetBool("Jump", false);
+                //}
+                //Debug.Log(collision.contacts[i].otherCollider.name);
             }
         }
     }
