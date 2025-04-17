@@ -27,6 +27,17 @@ public class InteractableRepairZone : Interactable
                 complete = bool.Parse(value);
             }
             //Debug.Log("HandleMessage: " + complete);
+
+            if (!complete)
+            {
+                transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+                GetComponent<BoxCollider>().enabled = true;
+            }
+            else
+            {
+                transform.GetChild(1).GetComponent<ParticleSystem>().Pause();
+                GetComponent<BoxCollider>().enabled = false;
+            }
         }
     }
 
@@ -44,18 +55,16 @@ public class InteractableRepairZone : Interactable
     private void Update()
     {
         base.Update();
-        if (!complete)
-        {
-            Debug.Log("Play");
-            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
-            GetComponent<BoxCollider>().enabled = true;
-        }
-        else
-        {
-            Debug.Log("Pause");
-            transform.GetChild(1).GetComponent<ParticleSystem>().Pause();
-            GetComponent<BoxCollider>().enabled = false;
-        }
+        //if (!complete)
+        //{
+        //    transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+        //    GetComponent<BoxCollider>().enabled = true;
+        //}
+        //else
+        //{
+        //    transform.GetChild(1).GetComponent<ParticleSystem>().Pause();
+        //    GetComponent<BoxCollider>().enabled = false;
+        //}
 
         if (IsServer && playerShip != null && !complete)
         {
@@ -84,6 +93,17 @@ public class InteractableRepairZone : Interactable
     {
         base.NetworkedStart();
         //playerShip = transform.parent.GetComponent<ShipStats>();
+
+        if (!complete)
+        {
+            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+            GetComponent<BoxCollider>().enabled = true;
+        }
+        else
+        {
+            transform.GetChild(1).GetComponent<ParticleSystem>().Pause();
+            GetComponent<BoxCollider>().enabled = false;
+        }
     }
 
     public override IEnumerator SlowUpdate()
