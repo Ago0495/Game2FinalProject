@@ -19,6 +19,8 @@ public class MegScript : Enemy
     private bool Right;
     private bool Tight;
 
+    Transform armature;
+
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "Left" && IsClient)
@@ -77,12 +79,17 @@ public class MegScript : Enemy
         base.Start();
         sharkArea = GameObject.FindGameObjectWithTag("SArea");
         MyAnime = GetComponent<Animator>();
+        armature = transform.GetChild(0);
     }
 
     void RotateTowards(Vector3 direction)
     {
         Quaternion targetRotation = Quaternion.LookRotation(-direction) * Quaternion.Euler(0, -90f, 0);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if (MyRig.linearVelocity != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(MyRig.linearVelocity.normalized);
+        }
 
         Vector3 localDirection = transform.InverseTransformDirection(-direction);
         if (localDirection.x < 0 && !Right)
@@ -128,7 +135,7 @@ public class MegScript : Enemy
         yield return new WaitForSeconds(3);
         charging = false;
         transition = true;
-        moveSpeed -= 30;
+        //moveSpeed -= 30;
     }
 
     private void MoveToClosest(Vector3 direction)
@@ -196,7 +203,12 @@ public class MegScript : Enemy
             {
                 Vector3 direction = (transform.position - target.transform.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(-direction) * Quaternion.Euler(0, 90f, 0);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, (rotationSpeed + 20) * Time.deltaTime);
+                //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, (rotationSpeed + 20) * Time.deltaTime);
+                if (MyRig.linearVelocity != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.LookRotation(MyRig.linearVelocity.normalized);
+                }
+
                 if (targetRotation.y < 0 && !Right)
                 {
                     //right animation
@@ -234,5 +246,7 @@ public class MegScript : Enemy
                 Circle(sharkArea.transform.position);
             }
         }
+        armature.forward = new Vector3(transform.forward.z, 0, -transform.forward.x);
+        armature.rotation = Quaternion.Euler(armature.rotation.eulerAngles + Vector3.left * 90);
     }
 }
