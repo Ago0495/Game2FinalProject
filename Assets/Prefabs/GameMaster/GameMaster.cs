@@ -11,7 +11,7 @@ public class GameMaster : NetworkComponent
 {
     //sync vars
     [SerializeField] private bool gameStarted = false;
-    [SerializeField] private bool gameFinished = false;
+    [SerializeField] public bool gameFinished = false;
     [SerializeField] private bool allPlayersReady = false;
     private int score;
     public int numcoinchestscollected;

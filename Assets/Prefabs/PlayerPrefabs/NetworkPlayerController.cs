@@ -29,6 +29,7 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] private bool usingInteractable;
     [SerializeField] private bool disableMovement;
 
+    [SerializeField] private GameMaster gm;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -161,6 +162,7 @@ public class NetworkPlayerController : NetworkComponent
 
     public override void NetworkedStart()
     {
+        gm = FindObjectOfType<GameMaster>();
         if (IsServer)
         {
 
@@ -231,17 +233,24 @@ public class NetworkPlayerController : NetworkComponent
 
         if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            cameraObj.transform.position = cameraHolderPos.transform.position;
-            RotateView();
-            if (!usingInteractable)
+            if (gm != null && gm.gameFinished)
             {
-                LookForInteractable();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                cameraObj.transform.position = cameraHolderPos.transform.position;
+                RotateView();
+                if (!usingInteractable)
+                {
+                    LookForInteractable();
+                }
             }
         }
     }
-
     public void OnCollisionStay(Collision collision)
     {
         if (IsServer)
