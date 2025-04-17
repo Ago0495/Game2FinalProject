@@ -1768,6 +1768,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: MyMap
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: edf44879388637341b0908c92ff966f3, type: 3}
     - target: {fileID: 5188755514199474485, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
       propertyPath: m_Name
       value: Helmsman
