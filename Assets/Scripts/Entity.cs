@@ -9,6 +9,7 @@ public class Entity : NetworkComponent
     [SerializeField] protected Animator MyAnime;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float health;
+    [SerializeField] protected float maxHealth;
     [SerializeField] protected float defense;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
@@ -21,7 +22,6 @@ public class Entity : NetworkComponent
             if (IsClient)
             {
                 health = int.Parse(value);
-                Debug.Log("Ship Health: " + health);
             }
         }
     }
@@ -43,6 +43,10 @@ public class Entity : NetworkComponent
     {
         return health;
     }
+    public float getMaxHealth()
+    {
+        return maxHealth;
+    }
 
     public void setHealth(int hp)
     {
@@ -53,7 +57,8 @@ public class Entity : NetworkComponent
     {
         //TO-DO
         //Implement Defense
-        float totalDamage = damage/* * (1-defense)*/;
+        
+        float totalDamage = damage * (1-this.defense);
         health -= totalDamage;
         SendUpdate("HP", health.ToString());
 
@@ -82,5 +87,6 @@ public class Entity : NetworkComponent
         MyRig = this.GetComponent<Rigidbody>();
         //MyAnime = this.GetComponent<Animator>();
         gameMaster = GameObject.FindAnyObjectByType<GameMaster>();
+        health = maxHealth;
     }
 }

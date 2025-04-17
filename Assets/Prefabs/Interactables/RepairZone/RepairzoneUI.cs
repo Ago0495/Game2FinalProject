@@ -25,7 +25,8 @@ public class RepairzoneUI : MonoBehaviour
             int rand = Random.Range(0, possibleInput.Length);
             GameObject tempPrefab = Instantiate(InputPrefab, Vector3.zero, Quaternion.identity);
             tempPrefab.transform.GetChild(0).GetComponent<TMP_Text>().text = "" + possibleInput[rand];
-            tempPrefab.transform.parent = this.transform.GetChild(0);
+            //tempPrefab.transform.parent = this.transform.GetChild(0);
+            tempPrefab.transform.SetParent(transform.GetChild(0));
         }
     }
 
