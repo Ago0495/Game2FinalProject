@@ -2076,7 +2076,7 @@ GameObject:
   - component: {fileID: 1036280317985551621}
   m_Layer: 0
   m_Name: Cannoneer
-  m_TagString: SHIP
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2240,16 +2240,15 @@ MonoBehaviour:
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
-  LastPosition: {x: 0, y: 0, z: 0}
-  LastRotation: {x: 0, y: 0, z: 0}
-  LastVelocity: {x: 0, y: 0, z: 0}
-  LastAngular: {x: 0, y: 0, z: 0}
-  OffsetVelocity: {x: 0, y: 0, z: 0}
-  Threshold: 0.1
-  EThreshold: 2.5
-  MyRig: {fileID: 0}
-  UseOffsetVelocity: 1
-  ClientRecv: 0
+  lastPosition: {x: 0, y: 0, z: 0}
+  lastRotation: {x: 0, y: 0, z: 0}
+  lastVelocity: {x: 0, y: 0, z: 0}
+  lastAngularVelocity: {x: 0, y: 0, z: 0}
+  threshold: 0
+  eThreshold: 0
+  useAdjustVel: 0
+  adjustVelocity: {x: 0, y: 0, z: 0}
+  myRig: {fileID: 0}
 --- !u!114 &4108852339189866247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,6 +2274,8 @@ MonoBehaviour:
   jumpForce: 15
   lookSpeed: 0.5
   currentInteractable: {fileID: 0}
+  usingInteractable: 0
+  disableMovement: 0
 --- !u!114 &6213961172326852503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2450,6 +2451,7 @@ MonoBehaviour:
   health: 1
   maxHealth: 0
   defense: 0
+  attack: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
   skill: 0

@@ -67,6 +67,13 @@ public class Entity : NetworkComponent
         {
             isAlive = false;
             OnDeath();
+            if (IsServer)
+            {
+                if (tag != "Player")
+                {
+                    MyCore.NetDestroyObject(NetId);
+                }
+            }
         }
 
         OnDamageTaken(totalDamage);

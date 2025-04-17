@@ -22,6 +22,8 @@ public class MegScript : Enemy
 
     Transform armature;
 
+    public int DefUpgradePrefab;
+
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "Left" && IsClient)
@@ -258,5 +260,13 @@ public class MegScript : Enemy
         Vector3 tempa = armature.rotation.eulerAngles;
         armature.forward = Vector3.Lerp(tempa, tempb, Time.deltaTime * (tempb = tempa).magnitude);
         armature.rotation = Quaternion.Euler(armature.rotation.eulerAngles + Vector3.left * 90);
+    }
+
+    public override void OnDeath()
+    {
+        if (IsServer)
+        {
+            MyCore.NetCreateObject(DefUpgradePrefab, -1, transform.position, Quaternion.identity);
+        }
     }
 }
