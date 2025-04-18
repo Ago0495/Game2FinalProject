@@ -2176,15 +2176,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5302164652260796461, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7022362
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5302164652260796461, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.902854
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5302164652260796461, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.5669546
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5302164652260796461, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2338,9 +2338,14 @@ MonoBehaviour:
   canJump: 1
   jumpForce: 10
   lookSpeed: 0.5
+  lookInput: {x: 0, y: 0}
   currentInteractable: {fileID: 0}
   usingInteractable: 0
   disableMovement: 0
+  overrideCamera: 0
+  gm: {fileID: 0}
+  respawn: {fileID: 0}
+  isRespawning: 0
   canFire: 1
   reloadTimer: 0
   reloadTime: 4
