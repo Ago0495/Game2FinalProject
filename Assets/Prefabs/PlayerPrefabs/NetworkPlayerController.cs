@@ -4,6 +4,7 @@ using UnityEngine;
 using NETWORK_ENGINE;
 using UnityEngine.InputSystem;
 using TMPro;
+using Unity.VisualScripting;
 
 public class NetworkPlayerController : NetworkComponent
 {
@@ -29,7 +30,8 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] private bool usingInteractable;
     [SerializeField] private bool disableMovement;
 
-
+    [SerializeField] private Transform respawn;
+    [SerializeField] private bool isRespawning = false; 
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "MOVE")
@@ -161,9 +163,10 @@ public class NetworkPlayerController : NetworkComponent
 
     public override void NetworkedStart()
     {
+        
         if (IsServer)
         {
-
+            respawn = GameObject.FindGameObjectWithTag("Respawn").transform;
         }
         if (IsLocalPlayer)
         {
@@ -202,7 +205,7 @@ public class NetworkPlayerController : NetworkComponent
     {
         //if (!disableMovement)
         //{
-            lookInput = lk.ReadValue<Vector2>();
+        lookInput = lk.ReadValue<Vector2>();
         //}
     }
 
@@ -240,8 +243,14 @@ public class NetworkPlayerController : NetworkComponent
                 LookForInteractable();
             }
         }
+        if (IsServer && !isRespawning)
+        {
+            if (transform.position.y < -1f)
+            {
+                StartCoroutine(RespawnCoroutine());
+            }
+        }
     }
-
     public void OnCollisionEnter(Collision collision)
     {
         if (IsServer)
@@ -287,10 +296,19 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (IsLocalPlayer)
         {
-            if(context.started && currentInteractable != null)
+            if (context.started && currentInteractable != null)
             {
                 SendCommand("USE", currentInteractable.NetId + "," + this.NetId + "," + usingInteractable);
             }
         }
+    }
+
+    public IEnumerator RespawnCoroutine()
+    {
+        isRespawning = true;
+        yield return new WaitForSeconds(5f);
+        MyRig.velocity = Vector3.zero;
+        transform.position = respawn.position;
+        isRespawning = false;
     }
 }
