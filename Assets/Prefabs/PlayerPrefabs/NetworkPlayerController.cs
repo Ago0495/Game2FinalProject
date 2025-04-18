@@ -250,7 +250,8 @@ public class NetworkPlayerController : NetworkComponent
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                cameraObj.transform.position = cameraHolderPos.transform.position;
+                //cameraObj.transform.position = cameraHolderPos.transform.position;
+                cameraObj.transform.position = Vector3.Lerp(cameraObj.transform.position, cameraHolderPos.position, Time.deltaTime * 10f);
                 RotateView();
                 if (!usingInteractable)
                 {
