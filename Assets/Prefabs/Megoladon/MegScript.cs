@@ -24,6 +24,7 @@ public class MegScript : Enemy
 
     public int DefUpgradePrefab;
 
+
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "Left" && IsClient)
@@ -37,6 +38,16 @@ public class MegScript : Enemy
         if (flag == "Forward" && IsClient)
         {
             MyAnime.SetInteger("Turning", 0);
+        }
+        if(flag == "Battle")
+        {
+            musicMaster.sharkAttack();
+            musicMaster.shark = true;
+        }
+        if (flag == "ENDBATTLE")
+        {
+            musicMaster.shark = false;
+            musicMaster.background();
         }
     }
 

@@ -13,6 +13,7 @@ public class MarksmanPlayerController : NetworkPlayerController
     //non-sync vals
     [SerializeField] int markerPrefabIndex;
     PlayerStats playerStats;
+    [SerializeField] GameObject gunSound;
     public override void HandleMessage(string flag, string value)
     {
         base.HandleMessage(flag, value);
@@ -39,6 +40,11 @@ public class MarksmanPlayerController : NetworkPlayerController
 
                 canFire = false;
                 SendUpdate("CANFIRE", canFire.ToString());
+                SendUpdate("HIT", "1111");
+            }
+            if (IsClient)
+            {
+                gunSound.GetComponent<AudioSource>().Play();
             }
         }
         if (flag == "CANFIRE")

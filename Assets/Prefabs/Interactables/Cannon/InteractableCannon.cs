@@ -19,6 +19,9 @@ public class InteractableCannon : Interactable
     public bool canFire = true;
     public float reloadTime = 2;
     public float reloadTimer = 0;
+    [SerializeField] GameObject cannonAudioSource;
+    //[SerializeField] AudioClip cannonAudio;
+
 
     public override void HandleMessage(string flag, string value)
     {
@@ -37,6 +40,9 @@ public class InteractableCannon : Interactable
             {
                 GameObject tempBall = MyCore.NetCreateObject(cannonballPrefab, -1, transform.position + transform.forward * 5, Quaternion.identity);
                 Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
+                //Audio
+                SendUpdate("FIRE", "1001");
+                //
                 if (tempRB != null)
                 {
                     tempBall.GetComponent<CannonBall>().attack = this.atk;
@@ -45,6 +51,10 @@ public class InteractableCannon : Interactable
                     canFire = false;
                     SendUpdate("CANFIRE", canFire.ToString());
                 }
+            }
+            if (IsClient)
+            {
+                cannonAudioSource.GetComponent<AudioSource>().Play();
             }
         }
         if (flag == "CANFIRE")

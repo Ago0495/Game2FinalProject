@@ -5,6 +5,9 @@ public class MusicMasterScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] AudioSource[] songs;
     private int currentlyPlaying;
+    public int enemyCannons;
+    public bool kraken;
+    public bool shark;
 
     public void menu()
     {
@@ -15,23 +18,49 @@ public class MusicMasterScript : MonoBehaviour
 
     public void background()
     {
-        songs[currentlyPlaying].Stop();
-        songs[1].Play();
-        currentlyPlaying = 1;
+        if (enemyCannons > 0)
+        {
+            fortAttack();
+        }
+        else if(shark)
+        {
+            sharkAttack();
+        }
+        else if (kraken)
+        {
+            krakenAttack();
+        }
+        else
+        {
+            songs[currentlyPlaying].Stop();
+            songs[1].Play();
+            currentlyPlaying = 1;
+        }
+        
     }
 
     public void krakenAttack()
     {
-        songs[currentlyPlaying].Stop();
-        songs[2].Play();
-        currentlyPlaying = 2;
+        if (!kraken)
+        {
+            songs[currentlyPlaying].Stop();
+            songs[2].Play();
+            currentlyPlaying = 2;
+            kraken = true;
+        }
+        
     }
 
     public void sharkAttack()
     {
-        songs[currentlyPlaying].Stop();
-        songs[3].Play();
-        currentlyPlaying = 3;
+        if (!shark)
+        {
+            songs[currentlyPlaying].Stop();
+            songs[3].Play();
+            currentlyPlaying = 3; 
+            shark = true;
+        }
+        
     }
 
     public void fortAttack()
@@ -53,6 +82,11 @@ public class MusicMasterScript : MonoBehaviour
         songs[currentlyPlaying].Stop();
         songs[6].Play();
         currentlyPlaying = 6;
+    }
+
+    public void stop()
+    {
+        songs[currentlyPlaying].Stop();
     }
 
     void Start()

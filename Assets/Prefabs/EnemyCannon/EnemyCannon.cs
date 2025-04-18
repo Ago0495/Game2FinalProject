@@ -4,6 +4,7 @@ using System.Collections;
 
 public class EnemyCannon : NetworkComponent
 {
+    public MusicMasterScript musicMaster;
     public GameObject target;
     public float atk;
     public float detectionRange = 20f;
@@ -18,6 +19,8 @@ public class EnemyCannon : NetworkComponent
 
     public int cannonballPrefab;
 
+    public bool attacking;
+
     public override IEnumerator SlowUpdate()
     {
         yield return new WaitForSeconds(MyCore.MasterTimer);
@@ -25,12 +28,26 @@ public class EnemyCannon : NetworkComponent
 
     public override void HandleMessage(string flag, string value)
     {
-
+        if (flag == "Battle")
+        {
+            musicMaster.fortAttack();
+            musicMaster.enemyCannons++;
+        }
+        if (flag == "ENDBATTLE")
+        {
+            musicMaster.enemyCannons--;
+            if(musicMaster.enemyCannons <= 0)
+            {
+                musicMaster.enemyCannons = 0;
+            }
+            musicMaster.background();
+        }
     }
 
     public override void NetworkedStart()
     {
         target = GameObject.FindGameObjectWithTag("SHIP");
+        musicMaster = FindAnyObjectByType<MusicMasterScript>();
     }
 
     public IEnumerator reload()
@@ -82,6 +99,19 @@ public class EnemyCannon : NetworkComponent
                 {
                     FireAtPlayer();
                     StartCoroutine(reload());
+                }
+                if (!attacking)
+                {
+                    attacking = true;
+                    SendUpdate("Battle", "hope");
+                }
+            }
+            else
+            {
+                if (attacking)
+                {
+                    attacking = false;
+                    SendUpdate("ENDBATTLE", "hope");
                 }
             }
         }

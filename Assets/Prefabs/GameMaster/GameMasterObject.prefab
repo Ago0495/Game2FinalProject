@@ -70,3 +70,6 @@ MonoBehaviour:
   IsDirty: 0
   gameStarted: 0
   gameFinished: 0
+  allPlayersReady: 0
+  musicMaster: {fileID: 0}
+  numcoinchestscollected: 0

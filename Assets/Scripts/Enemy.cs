@@ -7,6 +7,7 @@ public class Enemy : Entity
     [SerializeField] protected GameObject dropOnDeath;
     [SerializeField] protected Collider DetectRange;
     [SerializeField] protected int scoreValue;
+    [SerializeField] protected MusicMasterScript musicMaster;
     public bool attacking;
     public bool transition;
 
@@ -28,15 +29,21 @@ public class Enemy : Entity
             {
                 temp.takeDamage(attack);
             }
+
+            if (IsServer)
+            {
+                SendUpdate("Battle", "hope");
+            }
         }
     }
 
     protected void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == target)
+        if(other.gameObject.tag == "SHIP")
         {
             attacking = false;
             transition = true;
+            SendUpdate("ENDBATTLE", "hope");
         }
     }
 
@@ -53,12 +60,13 @@ public class Enemy : Entity
 
     public override void OnDeath()
     {
-
+        SendUpdate("ENDBATTLE", "hope");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected void Start()
     {
         base.Start();
+        musicMaster = FindAnyObjectByType<MusicMasterScript>();
     }
 }

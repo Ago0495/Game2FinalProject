@@ -14,7 +14,11 @@ public class FortScript : Enemy
 
     public void HandleMessage(string flag, string value)
     {
-        
+        if (flag == "ENDBATTLE")
+        {
+            musicMaster.enemyCannons = 0;
+            musicMaster.background();
+        }
     }
 
     public override IEnumerator SlowUpdate()
