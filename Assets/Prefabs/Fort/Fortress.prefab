@@ -177,17 +177,19 @@ MonoBehaviour:
   MyRig: {fileID: 0}
   MyAnime: {fileID: 0}
   moveSpeed: 0
-  health: 200
-  maxHealth: 200
+  health: 600
+  maxHealth: 600
   defense: 0
   attack: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
+  isAlive: 0
   rotationSpeed: 0
   target: {fileID: 0}
   dropOnDeath: {fileID: 0}
   DetectRange: {fileID: 0}
   scoreValue: 0
+  musicMaster: {fileID: 0}
   attacking: 0
   transition: 0
   cannonPrefab: 0

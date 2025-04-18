@@ -4,6 +4,8 @@ using System.Collections;
 
 public class CannonBall : Entity
 {
+    public float despawnTime = 6f;
+    public float despawnTimer = 0;
     public override void HandleMessage(string flag, string value)
     {
 
@@ -22,13 +24,17 @@ public class CannonBall : Entity
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        despawnTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        despawnTimer += Time.deltaTime;
+        if (despawnTimer > despawnTime) 
+        {
+            MyCore.NetDestroyObject(NetId);
+        }
     }
 
     public void OnTriggerEnter(Collider other)

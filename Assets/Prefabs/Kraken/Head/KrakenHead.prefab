@@ -254,15 +254,16 @@ MonoBehaviour:
   IsDirty: 0
   MyRig: {fileID: 0}
   MyAnime: {fileID: 0}
-  moveSpeed: 20
-  health: 120
-  maxHealth: 120
+  moveSpeed: 10
+  health: 360
+  maxHealth: 360
   defense: 0
   attack: 10
   hitBoxes:
   - {fileID: 5335096760220727082}
   - {fileID: 4639079808498040626}
   gameMaster: {fileID: 0}
+  isAlive: 0
   rotationSpeed: 20
   target: {fileID: 0}
   dropOnDeath: {fileID: 0}

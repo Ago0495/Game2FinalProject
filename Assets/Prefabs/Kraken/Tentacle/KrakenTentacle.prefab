@@ -337,17 +337,19 @@ MonoBehaviour:
   MyRig: {fileID: 0}
   MyAnime: {fileID: -5273881486367380775}
   moveSpeed: 0
-  health: 10
-  maxHealth: 10
+  health: 30
+  maxHealth: 30
   defense: 0
-  attack: 5
+  attack: 10
   hitBoxes: []
   gameMaster: {fileID: 0}
+  isAlive: 0
   rotationSpeed: 80
   target: {fileID: 0}
   dropOnDeath: {fileID: 0}
   DetectRange: {fileID: 8638052976972506597}
   scoreValue: 0
+  musicMaster: {fileID: 0}
   attacking: 0
   transition: 0
   head: {fileID: 0}

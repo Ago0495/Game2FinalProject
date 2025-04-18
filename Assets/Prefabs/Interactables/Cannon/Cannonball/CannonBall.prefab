@@ -207,3 +207,6 @@ MonoBehaviour:
   attack: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
+  isAlive: 1
+  despawnTime: 6
+  despawnTimer: 0
