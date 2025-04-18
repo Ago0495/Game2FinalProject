@@ -63,7 +63,7 @@ public class KrakenTentacle : Enemy
         //animation
         MyAnime.SetBool("Slam", true);
         SendUpdate("Slam", "404");
-        Debug.Log("Tentacle Attack");
+        //Debug.Log("Tentacle Attack");
         yield return new WaitForSeconds(3.3f);
         MyAnime.SetBool("Slam", false);
         SendUpdate("Idle", "404");
