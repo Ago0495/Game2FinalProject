@@ -685,8 +685,8 @@ MonoBehaviour:
   MyId: {fileID: 0}
   IsDirty: 0
   Threshold: 0
-  Ethreshold: 0
-  Speed: 5
+  Ethreshold: 20
+  Speed: 0
 --- !u!1 &2855422954699007411
 GameObject:
   m_ObjectHideFlags: 0

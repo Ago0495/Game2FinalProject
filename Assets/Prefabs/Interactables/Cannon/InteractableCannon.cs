@@ -107,6 +107,8 @@ public class InteractableCannon : Interactable
             startYaw = yaw;
             startPitch = pitch;
         }
+
+        transform.SetParent(GameObject.FindGameObjectWithTag("SHIP").transform);
     }
 
     public void Update()

@@ -44,7 +44,7 @@ public class InteractableHelm : Interactable
     public void Start()
     {
         base.Start();
-
+        transform.SetParent(GameObject.FindGameObjectWithTag("SHIP").transform);
     }
 
     public void Update()

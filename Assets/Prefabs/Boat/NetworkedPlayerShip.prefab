@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1168802954355095561}
   - component: {fileID: 1071345370679851164}
   - component: {fileID: 7505894520284394800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_StairsBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 7951182277566293776}
   - component: {fileID: 3122627040090036757}
   - component: {fileID: 1035151850797596451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_LoopholeCap2_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5753996249725487051}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonHolder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 2095103168459088813}
   - component: {fileID: 6738083741976927603}
   - component: {fileID: 1216414658882912781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 7037697787704534048}
   - component: {fileID: 4725134315816568303}
   - component: {fileID: 3223361662560452745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Bracing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 6364003478566902058}
   - component: {fileID: 1403331254611830119}
   - component: {fileID: 1625250072920218214}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 7606445962410712901}
   - component: {fileID: 7671238243482543325}
   - component: {fileID: 5693513357162633577}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 4180488871381811000}
   - component: {fileID: 8587401954705115169}
   - component: {fileID: 8578484457157247375}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_LoopholeCap1_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,7 +828,7 @@ GameObject:
   - component: {fileID: 7351111173550928353}
   - component: {fileID: 5195862239348327579}
   - component: {fileID: 4854037908717438769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Support
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8816883823599995812}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonHolder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -1180,6 +1180,7 @@ MonoBehaviour:
   attack: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
+  isAlive: 1
   cannonsArray: []
   repairZoneArray:
   - {fileID: 768060048188948161}
@@ -1317,7 +1318,7 @@ GameObject:
   - component: {fileID: 740456173120472105}
   - component: {fileID: 7221070005898966607}
   - component: {fileID: 7506275010718532218}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_LoopholeCap3_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1426,7 +1427,7 @@ GameObject:
   - component: {fileID: 2471165181853040795}
   - component: {fileID: 5959571592413318100}
   - component: {fileID: 4269599714676300666}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_MastMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1535,7 +1536,7 @@ GameObject:
   - component: {fileID: 1701991629200994782}
   - component: {fileID: 3919580228484839746}
   - component: {fileID: 1262673877525135516}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_FloorBackBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1641,7 +1642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5748326090052097706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HelmHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1707,7 +1708,7 @@ GameObject:
   - component: {fileID: 1205393450821548920}
   - component: {fileID: 7798472954139089385}
   - component: {fileID: 3341032520831439592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_LoopholeCap1_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1816,7 +1817,7 @@ GameObject:
   - component: {fileID: 2270782950985255296}
   - component: {fileID: 4781153852131638001}
   - component: {fileID: 5207315148327118920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_LoopholeCap3_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1926,7 +1927,7 @@ GameObject:
   - component: {fileID: 1548192739323729594}
   - component: {fileID: 4344928260472160666}
   - component: {fileID: 1405047248404698921}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_FloorBackTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2056,7 +2057,7 @@ GameObject:
   - component: {fileID: 1217987451476179456}
   - component: {fileID: 5721112897777829751}
   - component: {fileID: 5689062907116040630}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Prow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2165,7 +2166,7 @@ GameObject:
   - component: {fileID: 819249759884077020}
   - component: {fileID: 5754272978824260315}
   - component: {fileID: 1452917661464707508}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Windows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2274,7 +2275,7 @@ GameObject:
   - component: {fileID: 120954926444316120}
   - component: {fileID: 3877091076913282547}
   - component: {fileID: 2107666318808161251}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2379,7 +2380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8050863331650680022}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonHolder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -2414,7 +2415,7 @@ GameObject:
   - component: {fileID: 4277664798257509142}
   - component: {fileID: 2678114807624555022}
   - component: {fileID: 2426195426740803714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2523,7 +2524,7 @@ GameObject:
   - component: {fileID: 5845976122161198047}
   - component: {fileID: 2031671321401492109}
   - component: {fileID: 3289566312070129345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_FencingBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2632,7 +2633,7 @@ GameObject:
   - component: {fileID: 1559669746218959040}
   - component: {fileID: 6899100317240328137}
   - component: {fileID: 4829777125501866004}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2741,7 +2742,7 @@ GameObject:
   - component: {fileID: 3870700116340599897}
   - component: {fileID: 6019641630661161477}
   - component: {fileID: 6982519413000807816}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_WheelStand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2850,7 +2851,7 @@ GameObject:
   - component: {fileID: 3032109008537974912}
   - component: {fileID: 8310405763649678235}
   - component: {fileID: 8256662920444417796}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Door2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2955,7 +2956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5472043252187338312}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonHolder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -2990,7 +2991,7 @@ GameObject:
   - component: {fileID: 9165413951041119907}
   - component: {fileID: 2094139626617476621}
   - component: {fileID: 5043017063863697774}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3099,7 +3100,7 @@ GameObject:
   - component: {fileID: 5536740185826881213}
   - component: {fileID: 6506137570978220874}
   - component: {fileID: 2759883257089696705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Loopholes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3208,7 +3209,7 @@ GameObject:
   - component: {fileID: 5723469436972618794}
   - component: {fileID: 2717650399489468796}
   - component: {fileID: 2036123107204885259}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_LoopholeCap2_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3317,7 +3318,7 @@ GameObject:
   - component: {fileID: 7954234843164696717}
   - component: {fileID: 7570111295621352539}
   - component: {fileID: 813142804974833022}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_Rudder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3422,7 +3423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3219930462917193738}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonHolder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -3457,7 +3458,7 @@ GameObject:
   - component: {fileID: 8911930475449273336}
   - component: {fileID: 9190058548007149579}
   - component: {fileID: 7274498732509912931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_FloorMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3566,7 +3567,7 @@ GameObject:
   - component: {fileID: 7522723299762032347}
   - component: {fileID: 4342822052305467038}
   - component: {fileID: 3123371126325531545}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_FloorFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3696,7 +3697,7 @@ GameObject:
   - component: {fileID: 736970078393289892}
   - component: {fileID: 5714007519170373717}
   - component: {fileID: 6025048858097085624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_SailMid2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3805,7 +3806,7 @@ GameObject:
   - component: {fileID: 7759941874276913258}
   - component: {fileID: 23672304288181175}
   - component: {fileID: 3823875231291360139}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylShip_SailMid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3911,7 +3912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5268382623659589981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonHolder
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -3946,7 +3947,7 @@ GameObject:
   - component: {fileID: 5474637632693849972}
   - component: {fileID: 2647501265067923897}
   - component: {fileID: 1960953713592504702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4055,6 +4056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkFloater
       objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4133,6 +4138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkFloater
       objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -4207,9 +4216,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5753996249725487051}
     m_Modifications:
+    - target: {fileID: 391160438660671469, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2415450748775550994, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_Name
       value: InteractableCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678041216268535458, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108863492261367944, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404797799880604108, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8461221856489991094, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4285,6 +4310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkFloater
       objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4359,9 +4388,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8816883823599995812}
     m_Modifications:
+    - target: {fileID: 391160438660671469, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2415450748775550994, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_Name
       value: InteractableCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678041216268535458, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108863492261367944, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404797799880604108, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8461221856489991094, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4437,6 +4482,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkFloater
       objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -4511,9 +4560,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5268382623659589981}
     m_Modifications:
+    - target: {fileID: 391160438660671469, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2415450748775550994, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_Name
       value: InteractableCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678041216268535458, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108863492261367944, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404797799880604108, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8461221856489991094, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4589,6 +4654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RepairZone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 975650403078533589, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3333334
@@ -4641,6 +4710,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 984821850123934948, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884097413966871951, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207864476477622704, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430312121789773819, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060216254211969741, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157168003274840762, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4673,6 +4766,10 @@ PrefabInstance:
     - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_Name
       value: NetworkFloater
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4752,6 +4849,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkFloater
       objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -4829,6 +4930,10 @@ PrefabInstance:
     - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_Name
       value: NetworkFloater
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4909,6 +5014,10 @@ PrefabInstance:
       value: RepairZone
       objectReference: {fileID: 0}
     - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -4964,6 +5073,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 984821850123934948, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884097413966871951, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207864476477622704, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430312121789773819, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060216254211969741, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157168003274840762, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5000,6 +5133,14 @@ PrefabInstance:
     - target: {fileID: 1132441034357217004, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
       propertyPath: m_Name
       value: InteractableHelm
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132441034357217004, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408319236758719876, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3635174967396471098, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
       propertyPath: m_LocalScale.x
@@ -5061,6 +5202,18 @@ PrefabInstance:
       propertyPath: speed
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 5130402306176768932, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574919355930277322, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061582713459198321, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8747600838096764766, guid: b3e5c78f96e39cc47ac0ac5b1e4a2af7, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -5118,9 +5271,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8050863331650680022}
     m_Modifications:
+    - target: {fileID: 391160438660671469, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2415450748775550994, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_Name
       value: InteractableCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678041216268535458, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108863492261367944, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404797799880604108, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8461221856489991094, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_LocalScale.x
@@ -5192,9 +5361,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5472043252187338312}
     m_Modifications:
+    - target: {fileID: 391160438660671469, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2415450748775550994, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_Name
       value: InteractableCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678041216268535458, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108863492261367944, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404797799880604108, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8461221856489991094, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_LocalScale.x
@@ -5271,6 +5456,10 @@ PrefabInstance:
       value: RepairZone (3)
       objectReference: {fileID: 0}
     - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5325,6 +5514,30 @@ PrefabInstance:
     - target: {fileID: 975650403078533589, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984821850123934948, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884097413966871951, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207864476477622704, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430312121789773819, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060216254211969741, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157168003274840762, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5399,6 +5612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DamageAudio
       objectReference: {fileID: 0}
+    - target: {fileID: 4184140357595496878, guid: 836abb0c9a4932b4e9af9cc4293e2fef, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5425,6 +5642,10 @@ PrefabInstance:
     - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_Name
       value: NetworkFloater
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5505,6 +5726,10 @@ PrefabInstance:
       value: RepairZone (2)
       objectReference: {fileID: 0}
     - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 844932489898560512, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5560,6 +5785,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 984821850123934948, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884097413966871951, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207864476477622704, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430312121789773819, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060216254211969741, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157168003274840762, guid: 65009190cb7dc0f4c9774956dbd5e3fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5589,9 +5838,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3219930462917193738}
     m_Modifications:
+    - target: {fileID: 391160438660671469, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2415450748775550994, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_Name
       value: InteractableCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678041216268535458, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108863492261367944, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404797799880604108, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8461221856489991094, guid: 8e4aaa8ddb2f51d489db1b19ef40d32f, type: 3}
       propertyPath: m_LocalScale.x
@@ -5666,6 +5931,10 @@ PrefabInstance:
     - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_Name
       value: NetworkFloater
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175822146165800295, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4500592545015028957, guid: 0811f3322cd61d240b4c91edee7ead90, type: 3}
       propertyPath: m_LocalPosition.x

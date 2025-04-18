@@ -66,41 +66,41 @@ public class NetworkRigidBody : NetworkComponent
     {
         while (IsConnected)
         {
-            if (IsServer)
-            {
-                if ((myRig.position - lastPosition).magnitude > threshold)
-                {
-                    SendUpdate("POS", myRig.position.ToString());
-                    lastPosition = myRig.position;
-                }
+            //if (IsServer)
+            //{
+            //    if ((myRig.position - lastPosition).magnitude > threshold)
+            //    {
+            //        SendUpdate("POS", myRig.position.ToString());
+            //        lastPosition = myRig.position;
+            //    }
 
-                if ((myRig.rotation.eulerAngles - lastRotation).magnitude > threshold)
-                {
-                    SendUpdate("ROT", myRig.rotation.eulerAngles.ToString());
-                    lastRotation = myRig.position;
-                }
+            //    if ((myRig.rotation.eulerAngles - lastRotation).magnitude > threshold)
+            //    {
+            //        SendUpdate("ROT", myRig.rotation.eulerAngles.ToString());
+            //        lastRotation = myRig.position;
+            //    }
 
-                if ((lastVelocity - myRig.linearVelocity).magnitude > threshold)
-                {
-                    SendUpdate("VEL", myRig.linearVelocity.ToString());
-                    lastVelocity = myRig.linearVelocity;
-                }
+            //    if ((lastVelocity - myRig.linearVelocity).magnitude > threshold)
+            //    {
+            //        SendUpdate("VEL", myRig.linearVelocity.ToString());
+            //        lastVelocity = myRig.linearVelocity;
+            //    }
 
-                if ((myRig.angularVelocity - lastAngularVelocity).magnitude > threshold)
-                {
-                    SendUpdate("ANG", myRig.angularVelocity.ToString());
-                    lastAngularVelocity = myRig.angularVelocity;
-                }
+            //    if ((myRig.angularVelocity - lastAngularVelocity).magnitude > threshold)
+            //    {
+            //        SendUpdate("ANG", myRig.angularVelocity.ToString());
+            //        lastAngularVelocity = myRig.angularVelocity;
+            //    }
 
-                if (IsDirty)
-                {
-                    SendUpdate("POS", myRig.position.ToString());
-                    SendUpdate("VEL", myRig.linearVelocity.ToString());
-                    SendUpdate("ROT", myRig.rotation.ToString());
-                    SendUpdate("ANG", myRig.angularVelocity.ToString());
-                    IsDirty = false;
-                }
-            }
+            //    if (IsDirty)
+            //    {
+            //        SendUpdate("POS", myRig.position.ToString());
+            //        SendUpdate("VEL", myRig.linearVelocity.ToString());
+            //        SendUpdate("ROT", myRig.rotation.ToString());
+            //        SendUpdate("ANG", myRig.angularVelocity.ToString());
+            //        IsDirty = false;
+            //    }
+            //}
             yield return new WaitForSeconds(MyCore.MasterTimer);
         }
     }
@@ -114,6 +114,42 @@ public class NetworkRigidBody : NetworkComponent
     // Update is called once per frame
     void Update()
     {
+        if (IsServer)
+        {
+            if ((myRig.position - lastPosition).magnitude > threshold)
+            {
+                SendUpdate("POS", myRig.position.ToString());
+                lastPosition = myRig.position;
+            }
+
+            if ((myRig.rotation.eulerAngles - lastRotation).magnitude > threshold)
+            {
+                SendUpdate("ROT", myRig.rotation.eulerAngles.ToString());
+                lastRotation = myRig.position;
+            }
+
+            if ((lastVelocity - myRig.linearVelocity).magnitude > threshold)
+            {
+                SendUpdate("VEL", myRig.linearVelocity.ToString());
+                lastVelocity = myRig.linearVelocity;
+            }
+
+            if ((myRig.angularVelocity - lastAngularVelocity).magnitude > threshold)
+            {
+                SendUpdate("ANG", myRig.angularVelocity.ToString());
+                lastAngularVelocity = myRig.angularVelocity;
+            }
+
+            if (IsDirty)
+            {
+                SendUpdate("POS", myRig.position.ToString());
+                SendUpdate("VEL", myRig.linearVelocity.ToString());
+                SendUpdate("ROT", myRig.rotation.ToString());
+                SendUpdate("ANG", myRig.angularVelocity.ToString());
+                IsDirty = false;
+            }
+        }
+
         if (IsClient)
         {
             myRig.linearVelocity = lastVelocity;

@@ -20,11 +20,13 @@ public class NetworkTransform : NetworkComponent
     {
         if (flag == "POS" && IsClient)
         {
-            lastPosition = Vector3.Lerp(lastPosition, NetworkCore.Vector3FromString(value), 5);
+            //lastPosition = Vector3.Lerp(lastPosition, NetworkCore.Vector3FromString(value), Speed);
+            lastPosition = NetworkCore.Vector3FromString(value);
         }
         if (flag == "ROT" && IsClient)
         {
-            lastRotation = Vector3.Lerp(lastRotation, NetworkCore.Vector3FromString(value), 5);
+            //lastRotation = Vector3.Lerp(lastRotation, NetworkCore.Vector3FromString(value), Speed);
+            lastRotation = NetworkCore.Vector3FromString(value);
         }
     }
 
@@ -40,27 +42,27 @@ public class NetworkTransform : NetworkComponent
     {
         while (true)
         {
-            if (IsServer)
-            {
-                float distance = (this.transform.position - lastPosition).magnitude;
-                if (distance > Threshold)
-                {
-                    SendUpdate("POS", this.transform.position.ToString());
-                    lastPosition = this.transform.position;
-                }
-                if ((this.transform.rotation.eulerAngles - lastRotation).magnitude > Threshold)
-                {
-                    lastRotation = this.transform.rotation.eulerAngles;
-                    SendUpdate("ROT", lastRotation.ToString()); 
-                }
+            //if (IsServer)
+            //{
+            //    float distance = (this.transform.position - lastPosition).magnitude;
+            //    if (distance > Threshold)
+            //    {
+            //        SendUpdate("POS", this.transform.position.ToString());
+            //        lastPosition = this.transform.position;
+            //    }
+            //    if ((this.transform.rotation.eulerAngles - lastRotation).magnitude > Threshold)
+            //    {
+            //        lastRotation = this.transform.rotation.eulerAngles;
+            //        SendUpdate("ROT", lastRotation.ToString()); 
+            //    }
 
-                if (IsDirty)
-                {
-                    SendUpdate("POS", lastPosition.ToString());
-                    SendUpdate("ROT", lastRotation.ToString());
-                    IsDirty = false;
-                }
-            }
+            //    if (IsDirty)
+            //    {
+            //        SendUpdate("POS", lastPosition.ToString());
+            //        SendUpdate("ROT", lastRotation.ToString());
+            //        IsDirty = false;
+            //    }
+            //}
             yield return new WaitForSeconds(MyCore.MasterTimer);
         }
     }
@@ -80,28 +82,45 @@ public class NetworkTransform : NetworkComponent
     {
         if (IsServer)
         {
-            
+            float distance = (this.transform.position - lastPosition).magnitude;
+            if (distance > Threshold)
+            {
+                SendUpdate("POS", this.transform.position.ToString());
+                lastPosition = this.transform.position;
+            }
+            if ((this.transform.rotation.eulerAngles - lastRotation).magnitude > Threshold)
+            {
+                lastRotation = this.transform.rotation.eulerAngles;
+                SendUpdate("ROT", lastRotation.ToString());
+            }
+
+            if (IsDirty)
+            {
+                SendUpdate("POS", lastPosition.ToString());
+                SendUpdate("ROT", lastRotation.ToString());
+                IsDirty = false;
+            }
         }
         if (IsClient)
         {
             float distance = (this.transform.position - this.lastPosition).magnitude;
             float rDistance = (this.transform.rotation.eulerAngles - this.lastRotation).magnitude;
-            if (distance > Threshold)
+            if (distance > Ethreshold)
             {
                 this.transform.position = this.lastPosition;
             }
             else
             {
-                this.transform.position = Vector3.Lerp(this.transform.position, lastPosition, Time.deltaTime * (lastPosition - transform.position).magnitude);
+                this.transform.position = Vector3.Lerp(this.transform.position, lastPosition, Time.deltaTime * Speed);
             }
-            if (rDistance > Threshold)
-            {
+            //if (rDistance > Ethreshold)
+            //{
                 this.transform.rotation = Quaternion.Euler(lastRotation);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(lastRotation), Time.deltaTime * Speed);
-            }
+            //}
+            //else
+            //{
+            //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(lastRotation), Time.deltaTime * Speed);
+            //}
         }
     }
 }

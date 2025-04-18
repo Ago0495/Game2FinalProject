@@ -96,7 +96,7 @@ MonoBehaviour:
   IsDirty: 0
   Threshold: 0
   Ethreshold: 0
-  Speed: 2
+  Speed: 0
 --- !u!114 &-3339717589377395083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   IsDirty: 0
   user: -1
   interactablePrefab: 14
+  gm: {fileID: 0}
   complete: 1
 --- !u!1 &984821850123934948
 GameObject:

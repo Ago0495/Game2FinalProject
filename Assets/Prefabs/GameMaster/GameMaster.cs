@@ -43,6 +43,8 @@ public class GameMaster : NetworkComponent
         if (flag == "ENDGAME")
         {
             gameFinished = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             GameObject lobbyPlayerCanvas = GameObject.Find("ScoreCanvas");
             if (lobbyPlayerCanvas == null)
