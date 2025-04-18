@@ -36,7 +36,12 @@ public class NetworkPlayerController : NetworkComponent
     public GameMaster gm;
 
     [SerializeField] private GameObject ship;
-    [SerializeField] private bool isRespawning = false; 
+    [SerializeField] private bool isRespawning = false;
+
+    public PhysicsMaterial friction1;
+    public PhysicsMaterial friction2;
+    public CapsuleCollider coll;
+
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "MOVE")
@@ -236,6 +241,14 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (IsServer)
         {
+            if (lastInput.magnitude > 0)
+            {
+                coll.material = friction1;
+            }
+            else
+            {
+                coll.material = friction2;
+            }
             MyRig.AddForce((transform.forward * lastInput.y + transform.right * lastInput.x) * speed * Time.deltaTime, ForceMode.VelocityChange);
             //MyRig.linearVelocity = transform.forward * speed * lastInput.y + transform.right * speed * lastInput.x + new Vector3(0, MyRig.linearVelocity.y, 0)/* + movingPlatform*/;
             if (MyRig.linearVelocity.magnitude > maxSpeed)

@@ -2182,7 +2182,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7985160590798394168}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 132e7107b486a4d47bb08c1d64d49fb0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2206,7 +2206,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7985160590798394168}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 100
   m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2283,6 +2283,9 @@ MonoBehaviour:
   gm: {fileID: 0}
   ship: {fileID: 0}
   isRespawning: 0
+  friction1: {fileID: 13400000, guid: 132e7107b486a4d47bb08c1d64d49fb0, type: 2}
+  friction2: {fileID: 13400000, guid: 555d47807f31fa341bf953b056b58448, type: 2}
+  coll: {fileID: 3301776026847303853}
 --- !u!114 &6213961172326852503
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1888,6 +1888,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1067015459520905399}
   m_SourcePrefab: {fileID: 100100000, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
+--- !u!136 &792799748089924256 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 6175566581608528009, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
+  m_PrefabInstance: {fileID: 6824240129241510441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &2932775276662810376 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8505010164580947233, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
@@ -1935,8 +1940,11 @@ MonoBehaviour:
   disableMovement: 0
   overrideCamera: 0
   gm: {fileID: 0}
-  respawn: {fileID: 0}
+  ship: {fileID: 0}
   isRespawning: 0
+  friction1: {fileID: 13400000, guid: 132e7107b486a4d47bb08c1d64d49fb0, type: 2}
+  friction2: {fileID: 13400000, guid: 555d47807f31fa341bf953b056b58448, type: 2}
+  coll: {fileID: 792799748089924256}
 --- !u!4 &8018595702356195872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}

@@ -51,18 +51,6 @@ public class InteractableHelm : Interactable
     {
         base.Update();
 
-        if (IsServer)
-        {
-            if (shipRB != null)
-            {
-                shipRB.AddForce(transform.forward * lastInput.y * speed);
-                shipRB.AddTorque(transform.up * lastInput.x * speed * 10);
-            }
-            else
-            {
-                shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
-            }
-        }
 
         if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
         {
@@ -79,6 +67,22 @@ public class InteractableHelm : Interactable
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+            }
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        if (IsServer)
+        {
+            if (shipRB != null)
+            {
+                shipRB.AddForce(transform.forward * lastInput.y * speed);
+                shipRB.AddTorque(transform.up * lastInput.x * speed * 10);
+            }
+            else
+            {
+                shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
             }
         }
     }

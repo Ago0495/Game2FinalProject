@@ -1769,6 +1769,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 4081940516093868507}
+    - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
       propertyPath: MyMap
       value: 
       objectReference: {fileID: 0}
@@ -1776,6 +1780,14 @@ PrefabInstance:
       propertyPath: render
       value: 
       objectReference: {fileID: 968531464376388751}
+    - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: friction1
+      value: 
+      objectReference: {fileID: 13400000, guid: 132e7107b486a4d47bb08c1d64d49fb0, type: 2}
+    - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: friction2
+      value: 
+      objectReference: {fileID: 13400000, guid: 555d47807f31fa341bf953b056b58448, type: 2}
     - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
       propertyPath: titleCard
       value: 
@@ -1885,6 +1897,11 @@ PrefabInstance:
 --- !u!223 &373467406299995693 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 3930431700015082838, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+  m_PrefabInstance: {fileID: 3721486693105660795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &4081940516093868507 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 792799748089924256, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
   m_PrefabInstance: {fileID: 3721486693105660795}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4425820750892495820 stripped

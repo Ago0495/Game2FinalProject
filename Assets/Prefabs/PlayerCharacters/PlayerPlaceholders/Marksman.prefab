@@ -2430,6 +2430,9 @@ MonoBehaviour:
   gm: {fileID: 0}
   ship: {fileID: 0}
   isRespawning: 0
+  friction1: {fileID: 13400000, guid: 132e7107b486a4d47bb08c1d64d49fb0, type: 2}
+  friction2: {fileID: 13400000, guid: 555d47807f31fa341bf953b056b58448, type: 2}
+  coll: {fileID: 6175566581608528009}
   canFire: 1
   reloadTimer: 0
   reloadTime: 4
@@ -2443,6 +2446,11 @@ Rigidbody:
 --- !u!4 &3599313380785899529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5302164652260796461, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+  m_PrefabInstance: {fileID: 8675699641132441636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &6175566581608528009 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 3301776026847303853, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
   m_PrefabInstance: {fileID: 8675699641132441636}
   m_PrefabAsset: {fileID: 0}
 --- !u!223 &7511758932335042431 stripped

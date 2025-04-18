@@ -152,7 +152,7 @@ MonoBehaviour:
   user: -1
   interactablePrefab: 12
   gm: {fileID: 0}
-  speed: 25000
+  speed: 27500
   shipRB: {fileID: 0}
   cameraHolderPos: {fileID: 3189203439911687799}
   lookSpeed: 0.5
