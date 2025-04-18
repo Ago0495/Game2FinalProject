@@ -2428,7 +2428,7 @@ MonoBehaviour:
   disableMovement: 0
   overrideCamera: 0
   gm: {fileID: 0}
-  respawn: {fileID: 0}
+  ship: {fileID: 0}
   isRespawning: 0
   canFire: 1
   reloadTimer: 0

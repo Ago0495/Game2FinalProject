@@ -131,8 +131,16 @@ public class InteractableCannon : Interactable
 
         if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
         {
-            cameraObj.transform.position = cameraHolderPos.transform.position;
-            cameraObj.transform.rotation = cameraHolderPos.transform.rotation;
+            if (!gm.gameFinished)
+            {
+                cameraObj.transform.position = cameraHolderPos.transform.position;
+                cameraObj.transform.rotation = cameraHolderPos.transform.rotation;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
 
         //if (IsLocalPlayer)
