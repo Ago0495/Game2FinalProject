@@ -23,6 +23,11 @@ public class FortScript : Enemy
         yield return new WaitForSeconds(MyCore.MasterTimer);
     }
 
+    public override void OnDamageTaken(float damageTaken)
+    {
+        Debug.Log("For took " + damageTaken + " Damage");
+    }
+
     public override void OnDeath()
     {
         if (IsServer)

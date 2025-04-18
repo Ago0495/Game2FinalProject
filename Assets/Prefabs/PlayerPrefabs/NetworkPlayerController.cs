@@ -26,7 +26,7 @@ public class NetworkPlayerController : NetworkComponent
     private float pitch;
     private Vector3 movingPlatform;
     public Interactable currentInteractable;
-    [SerializeField] private bool usingInteractable;
+    [SerializeField] protected bool usingInteractable;
     [SerializeField] private bool disableMovement;
 
 

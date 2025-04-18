@@ -40,7 +40,6 @@ public class CannonUI : MonoBehaviour
 
             if (cannon.MyCore.NetObjs[cannon.user].GetComponent<PlayerStats>().skill == 0)
             {
-                Debug.Log("A");
                 background.enabled = false;
                 background2.enabled = true;
                 background2.transform.GetChild(0).GetComponent<Image>().enabled = true;
@@ -52,7 +51,6 @@ public class CannonUI : MonoBehaviour
                 background2.enabled = false;
                 background2.transform.GetChild(0).GetComponent<Image>().enabled = false;
                 background2.transform.GetChild(1).GetComponent<Image>().enabled = false;
-                Debug.Log("B");
             }
 
             progressBar.fillAmount = cannon.reloadTimer / cannon.reloadTime;

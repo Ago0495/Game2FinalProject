@@ -35,13 +35,20 @@ public class CannonBall : Entity
     {
         if (IsServer)
         {
-            //Debug.Log(other.name);
             Entity entity = other.GetComponentInParent<Entity>();
 
             if (entity != null && other.gameObject.layer != this.gameObject.layer)
             {
                 //damage other
-                entity.takeDamage(attack);
+                if (other.tag == "Marker")
+                {
+                    entity.takeDamage(attack * 2);
+                    MyCore.NetDestroyObject(other.GetComponent<NetworkID>().NetId);
+                }
+                else
+                {
+                    entity.takeDamage(attack);
+                }
                 MyCore.NetDestroyObject(NetId);
             }
         }
