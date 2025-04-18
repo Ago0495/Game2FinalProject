@@ -991,6 +991,7 @@ MonoBehaviour:
   nameField: {fileID: 8902967237246543658}
   readyToggle: {fileID: 67870033713930268}
   skillSelect: {fileID: 862699324380078070}
+  skillDescriptionText: {fileID: 7766845187211625088}
 --- !u!1 &3360120307357372441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,7 +1722,7 @@ GameObject:
   - component: {fileID: 8943748366449046301}
   - component: {fileID: 7766845187211625088}
   m_Layer: 0
-  m_Name: SkillDescription
+  m_Name: SkillDescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
