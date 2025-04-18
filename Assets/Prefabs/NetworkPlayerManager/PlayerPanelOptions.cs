@@ -13,7 +13,7 @@ public class PlayerPanelOptions : NetworkComponent
     string[] skillDescription =
     {
         "Can Quick Fire Cannons",
-        "Better View When Helming the Ship",
+        "Better View When Pilot the Ship",
         "Click On Enemies To Fire a Critical Hit Marker for Double Damage",
         "Replenish Ship Health After Successful Repair"
     };
