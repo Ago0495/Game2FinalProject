@@ -28,10 +28,9 @@ public class InteractableHelm : Interactable
         base.NetworkedStart();
 
         //shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
-        if (IsLocalPlayer)
+        if (user >= 0 && IsLocalPlayer && MyCore.NetObjs[user].GetComponent<PlayerStats>().skill == 1)
         {
-            cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
-            cameraObj.transform.SetParent(cameraHolderPos, false);
+            MyCore.NetObjs[user].GetComponent<NetworkPlayerController>().overrideCamera = true;
         }
     }
 
