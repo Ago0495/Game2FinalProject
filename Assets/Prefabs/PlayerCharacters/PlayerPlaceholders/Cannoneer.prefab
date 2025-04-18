@@ -2266,6 +2266,8 @@ MonoBehaviour:
   IsDirty: 0
   MyRig: {fileID: 6425235677392194848}
   MyAnime: {fileID: 1036280317985551621}
+  render: {fileID: 5977130318839741861}
+  titleCard: {fileID: 1178085102330871643}
   MyInput: {fileID: 0}
   MyMap: {fileID: 0}
   speed: 20
@@ -2273,9 +2275,14 @@ MonoBehaviour:
   canJump: 0
   jumpForce: 15
   lookSpeed: 0.5
+  lookInput: {x: 0, y: 0}
   currentInteractable: {fileID: 0}
   usingInteractable: 0
   disableMovement: 0
+  overrideCamera: 0
+  gm: {fileID: 0}
+  respawn: {fileID: 0}
+  isRespawning: 0
 --- !u!114 &6213961172326852503
 MonoBehaviour:
   m_ObjectHideFlags: 0

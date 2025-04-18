@@ -1772,6 +1772,14 @@ PrefabInstance:
       propertyPath: MyMap
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: render
+      value: 
+      objectReference: {fileID: 968531464376388751}
+    - target: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+      propertyPath: titleCard
+      value: 
+      objectReference: {fileID: 373467406299995693}
     - target: {fileID: 5188755514199474485, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
       propertyPath: m_Name
       value: Helmsman
@@ -1874,6 +1882,11 @@ PrefabInstance:
       addedObject: {fileID: 6117489653354949685}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+--- !u!223 &373467406299995693 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3930431700015082838, guid: cefcf903967331349969d5632b5bf9c2, type: 3}
+  m_PrefabInstance: {fileID: 3721486693105660795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4425820750892495820 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1067015459520905399, guid: cefcf903967331349969d5632b5bf9c2, type: 3}

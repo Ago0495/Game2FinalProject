@@ -10,6 +10,8 @@ public class NetworkPlayerController : NetworkComponent
 {
     [SerializeField] private Rigidbody MyRig;
     [SerializeField] private Animator MyAnime;
+    public SkinnedMeshRenderer render;
+    public Canvas titleCard;
     protected GameObject cameraObj;
     private Transform cameraHolderPos;
 
@@ -179,7 +181,9 @@ public class NetworkPlayerController : NetworkComponent
         if (IsLocalPlayer)
         {
             cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
-            cameraHolderPos = transform.GetChild(0).transform;
+            cameraHolderPos = transform.GetChild(1).transform;
+            render.enabled = false;
+            titleCard.enabled = false;
         }
     }
 

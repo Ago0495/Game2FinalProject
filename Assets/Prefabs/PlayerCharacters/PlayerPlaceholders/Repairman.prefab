@@ -1893,6 +1893,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8505010164580947233, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
   m_PrefabInstance: {fileID: 6824240129241510441}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &3930431700015082838 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7511758932335042431, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
+  m_PrefabInstance: {fileID: 6824240129241510441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5188755514199474485 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1636701791663059740, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
@@ -1915,6 +1920,8 @@ MonoBehaviour:
   IsDirty: 0
   MyRig: {fileID: 9221631683087425325}
   MyAnime: {fileID: 2932775276662810376}
+  render: {fileID: 5708062620786322682}
+  titleCard: {fileID: 3930431700015082838}
   MyInput: {fileID: 0}
   MyMap: {fileID: -944628639613478452, guid: edf44879388637341b0908c92ff966f3, type: 3}
   speed: 20
@@ -1922,9 +1929,14 @@ MonoBehaviour:
   canJump: 1
   jumpForce: 15
   lookSpeed: 0.5
+  lookInput: {x: 0, y: 0}
   currentInteractable: {fileID: 0}
   usingInteractable: 0
   disableMovement: 0
+  overrideCamera: 0
+  gm: {fileID: 0}
+  respawn: {fileID: 0}
+  isRespawning: 0
 --- !u!4 &8018595702356195872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}

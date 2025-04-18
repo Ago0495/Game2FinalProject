@@ -2170,9 +2170,21 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 28a81102c6c1a7044a796583dd5b661f, type: 2}
+    - target: {fileID: 1178085102330871643, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4108852339189866247, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
       propertyPath: jumpForce
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007525895885267086, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101266142265921640, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5302164652260796461, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2331,6 +2343,8 @@ MonoBehaviour:
   IsDirty: 0
   MyRig: {fileID: 2399647938001120516}
   MyAnime: {fileID: 8505010164580947233}
+  render: {fileID: 4904066552539362293}
+  titleCard: {fileID: 7511758932335042431}
   MyInput: {fileID: 0}
   MyMap: {fileID: 0}
   speed: 20
@@ -2338,9 +2352,14 @@ MonoBehaviour:
   canJump: 1
   jumpForce: 10
   lookSpeed: 0.5
+  lookInput: {x: 0, y: 0}
   currentInteractable: {fileID: 0}
   usingInteractable: 0
   disableMovement: 0
+  overrideCamera: 0
+  gm: {fileID: 0}
+  respawn: {fileID: 0}
+  isRespawning: 0
   canFire: 1
   reloadTimer: 0
   reloadTime: 4
@@ -2353,6 +2372,11 @@ Rigidbody:
 --- !u!4 &3599313380785899529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5302164652260796461, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
+  m_PrefabInstance: {fileID: 8675699641132441636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &7511758932335042431 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1178085102330871643, guid: d35a8607fcbe73c4aa1274606b74536c, type: 3}
   m_PrefabInstance: {fileID: 8675699641132441636}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8505010164580947233 stripped
