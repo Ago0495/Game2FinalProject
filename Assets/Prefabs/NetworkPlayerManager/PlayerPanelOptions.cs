@@ -9,12 +9,20 @@ public class PlayerPanelOptions : NetworkComponent
     //sync vals
     string playerName = "";
     bool isReady;
-    int skill;    
+    int skill;
+    string[] skillDescription =
+    {
+        "Can Quick Fire Cannons",
+        "Better View When Helming the Ship",
+        "Click On Enemies To Fire a Critical Hit Marker for Double Damage",
+        "Replenish Ship Health After Successful Repair"
+    };
 
     //non-sync vals
     [SerializeField] private TMP_InputField nameField;
     [SerializeField] private Toggle readyToggle;
     [SerializeField] private TMP_Dropdown skillSelect;
+    [SerializeField] private TMP_Text skillDescriptionText;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -25,7 +33,7 @@ public class PlayerPanelOptions : NetworkComponent
                 playerName = value;
                 SendUpdate("NAME", playerName);
             }
-            if (IsClient)
+            if (!IsLocalPlayer)
             {
                 playerName = value;
                 nameField.text = playerName;
@@ -67,6 +75,7 @@ public class PlayerPanelOptions : NetworkComponent
             {
                 skill = int.Parse(value);
                 skillSelect.SetValueWithoutNotify(skill);
+                skillDescriptionText.text = skillDescription[skill];
             }
         }
     }
@@ -149,6 +158,7 @@ public class PlayerPanelOptions : NetworkComponent
     {
         if (IsLocalPlayer)
         {
+            playerName = s;
             SendCommand("NAME", s);
         }
     }

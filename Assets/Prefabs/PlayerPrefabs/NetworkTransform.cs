@@ -92,7 +92,7 @@ public class NetworkTransform : NetworkComponent
             }
             else
             {
-                this.transform.position = Vector3.Lerp(this.transform.position, lastPosition, Time.deltaTime * Speed);
+                this.transform.position = Vector3.Lerp(this.transform.position, lastPosition, Time.deltaTime * (lastPosition - transform.position).magnitude);
             }
             if (rDistance > Threshold)
             {

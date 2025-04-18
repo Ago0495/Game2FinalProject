@@ -17,8 +17,13 @@ public class InteractableCannon : Interactable
     private float startPitch = 0f;
     private bool valuesSet = false;
     public bool canFire = true;
+    public bool fireAttempt = false;
     public float reloadTime = 2;
     public float reloadTimer = 0;
+
+    //camera
+    protected GameObject cameraObj;
+    [SerializeField] private Transform cameraHolderPos;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -35,16 +40,18 @@ public class InteractableCannon : Interactable
         {
             if (IsServer && canFire)
             {
-                GameObject tempBall = MyCore.NetCreateObject(cannonballPrefab, -1, transform.position + transform.forward * 5, Quaternion.identity);
-                Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
-                if (tempRB != null)
-                {
-                    tempBall.GetComponent<CannonBall>().attack = this.atk;
-                    tempRB.gameObject.layer = gameObject.layer;
-                    tempRB.linearVelocity = transform.forward * ballForce;
-                    canFire = false;
-                    SendUpdate("CANFIRE", canFire.ToString());
-                }
+                ShootCannonBall();
+            }
+            else if (IsServer && MyCore.NetObjs[user].GetComponent<PlayerStats>().skill == 0 && reloadTimer > reloadTime * 0.40 && reloadTimer < reloadTime * 0.60 && !fireAttempt)
+            {
+                //Debug.Log(reloadTimer);
+                ShootCannonBall();
+                reloadTimer = 0;
+                SendUpdate("SETTIMER", reloadTimer.ToString());
+            }
+            else
+            {
+                fireAttempt = true;
             }
         }
         if (flag == "CANFIRE")
@@ -58,6 +65,25 @@ public class InteractableCannon : Interactable
             {
                 canFire = bool.Parse(value);
             }
+        }
+        if (flag == "SETTIMER")
+        {
+            if (IsClient)
+            {
+                reloadTimer = float.Parse(value);
+                //Debug.Log("SETTIMER: " + reloadTimer);
+            }
+        }
+    }
+    public override void NetworkedStart()
+    {
+        base.NetworkedStart();
+
+        //shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
+        if (user >= 0 && IsLocalPlayer)
+        {
+            MyCore.NetObjs[user].GetComponent<NetworkPlayerController>().overrideCamera = true;
+            cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
         }
     }
 
@@ -85,6 +111,8 @@ public class InteractableCannon : Interactable
             if (reloadTimer > reloadTime)
             {
                 canFire = true;
+                fireAttempt = false;
+
                 reloadTimer -= reloadTime;
             }
             if (IsServer)
@@ -92,6 +120,17 @@ public class InteractableCannon : Interactable
                 SendUpdate("CANFIRE", canFire.ToString());
             }
         }
+
+        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
+        {
+            cameraObj.transform.position = cameraHolderPos.transform.position;
+            cameraObj.transform.rotation = cameraHolderPos.transform.rotation;
+        }
+
+        //if (IsLocalPlayer)
+        //{
+        //    Debug.Log(reloadTimer);
+        //}
     }
 
     public void FixedUpdate()
@@ -106,6 +145,7 @@ public class InteractableCannon : Interactable
             //pitch = Mathf.Clamp(pitch, startPitch - 15, startPitch + 10);
 
             transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+
         }
     }
 
@@ -146,6 +186,20 @@ public class InteractableCannon : Interactable
             {
                 SendCommand("FIRE", "");
             }
+        }
+    }
+
+    public void ShootCannonBall()
+    {
+        GameObject tempBall = MyCore.NetCreateObject(cannonballPrefab, -1, transform.position + transform.forward * 5, Quaternion.identity);
+        Rigidbody tempRB = tempBall.GetComponent<Rigidbody>();
+        if (tempRB != null)
+        {
+            tempBall.GetComponent<CannonBall>().attack = this.atk;
+            tempRB.gameObject.layer = gameObject.layer;
+            tempRB.linearVelocity = transform.forward * ballForce;
+            canFire = false;
+            SendUpdate("CANFIRE", canFire.ToString());
         }
     }
 }

@@ -99,6 +99,7 @@ public class GameMaster : NetworkComponent
                 //tempPlayer.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = skillNames[player.GetSkillSelection()];
                 tempPlayer.GetComponent<NetworkPlayerController>().SendUpdate("TITLE", player.GetPlayerName() + "," + PlayerStats.skills[player.GetSkillSelection()]);
                 tempPlayer.GetComponent<PlayerStats>().skill = player.GetSkillSelection();
+                tempPlayer.GetComponent<PlayerStats>().SendUpdate("SETSKILL", tempPlayer.GetComponent<PlayerStats>().skill.ToString());
             }
 
             gameStarted = true;
