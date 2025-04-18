@@ -93,6 +93,8 @@ public class InteractableCannon : Interactable
             MyCore.NetObjs[user].GetComponent<NetworkPlayerController>().overrideCamera = true;
             cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
         }
+
+        transform.SetParent(GameObject.FindGameObjectWithTag("SHIP").transform);
     }
 
     public void Start()
@@ -108,7 +110,6 @@ public class InteractableCannon : Interactable
             startPitch = pitch;
         }
 
-        transform.SetParent(GameObject.FindGameObjectWithTag("SHIP").transform);
     }
 
     public void Update()

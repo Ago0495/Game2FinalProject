@@ -95,7 +95,7 @@ MonoBehaviour:
   MyId: {fileID: 0}
   IsDirty: 0
   Threshold: 0
-  Ethreshold: 0
+  Ethreshold: 5
   Speed: 0
 --- !u!114 &-3339717589377395083
 MonoBehaviour:

@@ -103,6 +103,7 @@ public class InteractableRepairZone : Interactable
     {
         base.NetworkedStart();
         //playerShip = transform.parent.GetComponent<ShipStats>();
+        transform.SetParent(GameObject.FindGameObjectWithTag("SHIP").transform);
 
         if (!complete)
         {
