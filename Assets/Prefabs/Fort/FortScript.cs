@@ -15,11 +15,7 @@ public class FortScript : Enemy
 
     public void HandleMessage(string flag, string value)
     {
-        if (flag == "ENDBATTLE")
-        {
-            musicMaster.enemyCannons = 0;
-            musicMaster.background();
-        }
+        
     }
 
     public override IEnumerator SlowUpdate()
@@ -40,7 +36,8 @@ public class FortScript : Enemy
             {
                 MyCore.NetDestroyObject(cannons[i].GetComponent<EnemyCannon>().NetId);
             }
-            SendUpdate("ENDBATTLE", "hope");
+            gameMaster.deafeated(0);
+            //SendUpdate("ENDBATTLE", "hope");
             MyCore.NetCreateObject(coinChestPrefab, -1, transform.position + Vector3.up * 5, Quaternion.identity);
         }
     }
