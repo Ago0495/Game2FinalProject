@@ -66,7 +66,6 @@ public class GameMaster : NetworkComponent
 
         if(flag == "BACKGROUND")
         {
-            
             musicMaster = FindAnyObjectByType<MusicMasterScript>();
             musicMaster.background();
         }
@@ -77,6 +76,21 @@ public class GameMaster : NetworkComponent
         if(flag == "WIN")
         {
             musicMaster.win();
+        }
+        if(flag == "ENDKRAKEN")
+        {
+            musicMaster.kraken = false;
+            musicMaster.background();
+        }
+        if (flag == "ENDFORT")
+        {
+            musicMaster.enemyCannons = 0;
+            musicMaster.background();
+        }
+        if (flag == "ENDSHARK")
+        {
+            musicMaster.shark = false;
+            musicMaster.background();
         }
     }
 
@@ -145,6 +159,25 @@ public class GameMaster : NetworkComponent
 
                 yield return new WaitForSeconds(5);
                 MyCore.UI_Quit();
+            }
+        }
+    }
+
+    public void deafeated(int enemy)
+    {
+        if (IsServer)
+        {
+            if(enemy == 0)
+            {
+                SendUpdate("ENDFORT", "1");
+            }
+            else if (enemy == 1)
+            {
+                SendUpdate("ENDMEG", "1");
+            }
+            else
+            {
+                SendUpdate("ENDKRAKEN", "1");
             }
         }
     }

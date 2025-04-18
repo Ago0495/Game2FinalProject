@@ -32,6 +32,7 @@ public class MusicMasterScript : MonoBehaviour
         }
         else
         {
+            Debug.Log("Here");
             songs[currentlyPlaying].Stop();
             songs[1].Play();
             currentlyPlaying = 1;
@@ -65,9 +66,13 @@ public class MusicMasterScript : MonoBehaviour
 
     public void fortAttack()
     {
-        songs[currentlyPlaying].Stop();
-        songs[4].Play();
-        currentlyPlaying = 4;
+        if(enemyCannons == 0)
+        {
+            Debug.Log("Fortnite");
+            songs[currentlyPlaying].Stop();
+            songs[4].Play();
+            currentlyPlaying = 4;
+        }
     }
 
     public void lose()
@@ -87,6 +92,13 @@ public class MusicMasterScript : MonoBehaviour
     public void stop()
     {
         songs[currentlyPlaying].Stop();
+    }
+
+    public void fortEnd()
+    {
+        Debug.Log("lslsls");
+        enemyCannons = 0;
+        background();
     }
 
     void Start()
