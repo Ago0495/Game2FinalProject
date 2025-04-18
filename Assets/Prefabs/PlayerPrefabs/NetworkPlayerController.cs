@@ -327,7 +327,7 @@ public class NetworkPlayerController : NetworkComponent
     {
         isRespawning = true;
         yield return new WaitForSeconds(5f);
-        MyRig.velocity = Vector3.zero;
+        MyRig.linearVelocity = Vector3.zero;
         transform.position = respawn.position;
         isRespawning = false;
     }

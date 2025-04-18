@@ -14,7 +14,7 @@ public class Entity : NetworkComponent
     [SerializeField] public float attack;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
-    protected bool isAlive;
+    public bool isAlive = true;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -78,7 +78,7 @@ public class Entity : NetworkComponent
             OnDeath();
             if (IsServer)
             {
-                if (tag != "Player")
+                if (tag != "Player" && tag != "SHIP")
                 {
                     MyCore.NetDestroyObject(NetId);
                 }

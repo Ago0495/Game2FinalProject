@@ -49,6 +49,11 @@ public class ShipStats : Entity
         }
     }
 
+    public override void OnDeath()
+    {
+
+    }
+
     public void TestDamage(InputAction.CallbackContext context)
     {
         if (IsServer && context.started)

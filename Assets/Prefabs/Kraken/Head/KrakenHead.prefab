@@ -268,12 +268,13 @@ MonoBehaviour:
   dropOnDeath: {fileID: 0}
   DetectRange: {fileID: 8174862576381005656}
   scoreValue: 0
+  musicMaster: {fileID: 0}
   attacking: 0
   transition: 0
   tentaclePrefab: 18
   krakenArea: {fileID: 0}
-  stopDistance: 50
-  bashDistance: 25
+  stopDistance: 75
+  bashDistance: 50
   canSummon: 1
   maxTentacles: 8
   totalTentacles: 0

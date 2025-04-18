@@ -14,8 +14,9 @@ public class GameMaster : NetworkComponent
     public bool gameFinished = false;
     [SerializeField] private bool allPlayersReady = false;
     [SerializeField] MusicMasterScript musicMaster;
-    private int score;
+    private int score = 0;
     public int numcoinchestscollected;
+    public ShipStats ship;
 
     //non-sync vars
 
@@ -119,6 +120,7 @@ public class GameMaster : NetworkComponent
             }
 
             gameStarted = true;
+            ship = FindAnyObjectByType<ShipStats>();
             SendUpdate("GAMESTART", "1");
             SendUpdate("BACKGROUND", "1001");
 
@@ -132,12 +134,12 @@ public class GameMaster : NetworkComponent
             while (!gameFinished)
             {
                 float timer = 0;
-                while ((numcoinchestscollected < 4))
+                while ((numcoinchestscollected < 4) && ship.isAlive)
                 {
                     yield return new WaitForSeconds(1);
                     timer++;
                 }
-                SendUpdate("ENDGAME", "1");
+                SendUpdate("ENDGAME", "");
 
                 yield return new WaitForSeconds(5);
                 MyCore.UI_Quit();

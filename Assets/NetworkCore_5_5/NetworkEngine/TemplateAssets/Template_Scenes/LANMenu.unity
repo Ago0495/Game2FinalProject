@@ -3507,6 +3507,10 @@ PrefabInstance:
       propertyPath: defense
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1881957305240892579, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+      propertyPath: isAlive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2082976188918439117, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
       propertyPath: waterAngularDrag
       value: 9

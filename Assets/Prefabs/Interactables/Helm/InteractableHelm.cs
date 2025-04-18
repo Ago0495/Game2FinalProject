@@ -85,18 +85,7 @@ public class InteractableHelm : Interactable
 
     public void OnDestroy()
     {
-        //if (cameraObj != null && IsLocalPlayer)
-        //{
-        //    cameraObj.transform.SetParent(MyCore.NetObjs[user].transform.GetChild(0).transform);
-        //}
-        if (cameraObj != null && user >= 0)
-        {
-            cameraObj.transform.SetParent(MyCore.NetObjs[user].transform.GetChild(0).transform);
-        }
-        else if (cameraObj != null)
-        {
-            cameraObj.transform.SetParent(null);
-        }
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
