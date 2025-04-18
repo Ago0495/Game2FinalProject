@@ -45,7 +45,7 @@ public class InteractableRepairZone : Interactable
             }
             else
             {
-                transform.GetChild(1).GetComponent<ParticleSystem>().Pause();
+                transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
                 GetComponent<BoxCollider>().enabled = false;
             }
         }
@@ -111,7 +111,7 @@ public class InteractableRepairZone : Interactable
         }
         else
         {
-            transform.GetChild(1).GetComponent<ParticleSystem>().Pause();
+            transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
             GetComponent<BoxCollider>().enabled = false;
         }
     }

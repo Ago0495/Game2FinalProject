@@ -2206,7 +2206,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7985160590798394168}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2273,7 +2273,7 @@ MonoBehaviour:
   speed: 20
   maxSpeed: 20
   canJump: 0
-  jumpForce: 15
+  jumpForce: 12.5
   lookSpeed: 0.5
   lookInput: {x: 0, y: 0}
   currentInteractable: {fileID: 0}
@@ -2281,7 +2281,7 @@ MonoBehaviour:
   disableMovement: 0
   overrideCamera: 0
   gm: {fileID: 0}
-  respawn: {fileID: 0}
+  ship: {fileID: 0}
   isRespawning: 0
 --- !u!114 &6213961172326852503
 MonoBehaviour:
@@ -2461,6 +2461,7 @@ MonoBehaviour:
   attack: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
+  isAlive: 1
   skill: 0
 --- !u!95 &1036280317985551621
 Animator:
