@@ -1822,15 +1822,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.28109318
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6.902855
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.484845
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1922,14 +1922,9 @@ MonoBehaviour:
   canJump: 1
   jumpForce: 15
   lookSpeed: 0.5
-  lookInput: {x: 0, y: 0}
   currentInteractable: {fileID: 0}
   usingInteractable: 0
   disableMovement: 0
-  overrideCamera: 0
-  gm: {fileID: 0}
-  respawn: {fileID: 0}
-  isRespawning: 0
 --- !u!4 &8018595702356195872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
