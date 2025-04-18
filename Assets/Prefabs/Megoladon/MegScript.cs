@@ -277,6 +277,7 @@ public class MegScript : Enemy
     {
         if (IsServer)
         {
+            SendUpdate("ENDBATTLE", "hope");
             MyCore.NetCreateObject(DefUpgradePrefab, -1, transform.position + Vector3.up * 5, Quaternion.identity);
         }
     }

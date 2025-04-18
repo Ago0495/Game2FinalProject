@@ -40,6 +40,7 @@ public class FortScript : Enemy
             {
                 MyCore.NetDestroyObject(cannons[i].GetComponent<EnemyCannon>().NetId);
             }
+            SendUpdate("ENDBATTLE", "hope");
             MyCore.NetCreateObject(coinChestPrefab, -1, transform.position + Vector3.up * 5, Quaternion.identity);
         }
     }
