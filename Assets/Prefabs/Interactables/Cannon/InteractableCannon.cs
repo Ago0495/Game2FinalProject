@@ -42,7 +42,6 @@ public class InteractableCannon : Interactable
             if (IsServer && canFire)
             {
                 ShootCannonBall();
-                SendUpdate("FIRESOUND", "1001");
             }
             else if (IsServer && MyCore.NetObjs[user].GetComponent<PlayerStats>().skill == 0 && reloadTimer > reloadTime * 0.40 && reloadTimer < reloadTime * 0.60 && !fireAttempt)
             {
@@ -209,6 +208,7 @@ public class InteractableCannon : Interactable
             tempRB.linearVelocity = transform.forward * ballForce;
             canFire = false;
             SendUpdate("CANFIRE", canFire.ToString());
+            SendUpdate("FIRESOUND", "1001");
         }
     }
 }
