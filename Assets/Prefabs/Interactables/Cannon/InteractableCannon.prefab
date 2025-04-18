@@ -1257,6 +1257,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4986749581241084771, guid: a88f2bcdffa6fb943b77353a6e9193be, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986749581241084771, guid: a88f2bcdffa6fb943b77353a6e9193be, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986749581241084771, guid: a88f2bcdffa6fb943b77353a6e9193be, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8671451160993356517, guid: a88f2bcdffa6fb943b77353a6e9193be, type: 3}
       propertyPath: m_Name
       value: CannonAudio

@@ -35,7 +35,7 @@ public class NetworkPlayerController : NetworkComponent
 
     public GameMaster gm;
 
-    [SerializeField] private Transform respawn;
+    [SerializeField] private GameObject respawn;
     [SerializeField] private bool isRespawning = false; 
     public override void HandleMessage(string flag, string value)
     {
@@ -176,7 +176,7 @@ public class NetworkPlayerController : NetworkComponent
         gm = FindObjectOfType<GameMaster>();
         if (IsServer)
         {
-            respawn = GameObject.FindGameObjectWithTag("Respawn").transform;
+            respawn = GameObject.FindGameObjectWithTag("Respawn");
         }
         if (IsLocalPlayer)
         {
@@ -328,7 +328,7 @@ public class NetworkPlayerController : NetworkComponent
         isRespawning = true;
         yield return new WaitForSeconds(5f);
         MyRig.linearVelocity = Vector3.zero;
-        transform.position = respawn.position;
+        transform.position = respawn.transform.position;
         isRespawning = false;
     }
 }
