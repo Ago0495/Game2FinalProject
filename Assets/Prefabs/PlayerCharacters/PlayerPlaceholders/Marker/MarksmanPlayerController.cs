@@ -93,7 +93,7 @@ public class MarksmanPlayerController : NetworkPlayerController
                 if (Physics.Raycast(cameraObj.transform.position, cameraObj.transform.forward, out hit, Mathf.Infinity))
                 {
                     Debug.Log(hit.transform.name);
-                    Enemy markedEnemy = hit.collider.GetComponent<Enemy>();
+                    Enemy markedEnemy = hit.collider.transform.GetComponentInParent<Enemy>();
 
                     if (markedEnemy != null)
                     {

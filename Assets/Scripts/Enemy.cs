@@ -22,6 +22,12 @@ public class Enemy : Entity
         {
             attacking = true;
             transition = true;
+            Entity temp = other.GetComponent<Entity>();
+
+            if (temp != null)
+            {
+                temp.takeDamage(attack);
+            }
         }
     }
 

@@ -9,11 +9,12 @@ TagManager:
   - CHEST
   - KrakenHead
   - KArea
+  - PCANNON
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Aggro
   - Water
   - UI
   - Enemy

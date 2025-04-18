@@ -5,6 +5,7 @@ using System.Collections;
 public class EnemyCannon : NetworkComponent
 {
     public GameObject target;
+    public float atk;
     public float detectionRange = 20f;
     public int cannonBallSpeed;
     public float gravity;
@@ -93,6 +94,7 @@ public class EnemyCannon : NetworkComponent
         tempRB.gameObject.layer = gameObject.layer;
         if (tempRB != null)
         {
+            tempBall.GetComponent<CannonBall>().attack = atk;
             tempRB.linearVelocity = transform.forward * cannonBallSpeed;
         }
         reloading = true;

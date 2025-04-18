@@ -10,7 +10,8 @@ public class Entity : NetworkComponent
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float health;
     [SerializeField] protected float maxHealth;
-    [SerializeField] protected float defense;
+    [SerializeField] public float defense;
+    [SerializeField] public float attack;
     [SerializeField] protected Collider[] hitBoxes;
     [SerializeField] protected GameMaster gameMaster;
     protected bool isAlive;
@@ -21,7 +22,7 @@ public class Entity : NetworkComponent
         {
             if (IsClient)
             {
-                health = int.Parse(value);
+                health = float.Parse(value);
             }
         }
     }
@@ -66,6 +67,13 @@ public class Entity : NetworkComponent
         {
             isAlive = false;
             OnDeath();
+            if (IsServer)
+            {
+                if (tag != "Player")
+                {
+                    MyCore.NetDestroyObject(NetId);
+                }
+            }
         }
 
         OnDamageTaken(totalDamage);

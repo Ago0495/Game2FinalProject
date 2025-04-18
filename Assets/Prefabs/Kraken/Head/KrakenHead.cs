@@ -14,6 +14,8 @@ public class KrakenHead : Enemy
     public float summonDalaySeconds;
     public bool bashing;
 
+    public int AtkUpgradePrefab;
+
     //Animations
     private bool bash;
     private bool move = false;
@@ -98,7 +100,17 @@ public class KrakenHead : Enemy
             canSummon = false;
             int randX = Random.Range(50, 160);
             int randY = Random.Range(-40, 40);
-            Vector3 randPos = (target.transform.forward * randX) + (target.transform.right * randY);
+            //Vector3 randPos = (target.transform.forward * randX) + (target.transform.right * randY);
+
+            int randRadius = Random.Range(15, 25);
+            float randAngle = Random.Range(0, 360);
+
+            Vector3 randPos = target.transform.position + new Vector3(
+                Mathf.Cos(randAngle) * randRadius,
+                -15,
+                Mathf.Sin(randAngle) * randRadius
+            );
+
             Vector3 direction = (transform.position - krakenArea.transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(-direction);
             MyCore.NetCreateObject(tentaclePrefab, -1, randPos, targetRotation);
@@ -146,7 +158,7 @@ public class KrakenHead : Enemy
                 rotateTowardsPlayer();
                 if(MyRig.linearVelocity.magnitude > 0)
                 {
-                    MyRig.linearVelocity = Vector3.zero;
+                    //MyRig.linearVelocity = Vector3.zero;
                     MyAnime.SetBool("Move", false);
                     move = false;
                     idle = true;
@@ -158,7 +170,8 @@ public class KrakenHead : Enemy
             {
                 rotateTowardsPlayer();
                 Vector3 moveDirection = (target.transform.position - transform.position).normalized;
-                MyRig.linearVelocity = moveDirection * moveSpeed;
+                //MyRig.linearVelocity = moveDirection * moveSpeed;
+                MyRig.AddForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
                 spawnTentacle();
                 if (!move)
                 {
@@ -176,10 +189,11 @@ public class KrakenHead : Enemy
                     Quaternion targetRotation = Quaternion.LookRotation(-direction);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                     Vector3 moveDirection = (krakenArea.transform.position - transform.position).normalized;
-                    MyRig.linearVelocity = moveDirection * moveSpeed;
+                    //MyRig.linearVelocity = moveDirection * moveSpeed;
+                    MyRig.AddForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
                     if (!move)
                     {
-                        Debug.Log("Here");
+                        //Debug.Log("Here");
                         SendUpdate("Move", "404");
                         move = true;
                         idle = false;
@@ -190,7 +204,7 @@ public class KrakenHead : Enemy
                 {
                     if (MyRig.linearVelocity.magnitude > 0)
                     {
-                        MyRig.linearVelocity = Vector3.zero;
+                        //MyRig.linearVelocity = Vector3.zero;
                         MyAnime.SetBool("Move", false);
                         move = false;
                         idle = true;
@@ -199,7 +213,14 @@ public class KrakenHead : Enemy
                 }
                     
             }
+        }
+    }
 
+    public override void OnDeath()
+    {
+        if (IsServer)
+        {
+            MyCore.NetCreateObject(AtkUpgradePrefab, -1, transform.position + Vector3.up * 5, Quaternion.identity);
         }
     }
 }

@@ -66,7 +66,6 @@ public class RepairzoneUI : MonoBehaviour
                 {
                     for (int i = 0; i < index; i++)
                     {
-                        Debug.Log("Reset: " + index);
                         Color tempColor = transform.GetChild(0).GetChild(i).GetComponent<Image>().color;
                         tempColor.a = 1f;
                         transform.GetChild(0).GetChild(i).GetComponent<Image>().color = tempColor;

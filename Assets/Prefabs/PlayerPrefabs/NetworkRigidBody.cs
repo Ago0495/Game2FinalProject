@@ -1,168 +1,127 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using NETWORK_ENGINE;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
+
 public class NetworkRigidBody : NetworkComponent
 {
-    //Position, velocity, rotation, angular velocity
-    public Vector3 LastPosition;
-    public Vector3 LastRotation;
-    public Vector3 LastVelocity;
-    public Vector3 LastAngular;
+    //sync vars
+    public Vector3 lastPosition;
+    public Vector3 lastRotation;
+    public Vector3 lastVelocity;
+    public Vector3 lastAngularVelocity;
 
-    //This vector will provide extra velocity on the client to try to compensate for any error in position.
-    public Vector3 OffsetVelocity;
+    //non-sync vars
+    public float threshold;
+    public float eThreshold;
+    public bool useAdjustVel;
+    public Vector3 adjustVelocity;
+    public Rigidbody myRig;
 
-    //Minimum and maximum thresholds 
-    public float Threshold = .1f;
-    public float EThreshold = 2.5f;
+    public override void HandleMessage(string flag, string value)
+    {
+        if (IsClient && flag == "POS")
+        {
+            lastPosition = NetworkCore.Vector3FromString(value);
+            if (useAdjustVel)
+            {
+                adjustVelocity = lastPosition - myRig.position;
+            }
+            if ((lastPosition - myRig.position).magnitude > eThreshold)
+            {
+                myRig.position = lastPosition;
+                adjustVelocity = Vector3.zero;
+            }
+        }
+        if (IsClient && flag == "VEL")
+        {
+            lastVelocity = NetworkCore.Vector3FromString(value);
+            if (lastVelocity.magnitude < 0.01f)
+            {
+                adjustVelocity = Vector3.zero;
+            }
 
-    //Rigid body variable.  
-    public Rigidbody MyRig;
-    public bool UseOffsetVelocity = true;
-
-    public bool ClientRecv = false;
+        }
+        if (IsClient && flag == "ROT")
+        {
+            lastRotation = NetworkCore.Vector3FromString(value);
+            if ((lastRotation - myRig.rotation.eulerAngles).magnitude > eThreshold)
+            {
+                myRig.rotation = Quaternion.Euler(lastRotation);
+            }
+        }
+        if (IsClient && flag == "ANG")
+        {
+            lastAngularVelocity = NetworkCore.Vector3FromString(value);
+        }
+    }
 
     public override void NetworkedStart()
     {
 
     }
-    //This function will aprse out a vector from Unity's Vector3.ToString format.
-    public static Vector3 VectorFromString(string value)
-    {
-        char[] temp = { '(', ')' };
-        string[] args = value.Trim().Trim(temp).Split(',');
-        return new Vector3(float.Parse(args[0].Trim()), float.Parse(args[1].Trim()), float.Parse(args[2].Trim()));
-    }
-    public override void HandleMessage(string flag, string value)
-    {
-        if (IsClient && !ClientRecv)
-        {
-            ClientRecv = true;
-        }
-
-        if (flag == "POS" && IsClient)  //If position is received.
-        {
-            LastPosition = VectorFromString(value);  //Parse values.
-            float d = (MyRig.position - LastPosition).magnitude;
-            //if difference between the two positions is greater than emergency thresholds, Or if offset velocity is disabled, or if velocity is 0.
-            if (d > EThreshold || !UseOffsetVelocity || LastVelocity.magnitude < .1)
-            {
-                //Clear offset velocity set the position.
-                OffsetVelocity = Vector3.zero;
-                MyRig.position = LastPosition;
-            }
-            else if (LastVelocity.magnitude > .1)
-            {
-                //Otherwise calculate offset velocity.
-                OffsetVelocity = (LastPosition - MyRig.position);
-            }
-
-        }
-        if (flag == "VEL" && IsClient)
-        {
-            //Update last Velocity -- notice it is not set here.
-            LastVelocity = VectorFromString(value);
-        }
-        if (flag == "ROT" && IsClient)
-        {
-            //Update rotation
-            LastRotation = VectorFromString(value);
-            MyRig.rotation = Quaternion.Euler(LastRotation);
-            //MyRig.rotation = Quaternion.Slerp(MyRig.rotation, Quaternion.Euler(LastRotation), Time.deltaTime * 5);
-        }
-        if (flag == "ANG" && IsClient)
-        {
-            //Update Last angular velocity -- notice it is not set here.
-            LastAngular = VectorFromString(value);
-        }
-    }
 
     public override IEnumerator SlowUpdate()
     {
-        if (IsClient)
-        {
-            //The client may come in conflict if gravity is applied.
-            MyRig.useGravity = false;
-
-        }
-
-        while (true)
+        while (IsConnected)
         {
             if (IsServer)
             {
-                //if difference in position is greater than threshold send update.
-                if ((LastPosition - MyRig.position).magnitude > Threshold)
+                if ((myRig.position - lastPosition).magnitude > threshold)
                 {
-                    SendUpdate("POS", MyRig.position.ToString("F3"));
-                    LastPosition = MyRig.position;
+                    SendUpdate("POS", myRig.position.ToString());
+                    lastPosition = myRig.position;
                 }
-                //If difference in velocity is greater than threshold send update.
-                if ((LastVelocity - MyRig.linearVelocity).magnitude > Threshold)
+
+                if ((myRig.rotation.eulerAngles - lastRotation).magnitude > threshold)
                 {
-                    SendUpdate("VEL", MyRig.linearVelocity.ToString("F3"));
-                    LastVelocity = MyRig.linearVelocity;
+                    SendUpdate("ROT", myRig.rotation.eulerAngles.ToString());
+                    lastRotation = myRig.position;
                 }
-                //If difference in roation is greater than threshold send update.
-                if ((LastRotation - MyRig.rotation.eulerAngles).magnitude > Threshold)
+
+                if ((lastVelocity - myRig.linearVelocity).magnitude > threshold)
                 {
-                    SendUpdate("ROT", MyRig.rotation.eulerAngles.ToString("F3"));
-                    LastRotation = MyRig.rotation.eulerAngles;
+                    SendUpdate("VEL", myRig.linearVelocity.ToString());
+                    lastVelocity = myRig.linearVelocity;
                 }
-                //if the difference in the angualar velocity is greater than threshold send udpate.
-                if ((LastAngular - MyRig.angularVelocity).magnitude > Threshold)
+
+                if ((myRig.angularVelocity - lastAngularVelocity).magnitude > threshold)
                 {
-                    SendUpdate("ANG", MyRig.angularVelocity.ToString("F3"));
-                    LastAngular = MyRig.angularVelocity;
+                    SendUpdate("ANG", myRig.angularVelocity.ToString());
+                    lastAngularVelocity = myRig.angularVelocity;
                 }
-                //If game object is dirty send uall updates mark Is Dirty as false.
+
                 if (IsDirty)
                 {
-                    SendUpdate("POS", MyRig.position.ToString("F3"));
-                    SendUpdate("VEL", MyRig.linearVelocity.ToString("F3"));
-                    SendUpdate("ROT", MyRig.rotation.eulerAngles.ToString("F3"));
-                    SendUpdate("ANG", MyRig.angularVelocity.ToString("F3"));
+                    SendUpdate("POS", myRig.position.ToString());
+                    SendUpdate("VEL", myRig.linearVelocity.ToString());
+                    SendUpdate("ROT", myRig.rotation.ToString());
+                    SendUpdate("ANG", myRig.angularVelocity.ToString());
                     IsDirty = false;
                 }
             }
-            /*if(IsClient)
-            {
-                if( (MyRig.position- LastPosition).magnitude > EThreshold)
-                {
-                    MyId.NotifyDirty();
-                }
-            }*/
             yield return new WaitForSeconds(MyCore.MasterTimer);
         }
     }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        MyRig = GetComponent<Rigidbody>();
+        myRig = GetComponent<Rigidbody>();
     }
+
+    // Update is called once per frame
     void Update()
     {
-        if (IsClient && ClientRecv)
+        if (IsClient)
         {
-            //Continously update velocity.
-            if (LastVelocity.magnitude < .05f)
+            myRig.linearVelocity = lastVelocity;
+            if (useAdjustVel)
             {
-                //Stop velocity so you do not get drift on the client.
-                OffsetVelocity = Vector3.zero;
+                myRig.linearVelocity += adjustVelocity;
+                myRig.angularVelocity = lastAngularVelocity;
             }
-            if (UseOffsetVelocity)
-            {
-                //continously set velocity with offset velocity
-                MyRig.linearVelocity = LastVelocity + OffsetVelocity;
-            }
-            else
-            {
-                //continously set velocity without velocity.
-                MyRig.linearVelocity = LastVelocity;
-            }
-            //Continously update angular velocity.
-            MyRig.angularVelocity = LastAngular;
         }
     }
 }

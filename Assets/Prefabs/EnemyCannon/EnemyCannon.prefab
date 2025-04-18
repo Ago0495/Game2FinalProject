@@ -200,6 +200,7 @@ MonoBehaviour:
   MyId: {fileID: 0}
   IsDirty: 0
   target: {fileID: 0}
+  atk: 10
   detectionRange: 20
   cannonBallSpeed: 40
   gravity: 0

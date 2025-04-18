@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 8617022438638048625}
   m_Layer: 7
   m_Name: InteractableCannon
-  m_TagString: Untagged
+  m_TagString: PCANNON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,6 +483,7 @@ MonoBehaviour:
   cannonMoveSpeed: 30
   cannonballPrefab: 11
   ballForce: 50
+  atk: 20
   canFire: 1
   reloadTime: 2
   reloadTimer: 0

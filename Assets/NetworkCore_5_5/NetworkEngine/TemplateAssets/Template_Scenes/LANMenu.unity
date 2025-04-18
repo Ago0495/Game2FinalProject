@@ -516,6 +516,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 254343255224946848, guid: cabd45385d9a5544eab48398a7b89892, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7177548629959665936, guid: cabd45385d9a5544eab48398a7b89892, type: 3}
       propertyPath: m_LocalPosition.x
       value: 337
@@ -555,6 +559,10 @@ PrefabInstance:
     - target: {fileID: 7177548629959665936, guid: cabd45385d9a5544eab48398a7b89892, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460706772260304373, guid: cabd45385d9a5544eab48398a7b89892, type: 3}
+      propertyPath: DefUpgradePrefab
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7552561725428872106, guid: cabd45385d9a5544eab48398a7b89892, type: 3}
       propertyPath: m_Name
@@ -789,6 +797,8 @@ MonoBehaviour:
   - {fileID: 2581729858997746226, guid: a8ecd7ef45b4a844fbaeefb3d929f831, type: 3}
   - {fileID: 7645861206202796679, guid: 20ec9b9823bcf8d488f10a7280b26ff9, type: 3}
   - {fileID: 3492889578237515608, guid: 6a4cefb62ab403a41b8d827effb4fd2a, type: 3}
+  - {fileID: 2361221190510638527, guid: 903ae74e90fe6b54ba3ae15b024effae, type: 3}
+  - {fileID: 3911671192938632001, guid: acac6c3ef363fe44d9d29f5df6ea06d5, type: 3}
   NetworkPlayerManager: {fileID: 9114435196644440787, guid: 04a66e8d824ffc04987633ca90e16587, type: 3}
   DefaultReturnScene: 0
 --- !u!4 &408156394
@@ -1261,6 +1271,10 @@ PrefabInstance:
     - target: {fileID: 1057009500653457948, guid: 6c05f0a9df3d2dc45b618a278ba996b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759540570687920997, guid: 6c05f0a9df3d2dc45b618a278ba996b3, type: 3}
+      propertyPath: health
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6759540570687920997, guid: 6c05f0a9df3d2dc45b618a278ba996b3, type: 3}
       propertyPath: krakenArea
