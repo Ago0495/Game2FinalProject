@@ -22,7 +22,7 @@ public class Entity : NetworkComponent
         {
             if (IsClient)
             {
-                health = int.Parse(value);
+                health = float.Parse(value);
             }
         }
     }

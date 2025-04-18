@@ -14,6 +14,8 @@ public class KrakenHead : Enemy
     public float summonDalaySeconds;
     public bool bashing;
 
+    public int AtkUpgradePrefab;
+
     //Animations
     private bool bash;
     private bool move = false;
@@ -105,7 +107,7 @@ public class KrakenHead : Enemy
 
             Vector3 randPos = target.transform.position + new Vector3(
                 Mathf.Cos(randAngle) * randRadius,
-                0,
+                -15,
                 Mathf.Sin(randAngle) * randRadius
             );
 
@@ -191,7 +193,7 @@ public class KrakenHead : Enemy
                     MyRig.AddForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
                     if (!move)
                     {
-                        Debug.Log("Here");
+                        //Debug.Log("Here");
                         SendUpdate("Move", "404");
                         move = true;
                         idle = false;
@@ -211,7 +213,14 @@ public class KrakenHead : Enemy
                 }
                     
             }
+        }
+    }
 
+    public override void OnDeath()
+    {
+        if (IsServer)
+        {
+            MyCore.NetCreateObject(AtkUpgradePrefab, -1, transform.position, Quaternion.identity);
         }
     }
 }

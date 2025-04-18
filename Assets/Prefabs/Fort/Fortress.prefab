@@ -280,8 +280,10 @@ MonoBehaviour:
   MyRig: {fileID: 0}
   MyAnime: {fileID: 0}
   moveSpeed: 0
-  health: 0
+  health: 200
+  maxHealth: 200
   defense: 0
+  attack: 0
   hitBoxes: []
   gameMaster: {fileID: 0}
   rotationSpeed: 0

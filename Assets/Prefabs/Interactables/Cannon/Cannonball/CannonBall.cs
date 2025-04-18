@@ -35,7 +35,7 @@ public class CannonBall : Entity
     {
         if (IsServer)
         {
-            Debug.Log(other.name);
+            //Debug.Log(other.name);
             Entity entity = other.GetComponentInParent<Entity>();
 
             if (entity != null && other.gameObject.layer != this.gameObject.layer)

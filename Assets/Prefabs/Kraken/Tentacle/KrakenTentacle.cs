@@ -93,7 +93,7 @@ public class KrakenTentacle : Enemy
             if((transform.position - target.transform.position).magnitude > maxDistence)
             {
                 head.removeTentacle();
-                Debug.Log("Tentacle to far");
+                //Debug.Log("Tentacle to far");
                 MyCore.NetDestroyObject(this.NetId);
             }
         }

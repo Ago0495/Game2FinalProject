@@ -21,7 +21,7 @@ public class DefensePowerUp : Collectable
         {
             Debug.Log("Defense Power Up collected");
             Entity entity = ship.GetComponent<Entity>();
-            entity.defense = 0.25f;
+            entity.defense = 0.5f;
             Debug.Log("entity defense is " + entity.defense);
         }
 
