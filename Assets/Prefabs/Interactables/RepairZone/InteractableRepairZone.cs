@@ -19,8 +19,18 @@ public class InteractableRepairZone : Interactable
         {
             if (IsServer)
             {
+                if (bool.Parse(value) && MyCore.NetObjs[user].GetComponent<PlayerStats>().skill == 3)
+                {
+                    Debug.Log("Ship healed: " + (playerShip.getMaxHealth() * 0.05f));
+                    playerShip.setHealth(playerShip.getHealth() + (playerShip.getMaxHealth() * 0.05f));
+                }
+
                 complete = bool.Parse(value);
+
+
                 SendUpdate("COMPLETE", complete.ToString());
+
+
             }
             if (IsClient)
             {

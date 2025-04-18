@@ -21,13 +21,14 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] float jumpForce;
     public float lookSpeed = 0.5f;
     private Vector2 lastInput;
-    private Vector2 lookInput;
+    public Vector2 lookInput;
     private float yaw;
     private float pitch;
     private Vector3 movingPlatform;
     public Interactable currentInteractable;
-    [SerializeField] private bool usingInteractable;
+    [SerializeField] protected bool usingInteractable;
     [SerializeField] private bool disableMovement;
+    public bool overrideCamera = false;
 
 
     public override void HandleMessage(string flag, string value)
@@ -80,6 +81,7 @@ public class NetworkPlayerController : NetworkComponent
                         interactable.SetUser(-1);
                         usingInteractable = false;
                         disableMovement = false;
+                        overrideCamera = false;
                         SendUpdate("USE", args[0] + "," + args[1] + "," + usingInteractable);
                     }
                 }
@@ -92,6 +94,10 @@ public class NetworkPlayerController : NetworkComponent
             {
                 usingInteractable = bool.Parse(args[2]);
                 disableMovement = usingInteractable;
+                if (usingInteractable == false)
+                {
+                    overrideCamera = false;
+                }
             }
         }
         if (flag == "TITLE")
@@ -229,7 +235,7 @@ public class NetworkPlayerController : NetworkComponent
             }
         }
 
-        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
+        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null && !overrideCamera)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

@@ -49,9 +49,14 @@ public class Entity : NetworkComponent
         return maxHealth;
     }
 
-    public void setHealth(int hp)
+    public void setHealth(float hp)
     {
         health = hp;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        SendUpdate("HP", health.ToString());
     }
 
     public virtual void takeDamage(float damage)
@@ -61,6 +66,10 @@ public class Entity : NetworkComponent
         
         float totalDamage = damage * (1-this.defense);
         health -= totalDamage;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
         SendUpdate("HP", health.ToString());
 
         if(health <= 0)
