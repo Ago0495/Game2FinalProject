@@ -10,6 +10,12 @@ public class InteractableHelm : Interactable
     [SerializeField] Rigidbody shipRB;
     private GameObject cameraObj;
     [SerializeField] private Transform cameraHolderPos;
+
+    //helm camera
+    public float lookSpeed = 0.5f;
+    private Vector2 lookInput;
+    private float yaw;
+    private float pitch;
     public override void HandleMessage(string flag, string value)
     {
         base.HandleMessage(flag, value);
@@ -28,10 +34,10 @@ public class InteractableHelm : Interactable
         base.NetworkedStart();
 
         //shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
-        if (IsLocalPlayer)
+        if (user >= 0 && IsLocalPlayer && MyCore.NetObjs[user].GetComponent<PlayerStats>().skill == 1)
         {
+            MyCore.NetObjs[user].GetComponent<NetworkPlayerController>().overrideCamera = true;
             cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
-            cameraObj.transform.SetParent(cameraHolderPos, false);
         }
     }
 
@@ -55,6 +61,24 @@ public class InteractableHelm : Interactable
             else
             {
                 shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
+            }
+        }
+
+        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
+        {
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+
+            if (!gm.gameFinished)
+            {
+                cameraObj.transform.position = cameraHolderPos.transform.position + cameraHolderPos.transform.forward * -50;
+                cameraObj.transform.LookAt(GameObject.FindGameObjectWithTag("SHIP").transform.position);
+                RotateView();
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }
@@ -90,4 +114,24 @@ public class InteractableHelm : Interactable
         }
     }
 
+    public void OnLook(InputAction.CallbackContext lk)
+    {
+        //if (!disableMovement)
+        //{
+        if (IsLocalPlayer)
+        {
+            lookInput = lk.ReadValue<Vector2>();
+        }
+        //}
+    }
+
+    public void RotateView()
+    {
+        yaw += lookInput.x * lookSpeed;
+        pitch -= lookInput.y * lookSpeed;
+        pitch = Mathf.Clamp(pitch, -80f, 80f);
+
+        //transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+        cameraHolderPos.rotation = Quaternion.Euler(pitch, yaw, 0f);
+    }
 }

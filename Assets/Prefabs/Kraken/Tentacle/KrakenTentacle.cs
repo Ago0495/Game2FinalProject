@@ -96,6 +96,11 @@ public class KrakenTentacle : Enemy
                 //Debug.Log("Tentacle to far");
                 MyCore.NetDestroyObject(this.NetId);
             }
+
+            if (head == null)
+            {
+                MyCore.NetDestroyObject(this.NetId);
+            }
         }
     }
 }

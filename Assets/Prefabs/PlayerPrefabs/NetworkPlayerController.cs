@@ -4,6 +4,7 @@ using UnityEngine;
 using NETWORK_ENGINE;
 using UnityEngine.InputSystem;
 using TMPro;
+using Unity.VisualScripting;
 
 public class NetworkPlayerController : NetworkComponent
 {
@@ -21,15 +22,19 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] float jumpForce;
     public float lookSpeed = 0.5f;
     private Vector2 lastInput;
-    private Vector2 lookInput;
+    public Vector2 lookInput;
     private float yaw;
     private float pitch;
     private Vector3 movingPlatform;
     public Interactable currentInteractable;
-    [SerializeField] private bool usingInteractable;
+    [SerializeField] protected bool usingInteractable;
     [SerializeField] private bool disableMovement;
+    public bool overrideCamera = false;
 
+    public GameMaster gm;
 
+    [SerializeField] private Transform respawn;
+    [SerializeField] private bool isRespawning = false; 
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "MOVE")
@@ -80,6 +85,7 @@ public class NetworkPlayerController : NetworkComponent
                         interactable.SetUser(-1);
                         usingInteractable = false;
                         disableMovement = false;
+                        overrideCamera = false;
                         SendUpdate("USE", args[0] + "," + args[1] + "," + usingInteractable);
                     }
                 }
@@ -92,6 +98,10 @@ public class NetworkPlayerController : NetworkComponent
             {
                 usingInteractable = bool.Parse(args[2]);
                 disableMovement = usingInteractable;
+                if (usingInteractable == false)
+                {
+                    overrideCamera = false;
+                }
             }
         }
         if (flag == "TITLE")
@@ -161,9 +171,10 @@ public class NetworkPlayerController : NetworkComponent
 
     public override void NetworkedStart()
     {
+        gm = FindObjectOfType<GameMaster>();
         if (IsServer)
         {
-
+            respawn = GameObject.FindGameObjectWithTag("Respawn").transform;
         }
         if (IsLocalPlayer)
         {
@@ -202,7 +213,7 @@ public class NetworkPlayerController : NetworkComponent
     {
         //if (!disableMovement)
         //{
-            lookInput = lk.ReadValue<Vector2>();
+        lookInput = lk.ReadValue<Vector2>();
         //}
     }
 
@@ -229,19 +240,33 @@ public class NetworkPlayerController : NetworkComponent
             }
         }
 
-        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
+        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null && !overrideCamera)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            cameraObj.transform.position = cameraHolderPos.transform.position;
-            RotateView();
-            if (!usingInteractable)
+            if (!gm.gameFinished)
             {
-                LookForInteractable();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                cameraObj.transform.position = cameraHolderPos.transform.position;
+                RotateView();
+                if (!usingInteractable)
+                {
+                    LookForInteractable();
+                }
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        }
+        if (IsServer && !isRespawning)
+        {
+            if (transform.position.y < -1f)
+            {
+                StartCoroutine(RespawnCoroutine());
             }
         }
     }
-
     public void OnCollisionEnter(Collision collision)
     {
         if (IsServer)
@@ -287,10 +312,19 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (IsLocalPlayer)
         {
-            if(context.started && currentInteractable != null)
+            if (context.started && currentInteractable != null)
             {
                 SendCommand("USE", currentInteractable.NetId + "," + this.NetId + "," + usingInteractable);
             }
         }
+    }
+
+    public IEnumerator RespawnCoroutine()
+    {
+        isRespawning = true;
+        yield return new WaitForSeconds(5f);
+        MyRig.velocity = Vector3.zero;
+        transform.position = respawn.position;
+        isRespawning = false;
     }
 }

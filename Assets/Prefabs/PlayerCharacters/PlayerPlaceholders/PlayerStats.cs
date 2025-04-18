@@ -19,7 +19,10 @@ public class PlayerStats : Entity
     {
         if (flag == "SETSKILL")
         {
-
+            if (IsClient)
+            {
+                skill = int.Parse(value);
+            }
         }
     }
 

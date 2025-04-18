@@ -1795,7 +1795,7 @@ PrefabInstance:
     - target: {fileID: 3340028360296384435, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1067015459520905399}
     - target: {fileID: 3340028360296384435, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1813,20 +1813,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3340028360296384435, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseInteractable
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340028360296384435, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnJump
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.28109318
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.902855
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.484845
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1918,9 +1922,14 @@ MonoBehaviour:
   canJump: 1
   jumpForce: 15
   lookSpeed: 0.5
+  lookInput: {x: 0, y: 0}
   currentInteractable: {fileID: 0}
   usingInteractable: 0
   disableMovement: 0
+  overrideCamera: 0
+  gm: {fileID: 0}
+  respawn: {fileID: 0}
+  isRespawning: 0
 --- !u!4 &8018595702356195872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3599313380785899529, guid: 4c5d2625faed31c45ba055bf8727cc29, type: 3}

@@ -10,8 +10,8 @@ using Unity.VisualScripting;
 public class GameMaster : NetworkComponent
 {
     //sync vars
-    [SerializeField] private bool gameStarted = false;
-    [SerializeField] private bool gameFinished = false;
+    public bool gameStarted = false;
+    public bool gameFinished = false;
     [SerializeField] private bool allPlayersReady = false;
     [SerializeField] MusicMasterScript musicMaster;
     private int score;
@@ -115,6 +115,7 @@ public class GameMaster : NetworkComponent
                 //tempPlayer.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = skillNames[player.GetSkillSelection()];
                 tempPlayer.GetComponent<NetworkPlayerController>().SendUpdate("TITLE", player.GetPlayerName() + "," + PlayerStats.skills[player.GetSkillSelection()]);
                 tempPlayer.GetComponent<PlayerStats>().skill = player.GetSkillSelection();
+                tempPlayer.GetComponent<PlayerStats>().SendUpdate("SETSKILL", tempPlayer.GetComponent<PlayerStats>().skill.ToString());
             }
 
             gameStarted = true;
@@ -123,15 +124,15 @@ public class GameMaster : NetworkComponent
 
             numcoinchestscollected = 0;
 
-            score = Random.Range(10, 1000);
-            SendUpdate("SCORE", score.ToString());
+            //score = Random.Range(10, 1000);
+            //SendUpdate("SCORE", score.ToString());
 
             MyCore.NotifyGameStart();
 
             while (!gameFinished)
             {
                 float timer = 0;
-                while ((numcoinchestscollected < 4))
+                while ((numcoinchestscollected < 4) && timer < 10)
                 {
                     yield return new WaitForSeconds(1);
                     timer++;

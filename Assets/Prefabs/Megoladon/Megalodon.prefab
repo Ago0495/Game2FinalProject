@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2283745891133278850}
   - component: {fileID: 4040574916454609870}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: AggroTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

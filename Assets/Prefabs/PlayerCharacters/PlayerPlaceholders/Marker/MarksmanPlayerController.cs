@@ -20,22 +20,20 @@ public class MarksmanPlayerController : NetworkPlayerController
 
         if (flag == "HIT")
         {
-            if (IsServer && canFire)
+            if (IsServer && canFire && !usingInteractable)
             {
                 string[] args = value.Split(",");
 
                 GameObject enemyHitObj = MyCore.NetObjs[int.Parse(args[0])].gameObject;
                 Vector3 hitPos = NetworkCore.Vector3FromString(args[1] + "," + args[2] + "," + args[3]);
 
-                Debug.Log(hitPos);
-
-                Debug.Log(enemyHitObj.name);
                 //do damage and spawn marker
                 GameObject tempMarker = MyCore.NetCreateObject(markerPrefabIndex, -1, hitPos, Quaternion.identity);
                 Transform tempMarkerTransform = tempMarker.transform;
                 if (tempMarkerTransform != null)
                 {
                     tempMarkerTransform.SetParent(enemyHitObj.transform);
+                    enemyHitObj.GetComponent<Entity>().takeDamage(5);
                 }
 
                 canFire = false;
@@ -98,17 +96,15 @@ public class MarksmanPlayerController : NetworkPlayerController
                 RaycastHit hit;
                 if (Physics.Raycast(cameraObj.transform.position, cameraObj.transform.forward, out hit, Mathf.Infinity))
                 {
-                    Debug.Log(hit.transform.name);
                     Enemy markedEnemy = hit.collider.transform.GetComponentInParent<Enemy>();
 
                     if (markedEnemy != null)
                     {
-                        Debug.Log(hit.transform.name + " is Enemy");
-                        int enemyID = hit.transform.GetComponent<NetworkID>().NetId;
+                        //int enemyID = hit.transform.GetComponent<NetworkID>().NetId;
+                        int enemyID = markedEnemy.GetComponent<NetworkID>().NetId;
                         Vector3 hitPos = hit.point;
                         SendCommand("HIT", enemyID.ToString() + "," + hitPos); 
                     }
-
                 }
             }
         }

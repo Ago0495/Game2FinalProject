@@ -41,11 +41,11 @@ public class Collectable : NetworkComponent
 
         if (other.CompareTag("SHIP"))
         {
-            collected = true;
             gm.AddScore(scoreValue);
             OnCollected();
             SendUpdate("COLLECTED", "1");
             //gameObject.SetActive(false);
+            collected = true;
         }
     }
 
