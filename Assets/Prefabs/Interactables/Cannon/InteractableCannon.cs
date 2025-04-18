@@ -21,6 +21,10 @@ public class InteractableCannon : Interactable
     public float reloadTime = 2;
     public float reloadTimer = 0;
 
+    //camera
+    protected GameObject cameraObj;
+    [SerializeField] private Transform cameraHolderPos;
+
     public override void HandleMessage(string flag, string value)
     {
         base.HandleMessage(flag, value);
@@ -71,6 +75,17 @@ public class InteractableCannon : Interactable
             }
         }
     }
+    public override void NetworkedStart()
+    {
+        base.NetworkedStart();
+
+        //shipRB = GameObject.FindGameObjectWithTag("SHIP").GetComponent<Rigidbody>();
+        if (user >= 0 && IsLocalPlayer)
+        {
+            MyCore.NetObjs[user].GetComponent<NetworkPlayerController>().overrideCamera = true;
+            cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
+        }
+    }
 
     public void Start()
     {
@@ -106,6 +121,12 @@ public class InteractableCannon : Interactable
             }
         }
 
+        if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
+        {
+            cameraObj.transform.position = cameraHolderPos.transform.position;
+            cameraObj.transform.rotation = cameraHolderPos.transform.rotation;
+        }
+
         //if (IsLocalPlayer)
         //{
         //    Debug.Log(reloadTimer);
@@ -124,6 +145,7 @@ public class InteractableCannon : Interactable
             //pitch = Mathf.Clamp(pitch, startPitch - 15, startPitch + 10);
 
             transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+
         }
     }
 
