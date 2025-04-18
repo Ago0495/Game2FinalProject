@@ -9,6 +9,7 @@ public class InteractableCannon : Interactable
     [SerializeField] int cannonballPrefab;
     [SerializeField] float ballForce = 50;
     [SerializeField] public float atk = 10;
+    [SerializeField] GameObject cannonAudioSource;
     Vector2 lastInput;
     Rigidbody rb;
     private float pitch = 0f;
@@ -41,6 +42,7 @@ public class InteractableCannon : Interactable
             if (IsServer && canFire)
             {
                 ShootCannonBall();
+                SendUpdate("FIRESOUND", "1001");
             }
             else if (IsServer && MyCore.NetObjs[user].GetComponent<PlayerStats>().skill == 0 && reloadTimer > reloadTime * 0.40 && reloadTimer < reloadTime * 0.60 && !fireAttempt)
             {
@@ -72,6 +74,13 @@ public class InteractableCannon : Interactable
             {
                 reloadTimer = float.Parse(value);
                 //Debug.Log("SETTIMER: " + reloadTimer);
+            }
+        }
+        if (flag == "FIRESOUND")
+        {
+            if (IsClient)
+            {
+                cannonAudioSource.GetComponent<AudioSource>().Play();
             }
         }
     }

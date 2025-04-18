@@ -13,6 +13,7 @@ public class GameMaster : NetworkComponent
     public bool gameStarted = false;
     public bool gameFinished = false;
     [SerializeField] private bool allPlayersReady = false;
+    [SerializeField] MusicMasterScript musicMaster;
     private int score;
     public int numcoinchestscollected;
 
@@ -59,11 +60,26 @@ public class GameMaster : NetworkComponent
             Debug.Log(value);
             score = int.Parse(value);
         }
+
+        if(flag == "BACKGROUND")
+        {
+            
+            musicMaster = FindAnyObjectByType<MusicMasterScript>();
+            musicMaster.background();
+        }
+        if(flag == "LOSE")
+        {
+            musicMaster.lose();
+        }
+        if(flag == "WIN")
+        {
+            musicMaster.win();
+        }
     }
 
     public override void NetworkedStart()
     {
-
+        musicMaster = FindAnyObjectByType<MusicMasterScript>();
     }
 
     public override IEnumerator SlowUpdate()
@@ -71,7 +87,7 @@ public class GameMaster : NetworkComponent
         if (IsServer)
         {
             PlayerPanelOptions[] players;
-
+            musicMaster.stop();
             do
             {
                 allPlayersReady = true;
@@ -104,6 +120,7 @@ public class GameMaster : NetworkComponent
 
             gameStarted = true;
             SendUpdate("GAMESTART", "1");
+            SendUpdate("BACKGROUND", "1001");
 
             numcoinchestscollected = 0;
 
@@ -131,7 +148,7 @@ public class GameMaster : NetworkComponent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        musicMaster = FindAnyObjectByType<MusicMasterScript>();
     }
 
     // Update is called once per frame

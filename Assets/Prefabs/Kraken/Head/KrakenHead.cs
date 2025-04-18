@@ -36,6 +36,16 @@ public class KrakenHead : Enemy
             MyAnime.SetBool("Bash", false);
             MyAnime.SetBool("Move", false);
         }
+        if (flag == "Battle")
+        {
+            musicMaster.krakenAttack();
+            musicMaster.kraken = true;
+        }
+        if (flag == "ENDBATTLE")
+        {
+            musicMaster.kraken = false;
+            musicMaster.background();
+        }
     }
 
     public void NetworkedStart()

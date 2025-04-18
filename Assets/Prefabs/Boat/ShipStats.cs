@@ -9,9 +9,22 @@ public class ShipStats : Entity
     public InteractableRepairZone[] repairZoneArray;
     private float damageThreshold = 20;
     private float damageTracker = 0;
+    public GameObject damageAudio;
     private void Start()
     {
         base.Start();
+    }
+
+    public void HandleMessage(string flag, string value)
+    {
+        base.HandleMessage(flag, value);
+        if (flag == "Damaged")
+        {
+            if (IsClient)
+            {
+                damageAudio.GetComponent<AudioSource>().Play();
+            }
+        }
     }
 
     public override void OnDamageTaken(float damageTaken)
@@ -21,6 +34,8 @@ public class ShipStats : Entity
             damageTracker += damageTaken;
             //Debug.Log("ShipHealth: " + health);
             repairZoneArray = gameObject.GetComponentsInChildren<InteractableRepairZone>();
+
+            SendUpdate("Damaged", "111"); 
 
             if (damageTracker > damageThreshold && repairZoneArray.Length > 0)
             {
