@@ -11,6 +11,7 @@ TagManager:
   - KArea
   - PCANNON
   - Marker
+  - COLLECTAUDIO
   layers:
   - Default
   - TransparentFX

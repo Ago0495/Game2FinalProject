@@ -9,11 +9,13 @@ public class Collectable : NetworkComponent
     public GameMaster gm;
     public GameObject ship;
     public GameObject[] cannons;
+    public GameObject collectAudio;
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "COLLECTED")
         {
             //gameObject.SetActive(false);
+            collectAudio.GetComponent<AudioSource>().Play();
         }
     }
 
@@ -21,6 +23,7 @@ public class Collectable : NetworkComponent
     {
         gm = FindObjectOfType<GameMaster>();
         ship = GameObject.FindGameObjectWithTag("SHIP");
+        collectAudio = GameObject.FindGameObjectWithTag("COLLECTAUDIO");
     }
 
     public override IEnumerator SlowUpdate()
