@@ -65,9 +65,12 @@ public class MusicMasterScript : MonoBehaviour
 
     public void fortAttack()
     {
-        songs[currentlyPlaying].Stop();
-        songs[4].Play();
-        currentlyPlaying = 4;
+        if(enemyCannons == 0)
+        {
+            songs[currentlyPlaying].Stop();
+            songs[4].Play();
+            currentlyPlaying = 4;
+        }
     }
 
     public void lose()
