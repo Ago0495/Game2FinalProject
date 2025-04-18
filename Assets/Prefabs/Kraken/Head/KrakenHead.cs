@@ -220,7 +220,7 @@ public class KrakenHead : Enemy
     {
         if (IsServer)
         {
-            MyCore.NetCreateObject(AtkUpgradePrefab, -1, transform.position, Quaternion.identity);
+            MyCore.NetCreateObject(AtkUpgradePrefab, -1, transform.position + Vector3.up * 5, Quaternion.identity);
         }
     }
 }

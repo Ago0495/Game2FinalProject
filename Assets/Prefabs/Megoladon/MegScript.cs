@@ -266,7 +266,7 @@ public class MegScript : Enemy
     {
         if (IsServer)
         {
-            MyCore.NetCreateObject(DefUpgradePrefab, -1, transform.position, Quaternion.identity);
+            MyCore.NetCreateObject(DefUpgradePrefab, -1, transform.position + Vector3.up * 5, Quaternion.identity);
         }
     }
 }
