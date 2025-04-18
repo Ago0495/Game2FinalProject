@@ -13,6 +13,7 @@ public class Interactable : NetworkComponent
     Canvas canvas;
     bool hovered;
     Vector3 observerPosition;
+    public GameMaster gm;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -31,6 +32,7 @@ public class Interactable : NetworkComponent
 
     public override void NetworkedStart()
     {
+        gm = FindObjectOfType<GameMaster>();
         if (IsServer)
         {
             SendUpdate("USER", user.ToString());

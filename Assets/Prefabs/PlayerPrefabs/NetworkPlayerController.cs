@@ -31,6 +31,8 @@ public class NetworkPlayerController : NetworkComponent
     [SerializeField] private bool disableMovement;
     public bool overrideCamera = false;
 
+    public GameMaster gm;
+
     [SerializeField] private Transform respawn;
     [SerializeField] private bool isRespawning = false; 
     public override void HandleMessage(string flag, string value)
@@ -169,7 +171,7 @@ public class NetworkPlayerController : NetworkComponent
 
     public override void NetworkedStart()
     {
-        
+        gm = FindObjectOfType<GameMaster>();
         if (IsServer)
         {
             respawn = GameObject.FindGameObjectWithTag("Respawn").transform;
@@ -240,13 +242,21 @@ public class NetworkPlayerController : NetworkComponent
 
         if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null && !overrideCamera)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            cameraObj.transform.position = cameraHolderPos.transform.position;
-            RotateView();
-            if (!usingInteractable)
+            if (!gm.gameFinished)
             {
-                LookForInteractable();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                cameraObj.transform.position = cameraHolderPos.transform.position;
+                RotateView();
+                if (!usingInteractable)
+                {
+                    LookForInteractable();
+                }
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
         if (IsServer && !isRespawning)

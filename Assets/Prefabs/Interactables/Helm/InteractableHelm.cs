@@ -66,11 +66,20 @@ public class InteractableHelm : Interactable
 
         if (IsLocalPlayer && cameraHolderPos != null && cameraObj != null)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            cameraObj.transform.position = cameraHolderPos.transform.position + cameraHolderPos.transform.forward * -50;
-            cameraObj.transform.LookAt(GameObject.FindGameObjectWithTag("SHIP").transform.position);
-            RotateView();
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+
+            if (!gm.gameFinished)
+            {
+                cameraObj.transform.position = cameraHolderPos.transform.position + cameraHolderPos.transform.forward * -50;
+                cameraObj.transform.LookAt(GameObject.FindGameObjectWithTag("SHIP").transform.position);
+                RotateView();
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 
