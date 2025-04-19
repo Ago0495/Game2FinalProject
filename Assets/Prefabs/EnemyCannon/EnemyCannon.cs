@@ -18,6 +18,7 @@ public class EnemyCannon : NetworkComponent
     public Rigidbody MyRig;
 
     public int cannonballPrefab;
+    [SerializeField] GameObject cannonAudioSource;
 
     public bool attacking;
 
@@ -41,6 +42,13 @@ public class EnemyCannon : NetworkComponent
                 musicMaster.enemyCannons = 0;
             }
             musicMaster.background();
+        }
+        if (flag == "FIRESOUND")
+        {
+            if (IsClient)
+            {
+                cannonAudioSource.GetComponent<AudioSource>().Play();
+            }
         }
     }
 
@@ -127,6 +135,7 @@ public class EnemyCannon : NetworkComponent
             tempBall.GetComponent<CannonBall>().attack = atk;
             tempRB.linearVelocity = transform.forward * cannonBallSpeed;
         }
+        SendUpdate("FIRESOUND", "1001");
         reloading = true;
     }
 }
